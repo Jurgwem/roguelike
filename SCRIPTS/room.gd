@@ -5,6 +5,7 @@ var x = 0;
 var y = 0;
 
 func _ready() -> void:
+	print(get_parent().get_parent().name)
 	gm.hasDoor = false;
 	gm.randomDoor = 0;
 	if gm.nextRoom == "left" or gm.nextRoom == "right":

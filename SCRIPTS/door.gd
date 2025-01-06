@@ -50,6 +50,7 @@ func _physics_process(delta: float) -> void:
 		#keepRunnig = make sure it finished despawning, fallback = continue if chance or raycasts start but not continue
 		if keepRunning or ((hasRun and !$raycastStraight.is_colliding() and gm.enemyCount == 0) and (chance < 0.5 or gm.randomDoor >= 2 or fallback or $raycastToRoom.is_colliding())):
 			keepRunning = true;
+			$GPUParticles2D.emitting = true;
 			if $raycastStraight.is_colliding() or $raycastToRoom.is_colliding() or chance > 0.5:
 				fallback = true;
 			else:
@@ -74,6 +75,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				rotation-=(0.05);
 			scale -= Vector2(0.02, 0.02);
+			
+			if scale <= Vector2(0.5, 0.5):
+				$GPUParticles2D.emitting = false;
 			
 			if scale <= Vector2(0, 0):
 				get_parent().queue_free();

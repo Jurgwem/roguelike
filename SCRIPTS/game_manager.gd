@@ -12,9 +12,12 @@ var vert = 720;
 var isDev = true;
 var enemyCount = 1;
 var randomDoor = 0;
+var currentAmmo = 0;
+var maxAmmo = 0;
 
 var roomCount = 1;
 var coins = 0;
+var weapon = "none";
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +28,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$UI.position = roomPos;
 	$UI/RoomCounter.text = str("Room: ", roomCount);
-	$UI/Coins.text = str(coins);
+	$UI/Coins.text = str(coins, "x");
+	$UI/weaponName.text = str(weapon);
+	$UI/ammo.text = str("(", currentAmmo, "/", maxAmmo, ")");
+	
 	if isDev:
 		$UI/FPS.text = str("FPS: ", Engine.get_frames_per_second());
 		$UI/roomPos.text = str("roomPos: ", roomPos);

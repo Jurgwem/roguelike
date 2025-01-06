@@ -36,5 +36,6 @@ func _on_body_entered(body: Node2D) -> void:
 			gm.roomCount += 1;
 			print("room count: ", gm.roomCount);
 			#add_child(instance);
-			add_child(room);
+			print("Room Parent: ", get_parent().get_parent().name)
+			get_parent().get_parent().add_child(room);
 			used = true;

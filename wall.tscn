@@ -1,10 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://chug4vblhhjny"]
+[gd_scene load_steps=7 format=3 uid="uid://chug4vblhhjny"]
 
 [ext_resource type="Script" path="res://SCRIPTS/door.gd" id="1_dhbbf"]
 [ext_resource type="Texture2D" uid="uid://3m4k8ovlgqus" path="res://SPRITES/door.png" id="1_iamug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8ajb"]
 size = Vector2(126, 46)
+
+[sub_resource type="Curve" id="Curve_bqkgv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k5ggs"]
+curve = SubResource("Curve_bqkgv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xgqj7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_k5ggs")
+color = Color(0, 0, 0, 1)
 
 [node name="Wall" type="Node"]
 
@@ -22,3 +45,10 @@ target_position = Vector2(0, -103)
 
 [node name="raycastToRoom" type="RayCast2D" parent="StaticBody2D"]
 target_position = Vector2(-112, -80)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="StaticBody2D"]
+z_index = -2
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_xgqj7")
+lifetime = 0.5
