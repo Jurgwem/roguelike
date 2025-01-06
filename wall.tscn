@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://chug4vblhhjny"]
+
+[ext_resource type="Script" path="res://SCRIPTS/door.gd" id="1_dhbbf"]
+[ext_resource type="Texture2D" uid="uid://3m4k8ovlgqus" path="res://SPRITES/door.png" id="1_iamug"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8ajb"]
+size = Vector2(126, 46)
+
+[node name="Wall" type="Node"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_dhbbf")
+
+[node name="Door" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_iamug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_w8ajb")
+
+[node name="raycastStraight" type="RayCast2D" parent="StaticBody2D"]
+target_position = Vector2(0, -103)
+
+[node name="raycastToRoom" type="RayCast2D" parent="StaticBody2D"]
+target_position = Vector2(-112, -80)

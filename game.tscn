@@ -1,0 +1,400 @@
+[gd_scene load_steps=42 format=3 uid="uid://dwe12lik1bc4r"]
+
+[ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
+[ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
+[ext_resource type="Script" path="res://SCRIPTS/game_manager.gd" id="1_yu3vq"]
+[ext_resource type="Texture2D" uid="uid://bjm2bnl0smdrd" path="res://SPRITES/room_template.png" id="3_cgj2e"]
+[ext_resource type="Script" path="res://SCRIPTS/camera.gd" id="3_pm1a5"]
+[ext_resource type="Script" path="res://SCRIPTS/gen_room.gd" id="4_dlrv3"]
+[ext_resource type="Texture2D" uid="uid://4gb8maj35ibv" path="res://SPRITES/wasd.png" id="6_kchic"]
+[ext_resource type="Texture2D" uid="uid://dq44qtdj8qix5" path="res://SPRITES/mouse.png" id="7_065qo"]
+[ext_resource type="Texture2D" uid="uid://8qkldns3ymd6" path="res://SPRITES/coin.png" id="9_cjqhe"]
+[ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://coin.tscn" id="9_s7tye"]
+[ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://rock.tscn" id="11_4im8k"]
+[ext_resource type="Script" path="res://SCRIPTS/gun.gd" id="12_mdx1r"]
+[ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="12_yw3kh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
+radius = 8.74518
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rbh3"]
+atlas = ExtResource("1_vjjnx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkko7"]
+atlas = ExtResource("1_vjjnx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4bs4"]
+atlas = ExtResource("1_vjjnx")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rjri"]
+atlas = ExtResource("1_vjjnx")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vr7xy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rbh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkko7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4bs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rjri")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_xnkap"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rkyfn"]
+curve = SubResource("Curve_xnkap")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4s3dw"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+direction = Vector3(0.04, 0, 0)
+spread = 180.0
+initial_velocity_max = 34.3
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_rkyfn")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulqa5"]
+size = Vector2(1477, 914)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ra6by"]
+a = Vector2(-614, -68)
+b = Vector2(-614, 68)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_viooj"]
+a = Vector2(614, -67)
+b = Vector2(615, 68)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rukig"]
+a = Vector2(-60, -334)
+b = Vector2(60, -335)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l4a33"]
+a = Vector2(60, 335)
+b = Vector2(-60, 335)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1qsr"]
+atlas = ExtResource("9_cjqhe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3n6f"]
+atlas = ExtResource("9_cjqhe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgw0y"]
+atlas = ExtResource("9_cjqhe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6hkx"]
+atlas = ExtResource("9_cjqhe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnio1"]
+atlas = ExtResource("9_cjqhe")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jscwf"]
+atlas = ExtResource("9_cjqhe")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c065b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1qsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3n6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgw0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6hkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnio1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jscwf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_hl304"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wu8qe"]
+gradient = SubResource("Gradient_hl304")
+
+[sub_resource type="Environment" id="Environment_noa8x"]
+background_mode = 3
+tonemap_white = 10.94
+glow_enabled = true
+glow_levels/1 = 0.1
+glow_levels/2 = 0.54
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
+glow_normalized = true
+glow_intensity = 0.38
+glow_strength = 2.0
+glow_mix = 0.503
+glow_blend_mode = 1
+glow_hdr_threshold = 0.83
+volumetric_fog_density = 0.0
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture2D_wu8qe")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhdjo"]
+radius = 15.5
+
+[sub_resource type="Curve" id="Curve_rjf22"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mn0qt"]
+curve = SubResource("Curve_rjf22")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_llij7"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 26.0
+initial_velocity_max = 32.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+orbit_velocity_min = -0.498
+orbit_velocity_max = 0.0090001
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_mn0qt")
+color = Color(0, 0, 0, 1)
+
+[node name="game" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="."]
+z_index = 8
+position = Vector2(439, -183)
+scale = Vector2(1.88827, 1.88827)
+script = ExtResource("1_72mxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+z_index = 595
+position = Vector2(-0.5, 6)
+scale = Vector2(1.069, 1.08)
+shape = SubResource("CircleShape2D_h4wmw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
+sprite_frames = SubResource("SpriteFrames_vr7xy")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="walkPart" type="GPUParticles2D" parent="player"]
+position = Vector2(-0.529585, 5.82544)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_4s3dw")
+lifetime = 2.0
+
+[node name="camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+script = ExtResource("3_pm1a5")
+
+[node name="inCameraView" type="Area2D" parent="camera"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camera/inCameraView"]
+visible = false
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ulqa5")
+
+[node name="spawnRoom" type="Node" parent="."]
+
+[node name="Room_Itself" type="StaticBody2D" parent="spawnRoom"]
+
+[node name="Borders" type="Sprite2D" parent="spawnRoom/Room_Itself"]
+texture = ExtResource("3_cgj2e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawnRoom/Room_Itself"]
+polygon = PackedVector2Array(-584, -340, -584, -338, -602.9, -338, -615.9, -324, -618, -324, -620, -78, -620, -73, -616, -70, -616, -68, -601, -68, -598, -72, -596, -72, -598, -303, -598, -318, -70, -316, -65, -316, -62, -320, -60, -320, -60, -335, -64, -338, -64, -340)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="spawnRoom/Room_Itself"]
+polygon = PackedVector2Array(64, -340, 64, -337.8, 62.2, -336, 60, -336, 60, -321, 64, -318, 64, -316, 583, -318, 598, -318, 596, -78, 596, -73, 600, -70, 600, -68, 615, -68, 618, -72, 620, -72, 620, -303.2, 618, -304.3, 618, -322.9, 604, -336, 604, -338)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="spawnRoom/Room_Itself"]
+polygon = PackedVector2Array(-616, 68, -616, 70.2, -617.8, 72, -620, 72, -620, 303.2, -618, 304.2, -618, 322.9, -604, 335.9, -604, 338, -70, 340, -65, 340, -62, 336, -60, 336, -60, 321, -64, 318, -64, 316, -583, 318, -598, 318, -596, 78, -596, 73, -600, 70, -600, 68)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="spawnRoom/Room_Itself"]
+polygon = PackedVector2Array(600, 68, 600, 70.2, 598.2, 72, 596, 72, 598, 303, 598, 317.9, 70, 316, 65, 316, 62, 320, 60, 320, 60, 335, 64, 338, 64, 340, 583, 338, 602.9, 338, 615.9, 324, 617.9, 324, 618.9, 304, 620, 304, 620, 73, 616, 70, 616, 68)
+
+[node name="Left_Gen" type="Area2D" parent="spawnRoom"]
+script = ExtResource("4_dlrv3")
+direction = "left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawnRoom/Left_Gen"]
+shape = SubResource("SegmentShape2D_ra6by")
+
+[node name="raycast" type="RayCast2D" parent="spawnRoom/Left_Gen"]
+position = Vector2(-620, -56)
+target_position = Vector2(-103, -101)
+
+[node name="right_gen" type="Area2D" parent="spawnRoom"]
+script = ExtResource("4_dlrv3")
+direction = "right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawnRoom/right_gen"]
+shape = SubResource("SegmentShape2D_viooj")
+
+[node name="raycast" type="RayCast2D" parent="spawnRoom/right_gen"]
+position = Vector2(626, 50)
+target_position = Vector2(102, 134)
+
+[node name="up_gen" type="Area2D" parent="spawnRoom"]
+script = ExtResource("4_dlrv3")
+direction = "up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawnRoom/up_gen"]
+shape = SubResource("SegmentShape2D_rukig")
+
+[node name="raycast" type="RayCast2D" parent="spawnRoom/up_gen"]
+position = Vector2(43, -342)
+target_position = Vector2(116, -89)
+
+[node name="down_gen" type="Area2D" parent="spawnRoom"]
+script = ExtResource("4_dlrv3")
+direction = "down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawnRoom/down_gen"]
+shape = SubResource("SegmentShape2D_l4a33")
+
+[node name="raycast" type="RayCast2D" parent="spawnRoom/down_gen"]
+position = Vector2(-50, 341)
+target_position = Vector2(-107, 99)
+
+[node name="Wasd" type="Sprite2D" parent="spawnRoom"]
+position = Vector2(360, 192)
+scale = Vector2(4, 4)
+texture = ExtResource("6_kchic")
+
+[node name="Mouse" type="Sprite2D" parent="spawnRoom"]
+position = Vector2(-349, 190)
+scale = Vector2(4, 4)
+texture = ExtResource("7_065qo")
+
+[node name="spawnCoins" type="Node2D" parent="spawnRoom"]
+position = Vector2(-316, -172)
+
+[node name="Coin" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+position = Vector2(0, -64)
+
+[node name="Coin2" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+position = Vector2(-72, 0)
+
+[node name="Coin3" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+position = Vector2(76, 0)
+
+[node name="Coin4" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+position = Vector2(0, 60)
+
+[node name="gameManager" type="Node2D" parent="."]
+script = ExtResource("1_yu3vq")
+
+[node name="UI" type="Node2D" parent="gameManager"]
+z_index = 99
+
+[node name="RoomCounter" type="Label" parent="gameManager/UI"]
+offset_left = 360.0
+offset_top = -313.0
+offset_right = 455.0
+offset_bottom = -288.0
+scale = Vector2(2.4, 2.4)
+text = "Room: ###"
+horizontal_alignment = 2
+
+[node name="Coins" type="Label" parent="gameManager/UI"]
+offset_left = 448.0
+offset_top = -271.0
+offset_right = 488.0
+offset_bottom = -248.0
+scale = Vector2(2.4, 2.4)
+text = "###"
+horizontal_alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="gameManager/UI/Coins"]
+position = Vector2(50, 11.6667)
+scale = Vector2(0.487807, 0.487807)
+sprite_frames = SubResource("SpriteFrames_c065b")
+
+[node name="FPS" type="Label" parent="gameManager/UI"]
+offset_left = -593.0
+offset_top = -313.0
+offset_right = -553.0
+offset_bottom = -290.0
+scale = Vector2(1.84, 1.84)
+text = "FPS: "
+
+[node name="roomPos" type="Label" parent="gameManager/UI"]
+offset_left = -593.0
+offset_top = -271.0
+offset_right = -553.0
+offset_bottom = -248.0
+scale = Vector2(1.84, 1.84)
+text = "roomPos: "
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_noa8x")
+
+[node name="rock" parent="." instance=ExtResource("11_4im8k")]
+
+[node name="gun" type="Node2D" parent="."]
+position = Vector2(-38, -24)
+scale = Vector2(2, 2)
+script = ExtResource("12_mdx1r")
+
+[node name="Sprite2D" type="Sprite2D" parent="gun"]
+z_index = 10
+position = Vector2(13, 0)
+texture = ExtResource("12_yw3kh")
+
+[node name="Area2D" type="Area2D" parent="gun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gun/Area2D"]
+position = Vector2(19.5, 0)
+shape = SubResource("CircleShape2D_rhdjo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="gun"]
+position = Vector2(19, 0)
+process_material = SubResource("ParticleProcessMaterial_llij7")
+
+[connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
+[connection signal="body_exited" from="camera/inCameraView" to="camera" method="_on_in_camera_view_body_exited"]
+[connection signal="body_entered" from="spawnRoom/Left_Gen" to="spawnRoom/Left_Gen" method="_on_body_entered"]
+[connection signal="body_entered" from="spawnRoom/right_gen" to="spawnRoom/right_gen" method="_on_body_entered"]
+[connection signal="body_entered" from="spawnRoom/up_gen" to="spawnRoom/up_gen" method="_on_body_entered"]
+[connection signal="body_entered" from="spawnRoom/down_gen" to="spawnRoom/down_gen" method="_on_body_entered"]
+[connection signal="body_entered" from="gun/Area2D" to="gun" method="_on_area_2d_body_entered"]

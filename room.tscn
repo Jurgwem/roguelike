@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://bie37p0rv74i7"]
+
+[ext_resource type="Texture2D" uid="uid://bjm2bnl0smdrd" path="res://SPRITES/room_template.png" id="1_0mgwk"]
+[ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_no5a2"]
+[ext_resource type="Script" path="res://SCRIPTS/gen_room.gd" id="3_j2k26"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ismcg"]
+a = Vector2(-615, -68)
+b = Vector2(-615, 68)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bi0tn"]
+a = Vector2(614, -68)
+b = Vector2(615, 68)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_aiqc4"]
+a = Vector2(60, -335)
+b = Vector2(-60, -335)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gkall"]
+a = Vector2(-60, 335)
+b = Vector2(60, 334)
+
+[node name="Room" type="Node"]
+
+[node name="Room_Iterate" type="StaticBody2D" parent="."]
+script = ExtResource("1_no5a2")
+
+[node name="Borders" type="Sprite2D" parent="Room_Iterate"]
+texture = ExtResource("1_0mgwk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room_Iterate"]
+polygon = PackedVector2Array(-584, -340, -584, -338, -602.9, -338, -615.9, -324, -618, -324, -620, -78, -620, -73, -616, -70, -616, -68, -601, -68, -598, -72, -596, -72, -598, -303, -598, -318, -70, -316, -65, -316, -62, -320, -60, -320, -60, -335, -64, -338, -64, -340)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Room_Iterate"]
+polygon = PackedVector2Array(64, -340, 64, -337.8, 62.2, -336, 60, -336, 60, -321, 64, -318, 64, -316, 583, -318, 598, -318, 596, -78, 596, -73, 600, -70, 600, -68, 615, -68, 618, -72, 620, -72, 620, -303.2, 618, -304.3, 618, -322.9, 604, -336, 604, -338)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Room_Iterate"]
+polygon = PackedVector2Array(-616, 68, -616, 70.2, -617.8, 72, -620, 72, -620, 303.2, -618, 304.2, -618, 322.9, -604, 335.9, -604, 338, -70, 340, -65, 340, -62, 336, -60, 336, -60, 321, -64, 318, -64, 316, -583, 318, -598, 318, -596, 78, -596, 73, -600, 70, -600, 68)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Room_Iterate"]
+polygon = PackedVector2Array(600, 68, 600, 70.2, 598.2, 72, 596, 72, 598, 303, 598, 317.9, 70, 316, 65, 316, 62, 320, 60, 320, 60, 335, 64, 338, 64, 340, 583, 338, 602.9, 338, 615.9, 324, 617.9, 324, 618.9, 304, 620, 304, 620, 73, 616, 70, 616, 68)
+
+[node name="Left_Gen" type="Area2D" parent="Room_Iterate"]
+script = ExtResource("3_j2k26")
+direction = "left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/Left_Gen"]
+shape = SubResource("SegmentShape2D_ismcg")
+
+[node name="raycast" type="RayCast2D" parent="Room_Iterate/Left_Gen"]
+position = Vector2(-620, -56)
+target_position = Vector2(-103, -101)
+
+[node name="Right_Gen" type="Area2D" parent="Room_Iterate"]
+script = ExtResource("3_j2k26")
+direction = "right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/Right_Gen"]
+shape = SubResource("SegmentShape2D_bi0tn")
+
+[node name="raycast" type="RayCast2D" parent="Room_Iterate/Right_Gen"]
+position = Vector2(626, 50)
+target_position = Vector2(102, 134)
+
+[node name="up_Gen" type="Area2D" parent="Room_Iterate"]
+script = ExtResource("3_j2k26")
+direction = "up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/up_Gen"]
+shape = SubResource("SegmentShape2D_aiqc4")
+
+[node name="raycast" type="RayCast2D" parent="Room_Iterate/up_Gen"]
+position = Vector2(43, -342)
+target_position = Vector2(116, -89)
+
+[node name="down_Gen" type="Area2D" parent="Room_Iterate"]
+script = ExtResource("3_j2k26")
+direction = "down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/down_Gen"]
+shape = SubResource("SegmentShape2D_gkall")
+
+[node name="raycast" type="RayCast2D" parent="Room_Iterate/down_Gen"]
+position = Vector2(-50, 341)
+target_position = Vector2(-107, 99)
+
+[connection signal="body_entered" from="Room_Iterate/Left_Gen" to="Room_Iterate/Left_Gen" method="_on_body_entered"]
+[connection signal="body_entered" from="Room_Iterate/Right_Gen" to="Room_Iterate/Right_Gen" method="_on_body_entered"]
+[connection signal="body_entered" from="Room_Iterate/up_Gen" to="Room_Iterate/up_Gen" method="_on_body_entered"]
+[connection signal="body_entered" from="Room_Iterate/down_Gen" to="Room_Iterate/down_Gen" method="_on_body_entered"]

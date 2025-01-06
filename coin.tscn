@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://c53nw2bjh4vot"]
+
+[ext_resource type="Texture2D" uid="uid://8qkldns3ymd6" path="res://SPRITES/coin.png" id="1_ryex5"]
+[ext_resource type="Script" path="res://SCRIPTS/coin.gd" id="1_w5i3w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ngdu"]
+radius = 16.0312
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5058"]
+atlas = ExtResource("1_ryex5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqa0o"]
+atlas = ExtResource("1_ryex5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aje6"]
+atlas = ExtResource("1_ryex5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6r1c"]
+atlas = ExtResource("1_ryex5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg1lk"]
+atlas = ExtResource("1_ryex5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njobt"]
+atlas = ExtResource("1_ryex5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a3v2n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5058")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqa0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aje6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6r1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg1lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njobt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="Curve" id="Curve_gclus"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1sj07"]
+curve = SubResource("Curve_gclus")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6wg32"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 32.0
+initial_velocity_max = 48.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_1sj07")
+color = Color(0.984314, 0.94902, 0.211765, 1)
+
+[node name="Coin" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_w5i3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5ngdu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_a3v2n")
+animation = &"idle"
+frame_progress = 0.504923
+
+[node name="parts" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_6wg32")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
