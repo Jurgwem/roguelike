@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var game: Node2D = $".."
 @onready var camera: Camera2D = $"../camera"
 
+signal shoot;
 signal devCamDisabled;
 var lastDir = "left";
 var slowdown = 0.9;
@@ -12,6 +13,9 @@ var accel = 50;
 var xvel = 0;
 var yvel = 0;
 var devCam = false;
+var isReloading = false;
+var isOnCooldown = false;
+var shooting = false;
 
 func _physics_process(delta: float) -> void:
 	yvel = yvel * slowdown;
@@ -55,6 +59,9 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("walk");
 		$walkPart.emitting = true;
 		yvel -= accel;
+		
+	if Input.is_action_pressed("shoot") and !isOnCooldown and !isReloading and !shooting and gm.weapon != "none":
+		shooting = true;
 		
 	if Input.is_action_just_released("down") or Input.is_action_just_released("up") or Input.is_action_just_released("left") or Input.is_action_just_released("right"):
 		animated_sprite_2d.play("idle");

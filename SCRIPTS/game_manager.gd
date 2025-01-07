@@ -1,5 +1,6 @@
 extends Node2D
 @onready var static_body_2d: StaticBody2D = $"../spawnRoom/Room_Itself"
+@onready var player = get_node("/root/game/player");
 
 var roomPos = Vector2(0, 0);
 var doorDirection = "none";
@@ -17,7 +18,7 @@ var maxAmmo = 0;
 
 var roomCount = 1;
 var coins = 0;
-var weapon = "none";
+var weapon = " ";
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +31,12 @@ func _physics_process(delta: float) -> void:
 	$UI/RoomCounter.text = str("Room: ", roomCount);
 	$UI/Coins.text = str(coins, "x");
 	$UI/weaponName.text = str(weapon);
-	$UI/ammo.text = str("(", currentAmmo, "/", maxAmmo, ")");
+	if player.isReloading:
+		$UI/ammo.text = "reloading..."
+	elif weapon == " ":
+		$UI/ammo.text = " ";
+	else:
+		$UI/ammo.text = str("(", currentAmmo, "/", maxAmmo, ")");
 	
 	if isDev:
 		$UI/FPS.text = str("FPS: ", Engine.get_frames_per_second());
