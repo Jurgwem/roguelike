@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=46 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -81,6 +81,28 @@ scale_curve = SubResource("CurveTexture_rkyfn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulqa5"]
 size = Vector2(1477, 914)
+
+[sub_resource type="Curve" id="Curve_rw3pu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kirmo"]
+curve = SubResource("Curve_rw3pu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymc3v"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(580, 300, 1)
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_kirmo")
+color = Color(0, 0, 0, 0.12549)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ra6by"]
 a = Vector2(-614, -68)
@@ -233,6 +255,11 @@ script = ExtResource("3_pm1a5")
 visible = false
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_ulqa5")
+
+[node name="Dust" type="GPUParticles2D" parent="camera"]
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_ymc3v")
+lifetime = 10.0
 
 [node name="spawnRoom" type="Node" parent="."]
 
