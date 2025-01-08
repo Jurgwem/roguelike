@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left") and (xvel >= (maxSpeed * -1)):
 		animated_sprite_2d.play("walk");
 		$walkPart.emitting = true;
-		lastDir = "right";
+		lastDir = "left";
 		xvel -= accel;
 		
 	if Input.is_action_pressed("down") and (yvel <= maxSpeed):

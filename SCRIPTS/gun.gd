@@ -37,19 +37,25 @@ func _physics_process(delta: float) -> void:
 			scale = Vector2(1.5, 1.5)
 		position = player.position;
 		
-		look_at(get_global_mouse_position())
-		if rotation_degrees < -90:
-			rotation += deg_to_rad(360);
-		elif rotation_degrees > 270:
-			rotation -= deg_to_rad(360);
-		if rotation_degrees >= 90 and rotation_degrees <= 270:
-			$shootPart.position.y = 3;
-			$Sprite2D.flip_v = true;
+		if (!player.isReloading):
+			look_at(get_global_mouse_position())
+			if rotation_degrees < -90:
+				rotation += deg_to_rad(360);
+			elif rotation_degrees > 270:
+				rotation -= deg_to_rad(360);
+			if rotation_degrees >= 90 and rotation_degrees <= 270:
+				$shootPart.position.y = 3;
+				$Sprite2D.flip_v = true;
+			else:
+				$shootPart.position.y = 0;
+				$Sprite2D.flip_v = false;
 		else:
-			$shootPart.position.y = 0;
-			$Sprite2D.flip_v = false;
+			if !$Sprite2D.flip_v:
+				rotation = deg_to_rad(45);
+			else:
+				rotation = deg_to_rad(135);
 		
-		if gm.currentAmmo <= 0 and !player.isReloading:
+		if (gm.currentAmmo <= 0 or Input.is_action_just_pressed("reload")) and !player.isReloading:
 			player.isReloading = true;
 			print("no ammo, reloading...");
 			await get_tree().create_timer(reloadTime).timeout;
