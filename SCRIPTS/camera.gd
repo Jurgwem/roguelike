@@ -38,7 +38,9 @@ func _physics_process(delta: float) -> void:
 func _on_in_camera_view_body_exited(body: Node2D) -> void:
 	if body.name == "player":
 		player.position = position;
-		pass
+	if body.get_parent().is_in_group("playerBullet"):
+		body.get_parent().queue_free();
+	pass
 
 
 func _on_player_dev_cam_disabled() -> void:

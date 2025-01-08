@@ -3,6 +3,8 @@ extends Node2D
 @onready var gm = get_node("/root/game/gameManager");
 @onready var player = get_node("/root/game/player");
 
+var bulletRess = load("res://PROJECTILES/default_bullet.tscn");
+
 var equipped = false;
 var init = false;
 var startPos = position;
@@ -17,6 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	var bullet = bulletRess.instantiate();
 	if equipped and Input.is_action_just_pressed("unequip"):
 		rotation = deg_to_rad(0);
 		gm.weapon = " ";
@@ -66,6 +69,7 @@ func _physics_process(delta: float) -> void:
 		if player.shooting and !player.isOnCooldown and !player.isReloading:
 			player.isOnCooldown = true;
 			player.shooting = false;
+			$"..".add_child(bullet);
 			$shootPart.emitting = true;
 			gm.currentAmmo -= 1;
 			print("player has shot!")

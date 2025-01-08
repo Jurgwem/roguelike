@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		yvel -= accel;
 		
 	if Input.is_action_pressed("shoot") and !isOnCooldown and !isReloading and !shooting and gm.weapon != "none":
+		shoot.emit();
 		shooting = true;
 		
 	if Input.is_action_just_released("down") or Input.is_action_just_released("up") or Input.is_action_just_released("left") or Input.is_action_just_released("right"):

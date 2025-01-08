@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=52 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://rock.tscn" id="11_4im8k"]
 [ext_resource type="Script" path="res://SCRIPTS/gun.gd" id="12_mdx1r"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="12_yw3kh"]
+[ext_resource type="Script" path="res://SCRIPTS/default_bullet.gd" id="15_b3loj"]
+[ext_resource type="Texture2D" uid="uid://bekd5bt05qnni" path="res://SPRITES/standardBullet.png" id="16_he22c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
 radius = 8.74518
@@ -243,6 +245,9 @@ color = Color(1, 0.8, 0, 1)
 hue_variation_min = -0.2
 hue_variation_max = 0.06
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lm7vv"]
+radius = 3.0
+
 [node name="game" type="Node2D"]
 
 [node name="player" type="CharacterBody2D" parent="."]
@@ -275,8 +280,6 @@ rotation_smoothing_enabled = true
 script = ExtResource("3_pm1a5")
 
 [node name="inCameraView" type="Area2D" parent="camera"]
-collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="camera/inCameraView"]
 position = Vector2(0.5, 0)
@@ -474,6 +477,18 @@ process_material = SubResource("ParticleProcessMaterial_uuum8")
 lifetime = 0.15
 one_shot = true
 local_coords = true
+
+[node name="defaultBullet" type="Node2D" parent="." groups=["playerBullet"]]
+position = Vector2(198, -96)
+script = ExtResource("15_b3loj")
+
+[node name="Sprite2D" type="Sprite2D" parent="defaultBullet"]
+texture = ExtResource("16_he22c")
+
+[node name="AnimatableBody2D" type="StaticBody2D" parent="defaultBullet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="defaultBullet/AnimatableBody2D"]
+shape = SubResource("CircleShape2D_lm7vv")
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="shoot" from="player" to="gun" method="_on_player_shoot"]
