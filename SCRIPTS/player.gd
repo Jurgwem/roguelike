@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		print("Debug set enemy count to 0.");
 	
 	if Input.is_action_just_pressed("debugCoin") and gm.isDev:
-		var coin = load("res://coin.tscn").instantiate();
+		var coin = load("res://INST/coin.tscn").instantiate();
 		add_child(coin);
 	
 	#NORMAL GAME INPUTS

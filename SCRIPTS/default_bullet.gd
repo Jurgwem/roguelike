@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var player = get_node("/root/game/player");
-
 var damage = 10;
 var speed = 16;
 var inaccuracy = 4; #overall degrees, aka spread
@@ -10,7 +8,15 @@ var lifetime = 0;
 var maxLifetime = 250;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	position = player.position;
+	if get_parent().name == "Start":
+		speed = 4;
+		inaccuracy = 1;
+		scale = Vector2(0.7, 0.7);
+		position = get_node("/root/Start/startPlayer").position;
+		position += Vector2(0, -2.3);
+	else:
+		var player = get_node("/root/game/player");
+		position = player.position;
 	look_at(get_global_mouse_position())
 	rotation -= deg_to_rad((randf()*inaccuracy) - (inaccuracy / 2))
 	pass # Replace with function body.

@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://4gb8maj35ibv" path="res://SPRITES/wasd.png" id="6_kchic"]
 [ext_resource type="Texture2D" uid="uid://cqdg812541b74" path="res://SPRITES/q.png" id="7_5exos"]
 [ext_resource type="Texture2D" uid="uid://dq44qtdj8qix5" path="res://SPRITES/mouse.png" id="7_065qo"]
+[ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://INST/coin.tscn" id="9_86inw"]
 [ext_resource type="Texture2D" uid="uid://8qkldns3ymd6" path="res://SPRITES/coin.png" id="9_cjqhe"]
-[ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://coin.tscn" id="9_s7tye"]
-[ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://rock.tscn" id="11_4im8k"]
+[ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
 [ext_resource type="Script" path="res://SCRIPTS/gun.gd" id="12_mdx1r"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="12_yw3kh"]
 
@@ -172,7 +172,7 @@ animations = [{
 
 [sub_resource type="Gradient" id="Gradient_hl304"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wu8qe"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nc0nk"]
 gradient = SubResource("Gradient_hl304")
 
 [sub_resource type="Environment" id="Environment_noa8x"]
@@ -191,7 +191,7 @@ glow_blend_mode = 1
 glow_hdr_threshold = 0.83
 volumetric_fog_density = 0.0
 adjustment_enabled = true
-adjustment_color_correction = SubResource("GradientTexture2D_wu8qe")
+adjustment_color_correction = SubResource("GradientTexture2D_nc0nk")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhdjo"]
 radius = 15.5
@@ -222,7 +222,7 @@ color = Color(0, 0, 0, 1)
 _data = [Vector2(0, 0.549451), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_4agns"]
+[sub_resource type="CurveTexture" id="CurveTexture_tc7ct"]
 curve = SubResource("Curve_wclnc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uuum8"]
@@ -238,7 +238,7 @@ orbit_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_4agns")
+scale_curve = SubResource("CurveTexture_tc7ct")
 color = Color(1, 0.8, 0, 1)
 hue_variation_min = -0.2
 hue_variation_max = 0.06
@@ -247,7 +247,7 @@ hue_variation_max = 0.06
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_q8cgb"]
+[sub_resource type="CurveTexture" id="CurveTexture_4aav7"]
 curve = SubResource("Curve_wv5cj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1jlht"]
@@ -261,7 +261,7 @@ initial_velocity_max = 32.0
 gravity = Vector3(0, 98, 0)
 scale_min = 8.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_q8cgb")
+scale_curve = SubResource("CurveTexture_4aav7")
 color = Color(1, 1, 0, 1)
 
 [node name="game" type="Node2D"]
@@ -389,16 +389,16 @@ texture = ExtResource("7_065qo")
 [node name="spawnCoins" type="Node2D" parent="spawnRoom"]
 position = Vector2(-316, -172)
 
-[node name="Coin" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+[node name="Coin" parent="spawnRoom/spawnCoins" instance=ExtResource("9_86inw")]
 position = Vector2(0, -64)
 
-[node name="Coin2" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+[node name="Coin2" parent="spawnRoom/spawnCoins" instance=ExtResource("9_86inw")]
 position = Vector2(-72, 0)
 
-[node name="Coin3" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+[node name="Coin3" parent="spawnRoom/spawnCoins" instance=ExtResource("9_86inw")]
 position = Vector2(76, 0)
 
-[node name="Coin4" parent="spawnRoom/spawnCoins" instance=ExtResource("9_s7tye")]
+[node name="Coin4" parent="spawnRoom/spawnCoins" instance=ExtResource("9_86inw")]
 position = Vector2(0, 60)
 
 [node name="gameManager" type="Node2D" parent="."]
@@ -465,7 +465,7 @@ text = "ammo"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
 
-[node name="rock" parent="." instance=ExtResource("11_4im8k")]
+[node name="rock" parent="." instance=ExtResource("12_l7axa")]
 
 [node name="gun" type="Node2D" parent="."]
 position = Vector2(-38, -24)

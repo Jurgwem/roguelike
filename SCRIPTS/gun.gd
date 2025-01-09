@@ -12,6 +12,7 @@ var startPos = position;
 var reloadTime = 2;
 var shootBuffer = 0.33;
 var ammo = 8
+var rotSpeed = 8
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -48,15 +49,25 @@ func _physics_process(delta: float) -> void:
 				rotation -= deg_to_rad(360);
 			if rotation_degrees >= 90 and rotation_degrees <= 270:
 				$shootPart.position.y = 3;
+				$shell.scale = Vector2(1, -1)
+				$shell.position = Vector2(16, 3);
 				$Sprite2D.flip_v = true;
 			else:
 				$shootPart.position.y = 0;
+				$shell.scale = Vector2(1, 1);
+				$shell.position = Vector2(16, -2);
 				$Sprite2D.flip_v = false;
 		else:
 			if !$Sprite2D.flip_v:
-				rotation = deg_to_rad(45);
+				var rotation_diff = deg_to_rad(45) - rotation 
+				rotation_diff = clamp(rotation_diff, -rotSpeed * delta, rotSpeed * delta)
+				rotation += rotation_diff
+				#rotation = deg_to_rad(45);
 			else:
-				rotation = deg_to_rad(135);
+				var rotation_diff = deg_to_rad(135) - rotation 
+				rotation_diff = clamp(rotation_diff, -rotSpeed * delta, rotSpeed * delta)
+				rotation += rotation_diff
+				#rotation = deg_to_rad(135);
 		
 		if (gm.currentAmmo <= 0 or Input.is_action_just_pressed("reload")) and !player.isReloading:
 			player.isReloading = true;

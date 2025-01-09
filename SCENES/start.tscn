@@ -1,0 +1,236 @@
+[gd_scene load_steps=24 format=3 uid="uid://cp8ibuyov36rn"]
+
+[ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_1tpjc"]
+[ext_resource type="Script" path="res://SCRIPTS/title_gun.gd" id="2_p63jh"]
+[ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="3_761q4"]
+[ext_resource type="Texture2D" uid="uid://dyx4xdbvswi8g" path="res://SPRITES/startButton.png" id="4_hyn8p"]
+[ext_resource type="Script" path="res://SCRIPTS/start_button.gd" id="4_vq774"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv7cq"]
+atlas = ExtResource("1_1tpjc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7bcy"]
+atlas = ExtResource("1_1tpjc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovrl3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv7cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7bcy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Curve" id="Curve_q4w7n"]
+_data = [Vector2(0, 0.549451), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4agns"]
+curve = SubResource("Curve_q4w7n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wbjsf"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -1.605, 0)
+angle_min = -180.0
+angle_max = 180.0
+spread = 8.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+orbit_velocity_min = -2.0
+orbit_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_4agns")
+color = Color(1, 0.8, 0, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.06
+
+[sub_resource type="Curve" id="Curve_h48f1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q8cgb"]
+curve = SubResource("Curve_h48f1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw2in"]
+particle_flag_disable_z = true
+angle_min = 121.7
+angle_max = 121.7
+direction = Vector3(-0.8, -1, 0)
+spread = 0.0
+initial_velocity_min = 32.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 98, 0)
+scale_min = 8.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_q8cgb")
+color = Color(1, 1, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_w2a7c"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wu8qe"]
+gradient = SubResource("Gradient_w2a7c")
+
+[sub_resource type="Environment" id="Environment_bsy3r"]
+background_mode = 3
+tonemap_white = 10.94
+glow_enabled = true
+glow_levels/1 = 0.1
+glow_levels/2 = 0.54
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
+glow_normalized = true
+glow_intensity = 0.38
+glow_strength = 2.0
+glow_mix = 0.503
+glow_blend_mode = 1
+glow_hdr_threshold = 0.83
+volumetric_fog_density = 0.0
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture2D_wu8qe")
+
+[sub_resource type="Curve" id="Curve_r2gw7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gmlhe"]
+curve = SubResource("Curve_r2gw7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f6juw"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(256, 256, 256)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+orbit_velocity_min = -0.0999999
+orbit_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -22.54
+radial_accel_max = 11.27
+tangential_accel_min = -8.0
+tangential_accel_max = 8.0
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_gmlhe")
+color = Color(1, 0.75, 0.75, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+anim_speed_max = 6.31
+
+[sub_resource type="Gradient" id="Gradient_2q011"]
+offsets = PackedFloat32Array(0, 0.237705, 1)
+colors = PackedColorArray(0.720467, 0.720468, 0.720467, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k0fnn"]
+gradient = SubResource("Gradient_2q011")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6omph"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 333, 0)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 64.0
+initial_velocity_max = 64.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 300.0
+scale_max = 300.0
+color = Color(0.485703, 0.485704, 0.485703, 1)
+color_ramp = SubResource("GradientTexture1D_k0fnn")
+
+[node name="Start" type="Node2D"]
+
+[node name="startPlayer" type="Node2D" parent="."]
+z_index = 80
+position = Vector2(52, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="startPlayer"]
+sprite_frames = SubResource("SpriteFrames_ovrl3")
+autoplay = "default"
+frame_progress = 0.351096
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(7, 7)
+
+[node name="titleGun" type="Node2D" parent="."]
+z_index = 81
+script = ExtResource("2_p63jh")
+
+[node name="Sprite2D" type="Sprite2D" parent="titleGun"]
+position = Vector2(11, 0)
+texture = ExtResource("3_761q4")
+
+[node name="shootPart" type="GPUParticles2D" parent="titleGun"]
+position = Vector2(28, 0)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_wbjsf")
+lifetime = 0.15
+one_shot = true
+local_coords = true
+
+[node name="shell" type="GPUParticles2D" parent="titleGun"]
+z_index = 10
+position = Vector2(16, -2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_iw2in")
+one_shot = true
+
+[node name="startButton" type="Node2D" parent="."]
+script = ExtResource("4_vq774")
+
+[node name="Sprite2D" type="Sprite2D" parent="startButton"]
+position = Vector2(-50, 36)
+texture = ExtResource("4_hyn8p")
+
+[node name="Button" type="Button" parent="startButton"]
+offset_left = -82.0
+offset_top = 28.0
+offset_right = -74.0
+offset_bottom = 36.0
+scale = Vector2(8, 2)
+flat = true
+
+[node name="FPS" type="Label" parent="startButton"]
+offset_left = -89.0
+offset_top = -50.0
+offset_right = -49.0
+offset_bottom = -27.0
+scale = Vector2(0.240001, 0.240001)
+text = "FPS: "
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bsy3r")
+
+[node name="bg" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
+position = Vector2(52, 0)
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_f6juw")
+lifetime = 30.0
+fixed_fps = 60
+
+[node name="bgm" type="GPUParticles2D" parent="bg"]
+z_index = -4
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_6omph")
+lifetime = 5.5
+fixed_fps = 60
+
+[connection signal="button_down" from="startButton/Button" to="startButton" method="_on_button_button_down"]
