@@ -71,8 +71,8 @@ initial_velocity_max = 48.0
 angular_velocity_min = -180.0
 angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 6.0
+scale_min = 6.0
+scale_max = 10.0
 scale_curve = SubResource("CurveTexture_1sj07")
 color = Color(0.984314, 0.94902, 0.211765, 1)
 
