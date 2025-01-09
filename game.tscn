@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=52 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -243,6 +243,27 @@ color = Color(1, 0.8, 0, 1)
 hue_variation_min = -0.2
 hue_variation_max = 0.06
 
+[sub_resource type="Curve" id="Curve_wv5cj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q8cgb"]
+curve = SubResource("Curve_wv5cj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1jlht"]
+particle_flag_disable_z = true
+angle_min = 121.7
+angle_max = 121.7
+direction = Vector3(-0.8, -1, 0)
+spread = 0.0
+initial_velocity_min = 32.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 98, 0)
+scale_min = 8.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_q8cgb")
+color = Color(1, 1, 0, 1)
+
 [node name="game" type="Node2D"]
 
 [node name="player" type="CharacterBody2D" parent="."]
@@ -474,6 +495,14 @@ process_material = SubResource("ParticleProcessMaterial_uuum8")
 lifetime = 0.15
 one_shot = true
 local_coords = true
+
+[node name="shell" type="GPUParticles2D" parent="gun"]
+z_index = 10
+position = Vector2(16, -2)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_1jlht")
+one_shot = true
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="shoot" from="player" to="gun" method="_on_player_shoot"]

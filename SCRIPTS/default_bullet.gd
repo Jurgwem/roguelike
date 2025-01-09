@@ -3,7 +3,7 @@ extends Node2D
 @onready var player = get_node("/root/game/player");
 
 var damage = 10;
-var speed = 10;
+var speed = 16;
 var inaccuracy = 4; #overall degrees, aka spread
 
 var lifetime = 0;

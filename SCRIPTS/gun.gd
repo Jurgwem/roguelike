@@ -70,6 +70,8 @@ func _physics_process(delta: float) -> void:
 			player.isOnCooldown = true;
 			player.shooting = false;
 			$"..".add_child(bullet);
+			$shell.emitting =  true;
+			$shell.restart();
 			$shootPart.emitting = true;
 			gm.currentAmmo -= 1;
 			print("player has shot!")
