@@ -37,5 +37,5 @@ func _on_body_entered(body: Node2D) -> void:
 			print("room count: ", gm.roomCount);
 			#add_child(instance);
 			print("Room Parent: ", get_parent().get_parent().name)
-			get_parent().get_parent().add_child(room);
+			$"../..".add_child(room);
 			used = true;
