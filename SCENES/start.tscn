@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cp8ibuyov36rn"]
+[gd_scene load_steps=29 format=3 uid="uid://cp8ibuyov36rn"]
 
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_1tpjc"]
 [ext_resource type="Script" path="res://SCRIPTS/title_gun.gd" id="2_p63jh"]
@@ -152,6 +152,34 @@ scale_max = 300.0
 color = Color(0.485703, 0.485704, 0.485703, 1)
 color_ramp = SubResource("GradientTexture1D_k0fnn")
 
+[sub_resource type="Gradient" id="Gradient_jbhtm"]
+colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xbhlr"]
+gradient = SubResource("Gradient_jbhtm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_05t3x"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-23.625, -61.105, 0)
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+direction = Vector3(0.5, 1, 0)
+spread = 0.0
+initial_velocity_min = 8.0
+initial_velocity_max = 16.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_xbhlr")
+
+[sub_resource type="Gradient" id="Gradient_jnk4y"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4h1uq"]
+gradient = SubResource("Gradient_jnk4y")
+fill_to = Vector2(0, 1)
+
 [node name="Start" type="Node2D"]
 
 [node name="startPlayer" type="Node2D" parent="."]
@@ -221,7 +249,7 @@ environment = SubResource("Environment_bsy3r")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
 position = Vector2(52, 0)
-amount = 256
+amount = 128
 process_material = SubResource("ParticleProcessMaterial_f6juw")
 lifetime = 30.0
 fixed_fps = 60
@@ -232,5 +260,16 @@ amount = 16
 process_material = SubResource("ParticleProcessMaterial_6omph")
 lifetime = 5.5
 fixed_fps = 60
+
+[node name="fall" type="GPUParticles2D" parent="bg"]
+process_material = SubResource("ParticleProcessMaterial_05t3x")
+lifetime = 5.0
+fixed_fps = 60
+
+[node name="overlay" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(-2.86102e-06, 3.8147e-06)
+scale = Vector2(3.42188, 3.875)
+texture = SubResource("GradientTexture2D_4h1uq")
 
 [connection signal="button_down" from="startButton/Button" to="startButton" method="_on_button_button_down"]

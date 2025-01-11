@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=63 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -147,28 +147,6 @@ scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_rkyfn")
 
-[sub_resource type="Curve" id="Curve_1bie8"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_63cu4"]
-curve = SubResource("Curve_1bie8")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c022c"]
-particle_flag_disable_z = true
-angle_min = -180.0
-angle_max = 180.0
-direction = Vector3(0, -1, 0)
-spread = 90.0
-initial_velocity_min = 64.0
-initial_velocity_max = 96.0
-angular_velocity_min = -360.0
-angular_velocity_max = 360.0
-gravity = Vector3(0, 98, 0)
-scale_min = 4.0
-scale_max = 8.0
-scale_curve = SubResource("CurveTexture_63cu4")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulqa5"]
 size = Vector2(1477, 914)
 
@@ -193,33 +171,6 @@ scale_min = 4.0
 scale_max = 12.0
 scale_curve = SubResource("CurveTexture_kirmo")
 color = Color(0, 0, 0, 0.12549)
-
-[sub_resource type="Gradient" id="Gradient_u7y7o"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.836066)
-colors = PackedColorArray(0.22, 0.22, 0.22, 1, 0.23, 0.23, 0.23, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ydvrn"]
-gradient = SubResource("Gradient_u7y7o")
-
-[sub_resource type="Curve" id="Curve_7isfy"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ma3ix"]
-curve = SubResource("Curve_7isfy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ojr7u"]
-particle_flag_disable_z = true
-angular_velocity_min = -10.0
-angular_velocity_max = 9.99998
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -2.23517e-06
-radial_accel_max = -2.23517e-06
-scale_min = 300.0
-scale_max = 300.0
-scale_curve = SubResource("CurveTexture_ma3ix")
-color_ramp = SubResource("GradientTexture1D_ydvrn")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ra6by"]
 a = Vector2(-614, -68)
@@ -406,7 +357,7 @@ shape = SubResource("CircleShape2D_h4wmw")
 sprite_frames = SubResource("SpriteFrames_vr7xy")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0211441
+frame_progress = 0.129231
 
 [node name="walkPart" type="GPUParticles2D" parent="player"]
 position = Vector2(-0.529585, 5.82544)
@@ -414,14 +365,6 @@ emitting = false
 amount = 24
 process_material = SubResource("ParticleProcessMaterial_4s3dw")
 lifetime = 2.0
-
-[node name="introPart" type="GPUParticles2D" parent="player"]
-z_index = -10
-emitting = false
-amount = 32
-process_material = SubResource("ParticleProcessMaterial_c022c")
-one_shot = true
-explosiveness = 0.5
 
 [node name="camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -440,14 +383,6 @@ shape = SubResource("RectangleShape2D_ulqa5")
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_ymc3v")
 lifetime = 10.0
-
-[node name="bg" type="GPUParticles2D" parent="camera"]
-z_index = -100
-scale = Vector2(6.5, 3.5)
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_ojr7u")
-lifetime = 10.0
-local_coords = true
 
 [node name="spawnRoom" type="Node" parent="."]
 
@@ -646,6 +581,7 @@ process_material = SubResource("ParticleProcessMaterial_1jlht")
 one_shot = true
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(23.125, 14.2656)
@@ -659,5 +595,4 @@ texture = SubResource("GradientTexture2D_pfkdj")
 [connection signal="body_entered" from="spawnRoom/up_gen" to="spawnRoom/up_gen" method="_on_body_entered"]
 [connection signal="body_entered" from="spawnRoom/down_gen" to="spawnRoom/down_gen" method="_on_body_entered"]
 [connection signal="finishedTransitionFade" from="gameManager" to="player" method="_on_game_manager_finished_transition_fade"]
-[connection signal="finishedTransitionFade" from="gameManager" to="camera" method="_on_game_manager_finished_transition_fade"]
 [connection signal="body_entered" from="gun/Area2D" to="gun" method="_on_area_2d_body_entered"]

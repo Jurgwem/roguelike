@@ -13,6 +13,8 @@ config_version=5
 config/name="roguelike"
 run/main_scene="res://SCENES/start.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://SPRITES/wasd.png"
 config/icon="res://icon.svg"
 
 [display]
@@ -20,6 +22,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [global_group]
 
@@ -81,4 +84,4 @@ reload={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.699653, 0.699654, 0.699653, 1)
+environment/defaults/default_clear_color=Color(0.231373, 0.231373, 0.231373, 1)
