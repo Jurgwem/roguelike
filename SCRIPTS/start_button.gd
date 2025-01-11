@@ -1,10 +1,10 @@
 extends Node2D
 
 # Called when the node enters the scene tree for the first time.
-var playedFadeIn = false;
-var playedFadeOut = false;
-var fadeSpeed = 0.7;
-var chance = 0.5;
+var playedFadeIn : bool = false;
+var playedFadeOut : bool = false;
+var fadeSpeed : float = 0.7;
+var chance : float = 0.5;
 
 func _process(delta: float) -> void:
 	if playedFadeIn:
@@ -36,10 +36,6 @@ func _ready() -> void:
 		$"../bg/GPUParticles2D".visible = false;
 	playedFadeIn = true;
 	
-func _physics_process(delta: float) -> void:
-	$FPS.text = str("FPS: ", Engine.get_frames_per_second());
-	pass
-
 func _on_button_button_down() -> void:
 	playedFadeIn = false;
 	playedFadeOut = true;

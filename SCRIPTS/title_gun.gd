@@ -1,15 +1,15 @@
 extends Node2D
 @onready var start_player: Node2D = $"../startPlayer"
-var bulletRess = preload("res://PROJECTILES/default_bullet.tscn");
+var bulletRess : Resource= preload("res://PROJECTILES/default_bullet.tscn");
 
-var shoot = false;
+var shoot : bool = false;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	position = start_player.position;
 	look_at(get_global_mouse_position())
 	if rotation_degrees < -90:
@@ -27,6 +27,6 @@ func _physics_process(delta: float) -> void:
 		$shell.position = Vector2(16, -2);
 		$Sprite2D.flip_v = false;
 	if Input.is_action_just_pressed("shoot") and shoot:
-		var bullet = bulletRess.instantiate();
+		var bullet : Node = bulletRess.instantiate();
 		$"..".add_child(bullet);
 	pass

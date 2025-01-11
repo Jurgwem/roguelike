@@ -1,10 +1,10 @@
 extends Camera2D
-@onready var gm = get_node("/root/game/gameManager");
-@onready var player = get_node("/root/game/player");
+@onready var gm : Node2D = get_node("/root/game/gameManager");
+@onready var player : Node2D = get_node("/root/game/player");
 
-var last = "none"
-var finishedIntro = false;
-var playZoom = false;
+var last : String = "none"
+var finishedIntro : bool = false;
+var playZoom : bool = false;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$bg.emitting = false;
@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 			position = player.position;
 	if playZoom:
 		$bg.emitting = true;
-		zoom = lerp(zoom, zoom - Vector2(1, 1), 0.8 * delta)
+		zoom = lerp(zoom, zoom - Vector2(1, 1), 1 * delta)
 		if zoom <= Vector2(1, 1):
 			playZoom = false;
 			finishedIntro = true;

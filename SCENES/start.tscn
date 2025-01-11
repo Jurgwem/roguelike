@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://cp8ibuyov36rn"]
+[gd_scene load_steps=30 format=3 uid="uid://cp8ibuyov36rn"]
 
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_1tpjc"]
 [ext_resource type="Script" path="res://SCRIPTS/title_gun.gd" id="2_p63jh"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="3_761q4"]
-[ext_resource type="Texture2D" uid="uid://dyx4xdbvswi8g" path="res://SPRITES/startButton.png" id="4_hyn8p"]
+[ext_resource type="Texture2D" uid="uid://dyx4xdbvswi8g" path="res://UI/startButton.png" id="4_hyn8p"]
 [ext_resource type="Script" path="res://SCRIPTS/start_button.gd" id="4_vq774"]
+[ext_resource type="Texture2D" uid="uid://bwucn5dn23o5c" path="res://UI/title.png" id="6_w2fg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tv7cq"]
 atlas = ExtResource("1_1tpjc")
@@ -86,9 +87,9 @@ glow_enabled = true
 glow_levels/1 = 0.1
 glow_levels/2 = 0.54
 glow_levels/3 = 0.0
-glow_levels/5 = 0.0
+glow_levels/5 = 0.03
 glow_normalized = true
-glow_intensity = 0.38
+glow_intensity = 0.25
 glow_strength = 2.0
 glow_mix = 0.503
 glow_blend_mode = 1
@@ -144,8 +145,8 @@ direction = Vector3(0, -1, 0)
 spread = 0.0
 initial_velocity_min = 64.0
 initial_velocity_max = 64.0
-angular_velocity_min = -1.60933e-05
-angular_velocity_max = -1.60933e-05
+angular_velocity_min = -4.00002
+angular_velocity_max = 3.99998
 gravity = Vector3(0, 0, 0)
 scale_min = 300.0
 scale_max = 300.0
@@ -222,7 +223,8 @@ one_shot = true
 [node name="startButton" type="Node2D" parent="."]
 script = ExtResource("4_vq774")
 
-[node name="Sprite2D" type="Sprite2D" parent="startButton"]
+[node name="startButton" type="Sprite2D" parent="startButton"]
+z_index = 90
 position = Vector2(-50, 36)
 texture = ExtResource("4_hyn8p")
 
@@ -234,13 +236,21 @@ offset_bottom = 36.0
 scale = Vector2(8, 2)
 flat = true
 
-[node name="FPS" type="Label" parent="startButton"]
-offset_left = -89.0
-offset_top = -50.0
-offset_right = -49.0
-offset_bottom = -27.0
-scale = Vector2(0.240001, 0.240001)
-text = "FPS: "
+[node name="build_watermark" type="Label" parent="startButton"]
+modulate = Color(1, 1, 1, 0.196078)
+z_index = 90
+offset_top = 40.0
+offset_right = 213.0
+offset_bottom = 63.0
+scale = Vector2(0.420684, 0.420684)
+text = "prototype build"
+horizontal_alignment = 2
+
+[node name="title" type="Sprite2D" parent="startButton"]
+z_index = 90
+position = Vector2(-48, -8)
+scale = Vector2(0.659142, 0.659142)
+texture = ExtResource("6_w2fg1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bsy3r")

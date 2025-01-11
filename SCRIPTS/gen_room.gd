@@ -1,18 +1,18 @@
 extends Area2D
 
 #@onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
-@onready var gm = get_node("/root/game/gameManager");
-@onready var room = load("res://INST/room.tscn");
-var door = load("res://INST/wall.tscn")
-@onready var raycast = $raycast;
+@onready var gm : Node2D= get_node("/root/game/gameManager");
+@onready var room : Resource = load("res://INST/room.tscn");
+@onready var door : Resource = load("res://INST/wall.tscn")
+@onready var raycast : RayCast2D = $raycast;
 
-var used = false;
+var used : bool= false;
 @export var direction : String;
 
 func _ready() -> void:
 	gm.enemyCount = 1;
-	var translation = ["up", "right", "down", "left"];
-	var doorInstance = door.instantiate();
+	var translation : Array = ["up", "right", "down", "left"];
+	var doorInstance : Node = door.instantiate();
 	add_child(doorInstance);
 	print("n = ", gm.doorCounter, "; trans: ", translation[gm.doorCounter])
 	if gm.doorCounter <= 2:
@@ -37,6 +37,6 @@ func _on_body_entered(body: Node2D) -> void:
 			print("room count: ", gm.roomCount);
 			#add_child(instance);
 			print("Room Parent: ", get_parent().get_parent().name)
-			var roomInstance = room.instantiate();
+			var roomInstance : Node = room.instantiate();
 			$"../..".add_child(roomInstance);
 			used = true;

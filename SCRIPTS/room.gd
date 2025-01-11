@@ -1,8 +1,8 @@
 extends StaticBody2D
-@onready var gm = get_node("/root/game/gameManager");
+@onready var gm : Node2D = get_node("/root/game/gameManager");
 
-var x = 0;
-var y = 0;
+var x : int = 0;
+var y : int = 0;
 
 func _ready() -> void:
 	print(get_parent().get_parent().name)
@@ -21,4 +21,5 @@ func _ready() -> void:
 		else:
 			y = gm.roomPos.y - gm.vert;
 	position = Vector2(x, y);
+	#$CollisionPolygon2D.disabled = false;
 # Called when the node enters the scene tree for the first time

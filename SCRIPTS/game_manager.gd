@@ -1,29 +1,29 @@
 extends Node2D
 @onready var static_body_2d: StaticBody2D = $"../spawnRoom/Room_Itself"
-@onready var player = get_node("/root/game/player");
+@onready var player : Node2D = get_node("/root/game/player");
 
 signal finishedTransitionFade;
 
-var roomPos = Vector2(0, 0);
-var doorDirection = "none";
-var doorCounter = 0;
-var hasDoor = false;
-var nextRoom = "none";
-var lastRoom = "none";
-var horz = 1280;
-var vert = 720;
-var isDev = true;
-var enemyCount = 1;
-var randomDoor = 0;
-var currentAmmo = 0;
-var maxAmmo = 0;
+var roomPos : Vector2 = Vector2(0, 0);
+var doorDirection : String = "none";
+var doorCounter : int = 0;
+var hasDoor : bool = false;
+var nextRoom : String = "none";
+var lastRoom : String = "none";
+var horz : int = 1280;
+var vert : int = 720;
+var isDev : bool = true;
+var enemyCount :int = 1;
+var randomDoor : int = 0;
+var currentAmmo : int = 0;
+var maxAmmo : int = 0;
 
-var roomCount = 1;
-var coins = 0;
-var weapon = " ";
+var roomCount : int = 1;
+var coins : int = 0;
+var weapon : String= " ";
 
-var playedFadeIn = false;
-var fadeSpeed = 0.7;
+var playedFadeIn : bool = false;
+var fadeSpeed : float = 0.7;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

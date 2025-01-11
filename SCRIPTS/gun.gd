@@ -1,18 +1,18 @@
 extends Node2D
 
-@onready var gm = get_node("/root/game/gameManager");
-@onready var player = get_node("/root/game/player");
+@onready var gm : Node2D = get_node("/root/game/gameManager");
+@onready var player : Node2D = get_node("/root/game/player");
 
-var bulletRess = load("res://PROJECTILES/default_bullet.tscn");
+var bulletRess : Resource= load("res://PROJECTILES/default_bullet.tscn");
 
-var equipped = false;
-var init = false;
-var startPos = position;
+var equipped : bool = false;
+var init : bool = false;
+var startPos : Vector2 = position;
 
-var reloadTime = 2;
-var shootBuffer = 0.33;
-var ammo = 8
-var rotSpeed = 8
+var reloadTime : int = 2;
+var shootBuffer : float = 0.33;
+var ammo : int = 8
+var rotSpeed : int = 8
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var bullet = bulletRess.instantiate();
+	var bullet : Node = bulletRess.instantiate();
 	if equipped and Input.is_action_just_pressed("unequip"):
 		rotation = deg_to_rad(0);
 		gm.weapon = " ";
@@ -59,12 +59,12 @@ func _physics_process(delta: float) -> void:
 				$Sprite2D.flip_v = false;
 		else:
 			if !$Sprite2D.flip_v:
-				var rotation_diff = deg_to_rad(45) - rotation 
+				var rotation_diff : float = deg_to_rad(45) - rotation 
 				rotation_diff = clamp(rotation_diff, -rotSpeed * delta, rotSpeed * delta)
 				rotation += rotation_diff
 				#rotation = deg_to_rad(45);
 			else:
-				var rotation_diff = deg_to_rad(135) - rotation 
+				var rotation_diff : float = deg_to_rad(135) - rotation 
 				rotation_diff = clamp(rotation_diff, -rotSpeed * delta, rotSpeed * delta)
 				rotation += rotation_diff
 				#rotation = deg_to_rad(135);

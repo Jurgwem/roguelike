@@ -1,23 +1,23 @@
 extends StaticBody2D
 
-var dScale = 1.0;
-var dRot = "none";
-var dRotNum = 0;
-var random = randf();
-var bend = false;
-var hasRun = false;
-var chance = 0.8;
-var fallback = false;
-var keepRunning = false;
-var makeUseless = false;
+var dScale : float = 1.0;
+var dRot : String = "none";
+var dRotNum : int = 0;
+var random : float = randf();
+var bend : bool = false;
+var hasRun : bool = false;
+var chance : float = 0.8;
+var fallback : bool = false;
+var keepRunning : bool = false;
+var makeUseless : bool = false;
 
-@onready var gm = get_node("/root/game/gameManager");
+@onready var gm : Node2D= get_node("/root/game/gameManager");
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var translation = ["up", "right", "down", "left"];
-	var rot = gm.doorCounter;
+	var translation : Array = ["up", "right", "down", "left"];
+	var rot : int = gm.doorCounter;
 	dRotNum = rot;
-	var direction = translation[rot]
+	var direction : String = translation[rot]
 	dRot = direction;
 	rotation = (deg_to_rad(rot * 90));
 	await get_tree().create_timer(0.1).timeout
@@ -38,11 +38,11 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !makeUseless:
 		if !hasRun and gm.enemyCount == 0:
 			#await get_tree().create_timer(randf()).timeout
-			var willDespawn = randf();	#chance calculation
+			var willDespawn :float = randf();	#chance calculation
 			chance = willDespawn;
 			print(dRot, " - ", chance)
 			hasRun = true;
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 				gm.hasDoor = true;
 			
 			$CollisionShape2D.disabled = true;
-			var step = 2;
+			var step : int = 2;
 			if random < 0.5:
 				bend = true;
 

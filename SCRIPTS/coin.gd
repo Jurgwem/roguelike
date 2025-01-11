@@ -1,25 +1,25 @@
 extends Area2D
 
-@onready var gm = get_node("/root/game/gameManager");
-var collected = false;
-var scaleStep = 0.03;
-var spawnLocation = Vector2(0, 0);
+@onready var gm : Node2D = get_node("/root/game/gameManager");
+var collected : bool = false;
+var scaleStep : float = 0.03;
+var spawnLocation : Vector2 = Vector2(0, 0);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if get_parent().get_parent().name != "spawnCoins":
 		spawnLocation = get_parent().get_parent().position;
 		print("coin spawn: ", spawnLocation)
-	var rng = RandomNumberGenerator.new()
+	var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
-	var num = rng.randi_range(0, 5)
+	var num : int = rng.randi_range(0, 5)
 	$AnimatedSprite2D.set_frame_and_progress(num, 0)
 	$AnimatedSprite2D.play("idle")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if get_parent().get_parent().name != "spawnCoins":
 		global_position = spawnLocation;
 	if collected:
