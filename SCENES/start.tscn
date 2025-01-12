@@ -269,6 +269,7 @@ z_index = -4
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_6omph")
 lifetime = 5.5
+preprocess = 10.0
 fixed_fps = 60
 
 [node name="fall" type="GPUParticles2D" parent="bg"]

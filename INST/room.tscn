@@ -20,7 +20,7 @@ b = Vector2(-60, -335)
 a = Vector2(-60, 335)
 b = Vector2(60, 334)
 
-[node name="Room" type="Node"]
+[node name="Room" type="Node2D"]
 
 [node name="Room_Iterate" type="StaticBody2D" parent="."]
 script = ExtResource("1_pgnb6")

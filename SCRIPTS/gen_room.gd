@@ -6,6 +6,8 @@ extends Area2D
 @onready var door : Resource = load("res://INST/wall.tscn")
 @onready var raycast : RayCast2D = $raycast;
 
+var x : int = 0;
+var y : int = 0;
 var used : bool= false;
 @export var direction : String;
 
@@ -20,7 +22,6 @@ func _ready() -> void:
 	else:
 		gm.doorCounter = 0;
 		
-
 func _on_body_entered(body: Node2D) -> void:
 	if raycast.is_colliding():
 		print("raycast hit!");
@@ -37,6 +38,6 @@ func _on_body_entered(body: Node2D) -> void:
 			print("room count: ", gm.roomCount);
 			#add_child(instance);
 			print("Room Parent: ", get_parent().get_parent().name)
-			var roomInstance : Node = room.instantiate();
+			var roomInstance : Node2D = room.instantiate();
 			$"../..".add_child(roomInstance);
 			used = true;

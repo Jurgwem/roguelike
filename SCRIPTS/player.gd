@@ -68,7 +68,7 @@ func _physics_process(_delta: float) -> void:
 			$walkPart.emitting = true;
 			yvel -= accel;
 			
-		if Input.is_action_pressed("shoot") and !isOnCooldown and !isReloading and !shooting and gm.weapon != "none":
+		if Input.is_action_pressed("shoot") and gm.currentAmmo >= 1 and !isOnCooldown and !isReloading and !shooting and gm.weapon != "none":
 			shoot.emit();
 			shooting = true;
 			
@@ -83,12 +83,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_game_manager_finished_transition_fade() -> void:
-	print("start anim")
-	$AnimatedSprite2D.animation = "wakeUp"
-	await get_tree().create_timer(2.3).timeout
-	$introPart.emitting = true;
-	await get_tree().create_timer(2.7).timeout
-	print("anim finished")
-	$AnimatedSprite2D.animation = "idle"
+	if !gm.isDev:
+		print("start anim")
+		$AnimatedSprite2D.animation = "wakeUp"
+		await get_tree().create_timer(2.3).timeout
+		$introPart.emitting = true;
+		await get_tree().create_timer(2.7).timeout
+		print("anim finished")
+		$AnimatedSprite2D.animation = "idle"
 	canMove = true;
 	pass # Replace with function body.

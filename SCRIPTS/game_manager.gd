@@ -57,6 +57,6 @@ func _physics_process(delta: float) -> void:
 		$UI/FPS.text = str("FPS: ", Engine.get_frames_per_second());
 		$UI/roomPos.text = str("roomPos: ", roomPos);
 	else:
-		$UI/FPS.queue_free();
-		$UI/roomPos.queue_free();
+		$UI/FPS.visible = false;
+		$UI/roomPos.visible = false;
 	pass

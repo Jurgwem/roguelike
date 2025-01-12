@@ -23,9 +23,7 @@ func _process(delta: float) -> void:
 	
 func _ready() -> void:
 	$Button.modulate.a = 0;
-	$"../bg/bgm".speed_scale = 10;
-	await get_tree().create_timer(1).timeout;
-	$"../bg/bgm".speed_scale = 1;
+	#await get_tree().create_timer(1).timeout;
 	chance = randf();
 	if chance <= 0.5:
 		$"../bg/fall".emitting = false;

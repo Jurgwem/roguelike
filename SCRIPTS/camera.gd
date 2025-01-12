@@ -63,7 +63,8 @@ func _on_player_dev_cam_disabled() -> void:
 
 
 func _on_game_manager_finished_transition_fade() -> void:
-	await get_tree().create_timer(5).timeout
+	if !gm.isDev:
+		await get_tree().create_timer(5).timeout
 	position = Vector2(0, 0)
 	playZoom = true;
 	#for i in 100:
