@@ -12,7 +12,7 @@ var nextRoom : String = "none";
 var lastRoom : String = "none";
 var horz : int = 1280;
 var vert : int = 720;
-var isDev : bool = true;
+var isDev : bool = false;
 var enemyCount :int = 1;
 var randomDoor : int = 0;
 var currentAmmo : int = 0;
@@ -31,7 +31,8 @@ func _ready() -> void:
 	roomPos = static_body_2d.position;
 	playedFadeIn = true;
 	finishedTransitionFade.emit();
-	await get_tree().create_timer(5.1).timeout;
+	if !isDev:
+		await get_tree().create_timer(5.1).timeout;
 	$UI.visible = true;
 	pass # Replace with function body.
 

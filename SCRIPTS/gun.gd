@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 		gm.weapon = " ";
 		gm.maxAmmo = 0;
 		gm.currentAmmo = 0;
+		player.isReloading = false;
 		$Sprite2D.flip_v = false;
 		scale = Vector2(2, 2)
 		$GPUParticles2D.emitting = true;

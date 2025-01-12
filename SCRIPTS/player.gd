@@ -75,6 +75,9 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_just_released("down") or Input.is_action_just_released("up") or Input.is_action_just_released("left") or Input.is_action_just_released("right"):
 			animated_sprite_2d.play("idle");
 			$walkPart.emitting = false;
+			
+		if Input.is_action_just_pressed("escape"):
+			get_tree().change_scene_to_file("res://SCENES/start.tscn")
 		
 	velocity.x = xvel;
 	velocity.y = yvel;
