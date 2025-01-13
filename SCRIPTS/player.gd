@@ -36,10 +36,6 @@ func _physics_process(_delta: float) -> void:
 				camera.zoom = Vector2(1, 1);
 				devCamDisabled.emit();
 		
-		if Input.is_action_just_pressed("debugOpenDoor") and gm.isDev:
-			gm.enemyCount = 0;
-			print("Debug set enemy count to 0.");
-		
 		if Input.is_action_just_pressed("debugCoin") and gm.isDev:
 			var coin : Node2D = load("res://INST/coin.tscn").instantiate();
 			add_child(coin);

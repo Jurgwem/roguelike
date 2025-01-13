@@ -24,7 +24,10 @@ func _ready() -> void:
 			y = gm.roomPos.y - gm.vert;
 	position = Vector2(x, y);
 	await get_tree().create_timer(randf() * 0.5).timeout;
-	for i in snapped(gm.roomCount * 0.8, 1):
+	print("-=-=- ENEMY COUNTS -=-=-")
+	print("BAT: ", floor(gm.roomCount * 0.8), ", ACTUAL: ", gm.roomCount * 0.8);
+	print("-=-=- ENEMY COUNTS -=-=-")
+	for i in floor(gm.roomCount * 0.8):
 		var bat = batRess.instantiate();
 		add_child(bat);
 	await get_tree().create_timer(3).timeout;

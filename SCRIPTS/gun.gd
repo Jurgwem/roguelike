@@ -86,7 +86,6 @@ func _physics_process(delta: float) -> void:
 			$shell.restart();
 			$shootPart.emitting = true;
 			gm.currentAmmo -= 1;
-			print("player has shot!")
 			await get_tree().create_timer(shootBuffer).timeout
 			player.isOnCooldown = false;
 			

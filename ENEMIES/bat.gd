@@ -4,11 +4,11 @@ extends CharacterBody2D
 @onready var player : Node2D = get_node("/root/game/player");
 @onready var spawnpoint : Node2D = get_node("/root/game/spawnCenter/spawnPoint");
 
-const SPEED : float = 300.0
+const SPEED : float = 400.0;
 const DAMPING : Vector2 = Vector2(0.95, 0.95);
-const MAX_SPEED : float = 10;
-var hasSpawned = false;
-var playedScale = false;
+const MAX_SPEED : float = 25;
+var hasSpawned : bool = false;
+var playedScale : bool = false;
 var playedPart : bool = false;
 var health : int = 30;
 
@@ -18,7 +18,8 @@ func _ready() -> void:
 	await get_tree().create_timer(randf()).timeout;
 	visible = true;
 	global_position = spawnpoint.global_position;
-	scale = Vector2(0.1, 0.1)
+	global_position += Vector2(randf(), randf());
+	scale = Vector2(0.1, 0.1);
 	hasSpawned = true;
 	velocity = Vector2(0, 0);
 	pass
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 				velocity = distance_vector.normalized() * (SPEED * 100) * delta;
 			$AnimatedSprite2D.global_rotation = 0;
 		else:
+			$CollisionShape2D.scale = Vector2(0, 0);
 			rotation = lerp_angle(rotation, deg_to_rad(rotation_degrees + 10), 16 * delta);
 			if !playedPart:
 					$diePart.emitting = true;

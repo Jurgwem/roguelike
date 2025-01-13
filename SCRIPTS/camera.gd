@@ -56,7 +56,7 @@ func _on_in_camera_view_body_exited(body: Node2D) -> void:
 	if body.get_parent().is_in_group("playerBullet"):
 		body.get_parent().queue_free();
 	if body.is_in_group("enemy"):
-		body.position = position;
+		body.health = 0;
 	pass
 
 
