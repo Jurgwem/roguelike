@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=74 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
 [ext_resource type="Script" path="res://SCRIPTS/gun.gd" id="12_mdx1r"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="12_yw3kh"]
+[ext_resource type="PackedScene" uid="uid://g4eldas2o1e0" path="res://ENEMIES/ball.tscn" id="17_rlyew"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
 radius = 8.74518
@@ -430,6 +431,7 @@ rotation_smoothing_enabled = true
 script = ExtResource("3_pm1a5")
 
 [node name="inCameraView" type="Area2D" parent="camera"]
+visible = false
 collision_layer = 3
 collision_mask = 3
 
@@ -670,10 +672,14 @@ process_material = SubResource("ParticleProcessMaterial_1jlht")
 one_shot = true
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(23.125, 14.2656)
 texture = SubResource("GradientTexture2D_pfkdj")
+
+[node name="Node2D" parent="." instance=ExtResource("17_rlyew")]
+position = Vector2(-353, 60)
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="shoot" from="player" to="gun" method="_on_player_shoot"]
