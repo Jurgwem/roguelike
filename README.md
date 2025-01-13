@@ -7,7 +7,7 @@ used to learn the basics of game dev and godot
 
 ## Todo:
 - clean up start Room
-- coin indicator
+- pause 
 - add enemy
 - spawning mechanics
 - return-hotkey for boss rooms/spawn room
