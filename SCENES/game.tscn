@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
 [ext_resource type="Script" path="res://SCRIPTS/gun.gd" id="12_mdx1r"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="12_yw3kh"]
-[ext_resource type="PackedScene" uid="uid://g4eldas2o1e0" path="res://ENEMIES/ball.tscn" id="17_rlyew"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
 radius = 8.74518
@@ -154,7 +153,7 @@ scale_curve = SubResource("CurveTexture_rkyfn")
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_63cu4"]
+[sub_resource type="CurveTexture" id="CurveTexture_mdomo"]
 curve = SubResource("Curve_1bie8")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c022c"]
@@ -170,7 +169,7 @@ angular_velocity_max = 360.0
 gravity = Vector3(0, 98, 0)
 scale_min = 4.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_63cu4")
+scale_curve = SubResource("CurveTexture_mdomo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulqa5"]
 size = Vector2(1477, 914)
@@ -391,6 +390,8 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_s3oeb")
 fill_to = Vector2(0, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_op7kk"]
+
 [node name="game" type="Node2D"]
 
 [node name="player" type="CharacterBody2D" parent="."]
@@ -602,7 +603,7 @@ offset_left = -593.0
 offset_top = -313.0
 offset_right = -553.0
 offset_bottom = -290.0
-scale = Vector2(1.84, 1.84)
+scale = Vector2(1.84, 1.81854)
 text = "FPS: "
 
 [node name="roomPos" type="Label" parent="gameManager/UI"]
@@ -628,6 +629,14 @@ offset_right = -515.0
 offset_bottom = 296.0
 scale = Vector2(1.84, 1.84)
 text = "ammo"
+
+[node name="enemyCount" type="Label" parent="gameManager/UI"]
+offset_left = -593.0
+offset_top = -229.0
+offset_right = -519.0
+offset_bottom = -206.0
+scale = Vector2(1.76421, 1.79732)
+text = "enemies: "
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
@@ -672,14 +681,20 @@ process_material = SubResource("ParticleProcessMaterial_1jlht")
 one_shot = true
 
 [node name="overlay" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(23.125, 14.2656)
 texture = SubResource("GradientTexture2D_pfkdj")
 
-[node name="Node2D" parent="." instance=ExtResource("17_rlyew")]
-position = Vector2(-353, 60)
+[node name="spawnCenter" type="Node2D" parent="."]
+
+[node name="spawnPoint" type="Node2D" parent="spawnCenter"]
+position = Vector2(-108, 0)
+
+[node name="Area2D" type="Area2D" parent="spawnCenter/spawnPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawnCenter/spawnPoint/Area2D"]
+shape = SubResource("CircleShape2D_op7kk")
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="shoot" from="player" to="gun" method="_on_player_shoot"]

@@ -33,6 +33,7 @@ mouse_cursor/custom_image="res://UI/pointer.png"
 [global_group]
 
 playerBullet=""
+enemy=""
 
 [input]
 

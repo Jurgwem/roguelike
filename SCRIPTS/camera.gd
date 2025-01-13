@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 			last = gm.nextRoom;
 			gm.lastRoom = gm.nextRoom;
 			gm.nextRoom = "none";
+			$"../spawnCenter".position = position;
 			last = "none";
 		if player.devCam:
 			position = player.position;
@@ -54,6 +55,8 @@ func _on_in_camera_view_body_exited(body: Node2D) -> void:
 		player.position = position;
 	if body.get_parent().is_in_group("playerBullet"):
 		body.get_parent().queue_free();
+	if body.is_in_group("enemy"):
+		body.position = position;
 	pass
 
 

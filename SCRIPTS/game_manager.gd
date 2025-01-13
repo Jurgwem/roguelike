@@ -12,8 +12,8 @@ var nextRoom : String = "none";
 var lastRoom : String = "none";
 var horz : int = 1280;
 var vert : int = 720;
-var isDev : bool = true;
-var enemyCount :int = 1;
+var isDev : bool = false;
+var enemyCount : int = 1;
 var randomDoor : int = 0;
 var currentAmmo : int = 0;
 var maxAmmo : int = 0;
@@ -34,10 +34,17 @@ func _ready() -> void:
 	if !isDev:
 		await get_tree().create_timer(5.1).timeout;
 	$UI.visible = true;
+	await get_tree().create_timer(3).timeout;
+	enemyCount -= 1;
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if $"../spawnCenter".rotation_degrees >= 360:
+		$"../spawnCenter".rotation = 0;
+	else:
+		$"../spawnCenter".rotation = lerp_angle($"../spawnCenter".rotation, $"../spawnCenter".rotation + 360, 10 * delta);
+		
 	if playedFadeIn:
 		$"../overlay".modulate.a = lerp($"../overlay".modulate.a, $"../overlay".modulate.a - 1, fadeSpeed * delta)
 		if $"../overlay".modulate.a <= 0:
@@ -57,7 +64,9 @@ func _physics_process(delta: float) -> void:
 	if isDev:
 		$UI/FPS.text = str("FPS: ", Engine.get_frames_per_second());
 		$UI/roomPos.text = str("roomPos: ", roomPos);
+		$UI/enemyCount.text = str("enemies: ", enemyCount);
 	else:
 		$UI/FPS.visible = false;
 		$UI/roomPos.visible = false;
+		$UI/enemyCount.visible = false;
 	pass

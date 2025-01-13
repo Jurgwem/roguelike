@@ -12,7 +12,6 @@ var used : bool= false;
 @export var direction : String;
 
 func _ready() -> void:
-	gm.enemyCount = 1;
 	var translation : Array = ["up", "right", "down", "left"];
 	var doorInstance : Node = door.instantiate();
 	add_child(doorInstance);
@@ -34,6 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 		gm.nextRoom = direction;
 		print("next room: ", gm.nextRoom);
 		if !used:
+			gm.enemyCount += 1;
 			gm.roomCount += 1;
 			print("room count: ", gm.roomCount);
 			#add_child(instance);
