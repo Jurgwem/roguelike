@@ -11,7 +11,7 @@ var startPos : Vector2 = position;
 
 var reloadTime : int = 2;
 var shootBuffer : float = 0.33;
-var ammo : int = 8
+var ammo : int = 12;
 var rotSpeed : int = 8
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

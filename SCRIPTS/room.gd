@@ -28,7 +28,7 @@ func _ready() -> void:
 	print("BAT: ", floor(gm.roomCount * 0.8), ", ACTUAL: ", gm.roomCount * 0.8);
 	print("-=-=- ENEMY COUNTS -=-=-")
 	for i in floor(gm.roomCount * 0.8):
-		var bat = batRess.instantiate();
+		var bat : Node2D= batRess.instantiate();
 		add_child(bat);
 	await get_tree().create_timer(3).timeout;
 	gm.enemyCount -= 1;
