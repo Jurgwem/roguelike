@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 			playedFadeOut = false;
 			await get_tree().create_timer(1).timeout;
 			get_tree().change_scene_to_file("res://SCENES/game.tscn")
+	if $"../startPlayer".rotation_degrees >= 360:
+		$"../startPlayer".rotation -= deg_to_rad(360);
 	$"../startPlayer".rotation = lerp_angle($"../startPlayer".rotation, $"../startPlayer".rotation + randomRot, randomRotSpeed * delta);
 	pass
 	
