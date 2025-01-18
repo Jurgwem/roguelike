@@ -4,6 +4,7 @@ extends Node2D
 
 signal finishedTransitionFade;
 
+var roomType : String = "spawn";
 var roomPos : Vector2 = Vector2(0, 0);
 var doorDirection : String = "none";
 var doorCounter : int = 0;
@@ -65,8 +66,10 @@ func _physics_process(delta: float) -> void:
 		$UI/FPS.text = str("FPS: ", Engine.get_frames_per_second());
 		$UI/roomPos.text = str("roomPos: ", roomPos);
 		$UI/enemyCount.text = str("enemies: ", enemyCount);
+		$UI/roomType.text = str("roomType: ", roomType);
 	else:
 		$UI/FPS.visible = false;
 		$UI/roomPos.visible = false;
 		$UI/enemyCount.visible = false;
+		$UI/roomType.visible = false;
 	pass

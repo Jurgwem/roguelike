@@ -44,6 +44,7 @@ func _ready() -> void:
 	playedFadeIn = true;
 	
 func _on_button_button_down() -> void:
+	$startButton.modulate = Color(0.5, 0.5, 0.5);
 	playedFadeIn = false;
 	playedFadeOut = true;
 	pass # Replace with function body.

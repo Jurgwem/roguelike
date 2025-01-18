@@ -82,7 +82,7 @@ func _physics_process(_delta: float) -> void:
 			if scale <= Vector2(0, 0):
 				get_parent().queue_free();
 		elif hasRun:
-			print("Door not open")
+			#print("Door not open")
 			gm.randomDoor += 1;
 			makeUseless = true;
 		

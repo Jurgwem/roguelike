@@ -566,6 +566,14 @@ offset_bottom = -206.0
 scale = Vector2(1.76421, 1.79732)
 text = "enemies: "
 
+[node name="roomType" type="Label" parent="gameManager/UI"]
+offset_left = -593.0
+offset_top = -189.0
+offset_right = -519.0
+offset_bottom = -166.0
+scale = Vector2(1.76421, 1.79732)
+text = "roomType: spawn"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
 

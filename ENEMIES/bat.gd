@@ -45,7 +45,6 @@ func _physics_process(delta: float) -> void:
 			if rotation_degrees >= 45:
 				scale = lerp(scale, scale - Vector2(0.5, 0.5), 10 * delta);
 				if scale <= Vector2(0, 0):
-					print("die");
 					gm.enemyCount -= 1;
 					queue_free();
 
