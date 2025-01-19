@@ -6,12 +6,15 @@ extends Area2D
 @onready var door : Resource = load("res://INST/wall.tscn")
 @onready var raycast : RayCast2D = $raycast;
 
+var timer : float = 0.0
 var x : int = 0;
 var y : int = 0;
 var used : bool= false;
 @export var direction : String;
 
+
 func _ready() -> void:
+	$newRoomIndicator.emitting = false;
 	var translation : Array = ["up", "right", "down", "left"];
 	var doorInstance : Node = door.instantiate();
 	add_child(doorInstance);
@@ -21,6 +24,15 @@ func _ready() -> void:
 	else:
 		gm.doorCounter = 0;
 		
+func _process(delta):
+	timer += delta
+	if timer >= 10.0: 
+		if !raycast.is_colliding():
+			$newRoomIndicator.emitting = true;
+		else:
+			$newRoomIndicator.emitting = false;
+		timer = 0.0 
+
 func _on_body_entered(body: Node2D) -> void:
 	if raycast.is_colliding():
 		print("raycast hit!");

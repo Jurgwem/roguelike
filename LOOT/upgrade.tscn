@@ -36,7 +36,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mi7hq"]
@@ -54,10 +54,14 @@ particle_flag_disable_z = true
 angle_min = -180.0
 angle_max = 180.0
 spread = 180.0
-initial_velocity_min = 32.0
+initial_velocity_min = 48.0
 initial_velocity_max = 64.0
 angular_velocity_min = -180.0
 angular_velocity_max = 180.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
@@ -73,14 +77,13 @@ script = ExtResource("1_kncfc")
 z_index = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_slqr2")
-frame = 2
-frame_progress = 0.767213
+frame_progress = 0.270522
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2, -2)
 shape = SubResource("CircleShape2D_mi7hq")
 
 [node name="parts" type="GPUParticles2D" parent="."]
 process_material = SubResource("ParticleProcessMaterial_rwj04")
+fixed_fps = 60
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

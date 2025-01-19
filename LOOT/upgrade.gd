@@ -6,10 +6,12 @@ extends Node2D
 var chance : float = randf();
 var type : int = 0;
 var collected : bool = false;
+var init : bool = false;
 var scaleStep : float = 0.01;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	scale = Vector2(0, 0);
 	if chance > 0.75:
 		type = 0;
 		$Area2D/AnimatedSprite2D.frame = 0;
@@ -29,8 +31,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	if collected:
+func _physics_process(_delta: float) -> void:
+	if !init:
+		scale += Vector2(scaleStep * 3, scaleStep * 3);
+		if scale >= Vector2(1, 1):
+			init = true;
+		
+	if collected and init:
 		position = player.position + Vector2(0, -32);
 		$parts.emitting = false;
 		scale -= Vector2(scaleStep, scaleStep);

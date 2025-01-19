@@ -18,7 +18,6 @@ func _ready() -> void:
 		position = get_node("/root/Start/startPlayer").position;
 		position += Vector2(0, -2.3);
 	else:
-		var player : Node2D = get_node("/root/game/player");
 		position = player.position;
 	look_at(get_global_mouse_position())
 	rotation -= deg_to_rad(((randf() * inaccuracy) - (inaccuracy / 2)) * player.spreadMod);

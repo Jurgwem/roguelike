@@ -4,11 +4,13 @@ extends Area2D
 @onready var gm : Node2D = get_node("/root/game/gameManager");
 
 var collected : bool = false;
+var init : bool = false;
 var scaleStep : float = 0.03;
 var spawnLocation : Vector2 = Vector2(0, 0);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	scale = Vector2(0, 0);
 	spawnLocation = global_position;
 	#if get_parent().get_parent().name != "spawnCoins":
 	#	spawnLocation = get_parent().get_parent().position;
@@ -25,7 +27,11 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	#if get_parent().get_parent().name != "spawnCoins":
 	#	global_position = spawnLocation;
-	if collected:
+	if !init:
+		scale += Vector2(scaleStep, scaleStep);
+		if scale >= Vector2(1, 1):
+			init = true;
+	if collected and init:
 		global_position = player.position + Vector2(0, -32);
 		$"../parts".emitting = false;
 		scale -= Vector2(scaleStep, scaleStep);

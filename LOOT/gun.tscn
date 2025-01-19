@@ -93,6 +93,7 @@ shape = SubResource("CircleShape2D_rhdjo")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(19, 0)
 process_material = SubResource("ParticleProcessMaterial_llij7")
+fixed_fps = 60
 
 [node name="shootPart" type="GPUParticles2D" parent="."]
 position = Vector2(28, 0)

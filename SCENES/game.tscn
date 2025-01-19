@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=83 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://4gb8maj35ibv" path="res://UI/wasd.png" id="6_kchic"]
 [ext_resource type="Texture2D" uid="uid://cqdg812541b74" path="res://UI/q.png" id="7_5exos"]
 [ext_resource type="Texture2D" uid="uid://dq44qtdj8qix5" path="res://UI/mouse.png" id="7_065qo"]
-[ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://INST/coin.tscn" id="9_86inw"]
+[ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://LOOT/coin.tscn" id="9_86inw"]
 [ext_resource type="Texture2D" uid="uid://8qkldns3ymd6" path="res://SPRITES/coin.png" id="9_cjqhe"]
 [ext_resource type="Texture2D" uid="uid://ccfah0a6y4tdt" path="res://SPRITES/coin_outline.png" id="10_d6k75"]
 [ext_resource type="Texture2D" uid="uid://do627w40nwsdw" path="res://UI/escape.png" id="11_1gwkv"]
@@ -226,17 +226,149 @@ color_ramp = SubResource("GradientTexture1D_ydvrn")
 a = Vector2(-614, -68)
 b = Vector2(-614, 68)
 
+[sub_resource type="Gradient" id="Gradient_vcqxi"]
+offsets = PackedFloat32Array(0, 0.42623)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eofw6"]
+gradient = SubResource("Gradient_vcqxi")
+
+[sub_resource type="Curve" id="Curve_r5ygf"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dyggw"]
+curve = SubResource("Curve_r5ygf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5cpmo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_dyggw")
+color = Color(0.81, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_eofw6")
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_viooj"]
 a = Vector2(614, -67)
 b = Vector2(615, 68)
+
+[sub_resource type="Gradient" id="Gradient_omcvl"]
+offsets = PackedFloat32Array(0, 0.42623)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_khcn2"]
+gradient = SubResource("Gradient_omcvl")
+
+[sub_resource type="Curve" id="Curve_dykrh"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pjqvt"]
+curve = SubResource("Curve_dykrh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6v5av"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_pjqvt")
+color = Color(0.81, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_khcn2")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rukig"]
 a = Vector2(-60, -334)
 b = Vector2(60, -335)
 
+[sub_resource type="Gradient" id="Gradient_eyusl"]
+offsets = PackedFloat32Array(0, 0.42623)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rtuvt"]
+gradient = SubResource("Gradient_eyusl")
+
+[sub_resource type="Curve" id="Curve_fx5us"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6p4gw"]
+curve = SubResource("Curve_fx5us")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wckfx"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_6p4gw")
+color = Color(0.81, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_rtuvt")
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_l4a33"]
 a = Vector2(60, 335)
 b = Vector2(-60, 335)
+
+[sub_resource type="Gradient" id="Gradient_frext"]
+offsets = PackedFloat32Array(0, 0.42623)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dkgf5"]
+gradient = SubResource("Gradient_frext")
+
+[sub_resource type="Curve" id="Curve_8x8d0"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_e5e05"]
+curve = SubResource("Curve_8x8d0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g6ybk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_e5e05")
+color = Color(0.81, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_dkgf5")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1qsr"]
 atlas = ExtResource("9_cjqhe")
@@ -411,6 +543,13 @@ shape = SubResource("SegmentShape2D_ra6by")
 position = Vector2(-620, -56)
 target_position = Vector2(-103, -101)
 
+[node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/Left_Gen"]
+position = Vector2(-620, 0)
+rotation = -1.57079
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_5cpmo")
+lifetime = 2.0
+
 [node name="right_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
 direction = "right"
@@ -421,6 +560,13 @@ shape = SubResource("SegmentShape2D_viooj")
 [node name="raycast" type="RayCast2D" parent="spawnRoom/right_gen"]
 position = Vector2(626, 50)
 target_position = Vector2(102, 134)
+
+[node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/right_gen"]
+position = Vector2(626, 0)
+rotation = 1.57079
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_6v5av")
+lifetime = 2.0
 
 [node name="up_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
@@ -433,6 +579,12 @@ shape = SubResource("SegmentShape2D_rukig")
 position = Vector2(43, -342)
 target_position = Vector2(116, -89)
 
+[node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/up_gen"]
+position = Vector2(0, -335)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_wckfx")
+lifetime = 2.0
+
 [node name="down_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
 direction = "down"
@@ -443,6 +595,13 @@ shape = SubResource("SegmentShape2D_l4a33")
 [node name="raycast" type="RayCast2D" parent="spawnRoom/down_gen"]
 position = Vector2(-50, 341)
 target_position = Vector2(-107, 99)
+
+[node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/down_gen"]
+position = Vector2(0, 341)
+rotation = 3.14159
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_g6ybk")
+lifetime = 2.0
 
 [node name="spawnCoins" type="Node2D" parent="spawnRoom"]
 position = Vector2(-316, -172)

@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 				devCamDisabled.emit();
 		
 		if Input.is_action_just_pressed("debugCoin") and gm.isDev:
-			var coin : Node2D = load("res://INST/coin.tscn").instantiate();
+			var coin : Node2D = load("res://LOOT/coin.tscn").instantiate();
 			coin.position = get_global_mouse_position();
 			$"..".add_child(coin);
 			

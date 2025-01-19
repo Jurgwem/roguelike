@@ -6,7 +6,7 @@ extends StaticBody2D
 var batRess : Resource = load("res://ENEMIES/bat.tscn");
 
 #LOOT
-var coinRess : Resource = load("res://INST/coin.tscn");
+var coinRess : Resource = load("res://LOOT/coin.tscn");
 var upgradeRess : Resource = load("res://LOOT/upgrade.tscn");
 
 var chance : float = randf();
@@ -21,7 +21,7 @@ func _ready() -> void:
 	#print("roomType odds: ", chance);
 	if gm.roomCount % 10 == 0:
 		gm.roomType = "boss";
-	elif chance > 0.9:
+	elif chance > 0.95:
 		gm.roomType = "gamble";
 		$rock.queue_free();
 	elif chance > 0.70:
@@ -50,14 +50,14 @@ func _ready() -> void:
 		print("-=-=- ENEMY COUNTS -=-=-")
 		print("BAT: ", floor(gm.roomCount * 0.8), ", ACTUAL: ", gm.roomCount * 0.8);
 		print("-=-=- ENEMY COUNTS -=-=-")
-		for i in floor(gm.roomCount * 0.6):
+		for i : int in floor(gm.roomCount * 0.6):
 			var bat : Node2D= batRess.instantiate();
 			add_child(bat);
 	await get_tree().create_timer(3).timeout;
 	gm.enemyCount -= 1;
 	#$CollisionPolygon2D.disabled = false;
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if init:
 		#NORMAL FIGHT ROOM
 		if !spawnedLoot and gm.enemyCount == 0 and gm.roomType == "enemy":
