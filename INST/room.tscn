@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bie37p0rv74i7"]
+[gd_scene load_steps=9 format=3 uid="uid://bie37p0rv74i7"]
 
 [ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
 [ext_resource type="Texture2D" uid="uid://bjm2bnl0smdrd" path="res://SPRITES/room_template.png" id="2_7nudl"]
 [ext_resource type="Script" path="res://SCRIPTS/gen_room.gd" id="3_n48xt"]
+[ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="4_t1by3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ismcg"]
 a = Vector2(-615, -68)
@@ -84,7 +85,11 @@ shape = SubResource("SegmentShape2D_gkall")
 position = Vector2(-50, 341)
 target_position = Vector2(-107, 99)
 
+[node name="rock" parent="Room_Iterate" instance=ExtResource("4_t1by3")]
+
 [connection signal="body_entered" from="Room_Iterate/Left_Gen" to="Room_Iterate/Left_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/Right_Gen" to="Room_Iterate/Right_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/up_Gen" to="Room_Iterate/up_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/down_Gen" to="Room_Iterate/down_Gen" method="_on_body_entered"]
+
+[editable path="Room_Iterate/rock"]

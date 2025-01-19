@@ -32,8 +32,8 @@ func _physics_process(delta: float) -> void:
 	if hasSpawned and playedScale:
 		velocity *= DAMPING;
 		if (health >= 1):
-			var distance_vector : Vector2 = player.global_position - global_position;
 			if (velocity.x < MAX_SPEED and velocity.y < MAX_SPEED) and (velocity.x > (MAX_SPEED * -1) and velocity.y > (MAX_SPEED * -1)):
+				var distance_vector : Vector2 = player.global_position - global_position;
 				velocity = distance_vector.normalized() * (SPEED * 100) * delta;
 			$AnimatedSprite2D.global_rotation = 0;
 		else:

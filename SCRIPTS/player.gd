@@ -18,6 +18,11 @@ var isReloading : bool = false;
 var isOnCooldown : bool = false;
 var shooting : bool = false;
 
+var speedMod : float = 1;
+var damageMod : float = 1;
+var timeMod : float = 1;
+var spreadMod : float = 1;
+
 func _ready() -> void:
 	$AnimatedSprite2D.animation = "wakeUp"
 	$AnimatedSprite2D.frame = 1;
@@ -38,31 +43,37 @@ func _physics_process(_delta: float) -> void:
 		
 		if Input.is_action_just_pressed("debugCoin") and gm.isDev:
 			var coin : Node2D = load("res://INST/coin.tscn").instantiate();
-			add_child(coin);
+			coin.position = get_global_mouse_position();
+			$"..".add_child(coin);
+			
+		if Input.is_action_just_pressed("debugUpgrade") and gm.isDev:
+			var upgrade : Node2D = load("res://LOOT/upgrade.tscn").instantiate();
+			upgrade.position = get_global_mouse_position();
+			$"..".add_child(upgrade);
 		
 		#NORMAL GAME INPUTS
 
-		if Input.is_action_pressed("right") and (xvel <= maxSpeed):
+		if Input.is_action_pressed("right") and (xvel <= maxSpeed * speedMod):
 			animated_sprite_2d.play("walk");
 			$walkPart.emitting = true;
 			lastDir = "right";
-			xvel += accel;
+			xvel += accel * speedMod;
 			
-		if Input.is_action_pressed("left") and (xvel >= (maxSpeed * -1)):
+		if Input.is_action_pressed("left") and (xvel >= (maxSpeed * -1 * speedMod)):
 			animated_sprite_2d.play("walk");
 			$walkPart.emitting = true;
 			lastDir = "left";
-			xvel -= accel;
+			xvel -= accel * speedMod;
 			
-		if Input.is_action_pressed("down") and (yvel <= maxSpeed):
+		if Input.is_action_pressed("down") and (yvel <= maxSpeed * speedMod):
 			animated_sprite_2d.play("walk");
 			$walkPart.emitting = true;
-			yvel += accel;
+			yvel += accel * speedMod;
 			
-		if Input.is_action_pressed("up") and (yvel >= (maxSpeed * -1)):
+		if Input.is_action_pressed("up") and (yvel >= (maxSpeed * -1 * speedMod)):
 			animated_sprite_2d.play("walk");
 			$walkPart.emitting = true;
-			yvel -= accel;
+			yvel -= accel * speedMod;
 			
 		if Input.is_action_pressed("shoot") and gm.currentAmmo >= 1 and !isOnCooldown and !isReloading and !shooting and gm.weapon != "none":
 			shoot.emit();

@@ -483,12 +483,12 @@ scale = Vector2(4, 4)
 texture = ExtResource("6_kchic")
 
 [node name="Q" type="Sprite2D" parent="spawnRoom/tutorial"]
-position = Vector2(-240, 222)
+position = Vector2(-199, 222)
 scale = Vector2(4, 4)
 texture = ExtResource("7_5exos")
 
 [node name="Mouse" type="Sprite2D" parent="spawnRoom/tutorial"]
-position = Vector2(-462, 190)
+position = Vector2(-388, 190)
 scale = Vector2(4, 4)
 texture = ExtResource("7_065qo")
 
@@ -526,22 +526,6 @@ position = Vector2(50, 11.6667)
 scale = Vector2(0.487807, 0.487807)
 sprite_frames = SubResource("SpriteFrames_c065b")
 
-[node name="FPS" type="Label" parent="gameManager/UI"]
-offset_left = -593.0
-offset_top = -313.0
-offset_right = -553.0
-offset_bottom = -290.0
-scale = Vector2(1.84, 1.81854)
-text = "FPS: "
-
-[node name="roomPos" type="Label" parent="gameManager/UI"]
-offset_left = -593.0
-offset_top = -271.0
-offset_right = -553.0
-offset_bottom = -248.0
-scale = Vector2(1.84, 1.84)
-text = "roomPos: "
-
 [node name="weaponName" type="Label" parent="gameManager/UI"]
 offset_left = -593.0
 offset_top = 239.0
@@ -558,7 +542,56 @@ offset_bottom = 296.0
 scale = Vector2(1.84, 1.84)
 text = "ammo"
 
-[node name="enemyCount" type="Label" parent="gameManager/UI"]
+[node name="mod" type="Node2D" parent="gameManager/UI"]
+scale = Vector2(0.679999, 0.679999)
+
+[node name="speedMod" type="Label" parent="gameManager/UI/mod"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = -858.06
+offset_top = 180.883
+offset_right = -720.06
+offset_bottom = 203.883
+scale = Vector2(1.76421, 1.79732)
+text = "spd%: "
+
+[node name="damageMod" type="Label" parent="gameManager/UI/mod"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = -870.06
+offset_top = 217.882
+offset_right = -732.06
+offset_bottom = 240.882
+scale = Vector2(1.76421, 1.79732)
+text = "dmg%: "
+
+[node name="timeMod" type="Label" parent="gameManager/UI/mod"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = -872.06
+offset_top = 261.883
+offset_right = -734.06
+offset_bottom = 284.883
+scale = Vector2(1.76421, 1.79732)
+text = "time%: "
+
+[node name="spreadMod" type="Label" parent="gameManager/UI/mod"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = -853.06
+offset_top = 302.883
+offset_right = -715.06
+offset_bottom = 325.883
+scale = Vector2(1.76421, 1.79732)
+text = "srd%: "
+
+[node name="dev" type="Node2D" parent="gameManager/UI"]
+
+[node name="roomType" type="Label" parent="gameManager/UI/dev"]
+offset_left = -593.0
+offset_top = -189.0
+offset_right = -455.0
+offset_bottom = -166.0
+scale = Vector2(1.76421, 1.79732)
+text = "roomType: spawn"
+
+[node name="enemyCount" type="Label" parent="gameManager/UI/dev"]
 offset_left = -593.0
 offset_top = -229.0
 offset_right = -519.0
@@ -566,13 +599,21 @@ offset_bottom = -206.0
 scale = Vector2(1.76421, 1.79732)
 text = "enemies: "
 
-[node name="roomType" type="Label" parent="gameManager/UI"]
+[node name="roomPos" type="Label" parent="gameManager/UI/dev"]
 offset_left = -593.0
-offset_top = -189.0
-offset_right = -519.0
-offset_bottom = -166.0
-scale = Vector2(1.76421, 1.79732)
-text = "roomType: spawn"
+offset_top = -271.0
+offset_right = -515.0
+offset_bottom = -248.0
+scale = Vector2(1.84, 1.84)
+text = "roomPos: "
+
+[node name="FPS" type="Label" parent="gameManager/UI/dev"]
+offset_left = -593.0
+offset_top = -313.0
+offset_right = -553.0
+offset_bottom = -290.0
+scale = Vector2(1.84, 1.81854)
+text = "FPS: "
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
@@ -584,7 +625,7 @@ environment = SubResource("Environment_noa8x")
 [node name="spawnCenter" type="Node2D" parent="."]
 
 [node name="spawnPoint" type="Node2D" parent="spawnCenter"]
-position = Vector2(-108, 0)
+position = Vector2(-71, 0)
 
 [node name="Area2D" type="Area2D" parent="spawnCenter/spawnPoint"]
 

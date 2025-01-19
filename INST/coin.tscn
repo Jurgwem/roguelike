@@ -60,7 +60,7 @@ animations = [{
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_1sj07"]
+[sub_resource type="CurveTexture" id="CurveTexture_2kepi"]
 curve = SubResource("Curve_gclus")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6wg32"]
@@ -73,7 +73,7 @@ angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 scale_min = 6.0
 scale_max = 10.0
-scale_curve = SubResource("CurveTexture_1sj07")
+scale_curve = SubResource("CurveTexture_2kepi")
 color = Color(0.984314, 0.94902, 0.211765, 1)
 
 [node name="Coin" type="Node2D"]

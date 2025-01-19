@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2xu074njqvgk"]
+[gd_scene load_steps=13 format=3 uid="uid://c2xu074njqvgk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/default_bullet.gd" id="1_2ahdp"]
 [ext_resource type="Texture2D" uid="uid://bekd5bt05qnni" path="res://SPRITES/standardBullet.png" id="2_j7ay5"]
@@ -31,6 +31,29 @@ color_ramp = SubResource("GradientTexture1D_aqcaa")
 [sub_resource type="CircleShape2D" id="CircleShape2D_pumwe"]
 radius = 3.0
 
+[sub_resource type="Curve" id="Curve_7ke3w"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_00rh1"]
+curve = SubResource("Curve_7ke3w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qfooi"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+damping_min = 32.0
+damping_max = 64.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_00rh1")
+color = Color(0.966667, 1, 0, 1)
+
 [node name="defaultBullet" type="Node2D" groups=["playerBullet"]]
 position = Vector2(198, -96)
 script = ExtResource("1_2ahdp")
@@ -56,5 +79,14 @@ trail_enabled = true
 
 [node name="hithitbox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_pumwe")
+
+[node name="hit" type="GPUParticles2D" parent="."]
+z_index = -3
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_qfooi")
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.75
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

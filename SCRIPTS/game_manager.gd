@@ -4,6 +4,8 @@ extends Node2D
 
 signal finishedTransitionFade;
 
+var timer : float = 0.0;
+
 var roomType : String = "spawn";
 var roomPos : Vector2 = Vector2(0, 0);
 var doorDirection : String = "none";
@@ -52,7 +54,12 @@ func _physics_process(delta: float) -> void:
 			print("finished fade in!");
 			playedFadeIn = false;
 	$UI.position = roomPos;
+	
 	$UI/RoomCounter.text = str("Room: ", roomCount);
+	$UI/mod/speedMod.text = str("spd%: ", player.speedMod, "x");
+	$UI/mod/damageMod.text = str("dmg%: ", player.damageMod, "x");
+	$UI/mod/timeMod.text = str("time%: ", player.timeMod, "x");
+	$UI/mod/spreadMod.text = str("srd%: ", player.spreadMod, "x");
 	$UI/Coins.text = str(coins, "x");
 	$UI/weaponName.text = str(weapon);
 	if player.isReloading:
@@ -63,13 +70,13 @@ func _physics_process(delta: float) -> void:
 		$UI/ammo.text = str("(", currentAmmo, "/", maxAmmo, ")");
 	
 	if isDev:
-		$UI/FPS.text = str("FPS: ", Engine.get_frames_per_second());
-		$UI/roomPos.text = str("roomPos: ", roomPos);
-		$UI/enemyCount.text = str("enemies: ", enemyCount);
-		$UI/roomType.text = str("roomType: ", roomType);
+		$UI/dev/FPS.text = str("FPS: ", Engine.get_frames_per_second());
+		$UI/dev/roomPos.text = str("roomPos: ", roomPos);
+		$UI/dev/enemyCount.text = str("enemies: ", enemyCount);
+		$UI/dev/roomType.text = str("roomType: ", roomType);
 	else:
-		$UI/FPS.visible = false;
-		$UI/roomPos.visible = false;
-		$UI/enemyCount.visible = false;
-		$UI/roomType.visible = false;
+		$UI/dev/FPS.visible = false;
+		$UI/dev/roomPos.visible = false;
+		$UI/dev/enemyCount.visible = false;
+		$UI/dev/roomType.visible = false;
 	pass

@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		if (gm.currentAmmo <= 0 or Input.is_action_just_pressed("reload")) and !player.isReloading:
 			player.isReloading = true;
 			print("no ammo, reloading...");
-			await get_tree().create_timer(reloadTime).timeout;
+			await get_tree().create_timer(reloadTime * player.timeMod).timeout;
 			player.isReloading = false;
 			gm.currentAmmo = ammo;
 			print("reloaded!");
@@ -86,7 +86,7 @@ func _physics_process(delta: float) -> void:
 			$shell.restart();
 			$shootPart.emitting = true;
 			gm.currentAmmo -= 1;
-			await get_tree().create_timer(shootBuffer).timeout
+			await get_tree().create_timer(shootBuffer * player.timeMod).timeout
 			player.isOnCooldown = false;
 			
 	pass
