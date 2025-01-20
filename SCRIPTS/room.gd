@@ -23,6 +23,7 @@ func _ready() -> void:
 		gm.roomType = "boss";
 	elif chance > 0.95:
 		gm.roomType = "gamble";
+		spawnedLoot = true;
 		$rock.queue_free();
 	elif chance > 0.70:
 		gm.roomType = "loot";
@@ -57,7 +58,7 @@ func _ready() -> void:
 	gm.enemyCount -= 1;
 	#$CollisionPolygon2D.disabled = false;
 	
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if init:
 		#NORMAL FIGHT ROOM
 		if !spawnedLoot and gm.enemyCount == 0 and gm.roomType == "enemy":
@@ -66,25 +67,27 @@ func _process(_delta: float) -> void:
 				var coin : Node2D = coinRess.instantiate();
 				coin.position = gm.roomPos + Vector2(0, -32);
 				$"..".add_child(coin);
-				print("spawned coin!")
+				print("spawned coin! (enemy)")
 			else:
 				spawnedLoot = true;
 				var upgrade : Node2D = upgradeRess.instantiate();
 				upgrade.position = gm.roomPos + Vector2(0, -32);
 				$"..".add_child(upgrade);
-				print("spawned upgrade!")
+				print("spawned upgrade! (enemy)")
 		#LOOT ROOM
-		if gm.roomType == "loot" and !spawnedLoot:
+		if !spawnedLoot and gm.roomType == "loot":
 			if lootChance > 0.66:
 				spawnedLoot = true;
 				var coin : Node2D = coinRess.instantiate();
 				coin.position = gm.roomPos + Vector2(0, -32);
 				$"..".add_child(coin);
-				print("spawned coin!")
+				print("spawned coin! (loot)")
 			else:
 				spawnedLoot = true;
 				var upgrade : Node2D = upgradeRess.instantiate();
 				upgrade.position = gm.roomPos + Vector2(0, -32);
 				$"..".add_child(upgrade);
-				print("spawned upgrade!")
+				print("spawned upgrade! (loot)")
+		if !spawnedLoot and gm.roomType == "boss":
+			spawnedLoot = true;
 	pass
