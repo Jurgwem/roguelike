@@ -11,6 +11,7 @@ var hasSpawned : bool = false;
 var playedScale : bool = false;
 var playedPart : bool = false;
 var health : int = 30;
+var color : float = 0;
 
 func _ready() -> void:
 	visible = false;
@@ -25,6 +26,8 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	color = lerp(modulate.g, 1.0, 3.2 * delta);
+	modulate = Color(1,color,color);
 	if hasSpawned and !playedScale:
 		scale = lerp(scale, scale + Vector2(0.5, 0.5), 8 * delta);
 		if scale >= Vector2(1, 1):
