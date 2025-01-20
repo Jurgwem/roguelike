@@ -5,6 +5,7 @@ extends Area2D
 @onready var room : Resource = load("res://INST/room.tscn");
 @onready var door : Resource = load("res://INST/wall.tscn")
 @onready var raycast : RayCast2D = $raycast;
+@onready var hasDoor : RayCast2D = $hasDoor;
 
 var timer : float = 0.0
 var x : int = 0;
@@ -26,8 +27,8 @@ func _ready() -> void:
 		
 func _process(delta):
 	timer += delta
-	if timer >= 10.0: 
-		if !raycast.is_colliding():
+	if timer >= 5.0: 
+		if !raycast.is_colliding() and !hasDoor.is_colliding():
 			$newRoomIndicator.emitting = true;
 		else:
 			$newRoomIndicator.emitting = false;

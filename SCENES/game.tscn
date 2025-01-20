@@ -256,7 +256,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_dyggw")
-color = Color(0.81, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_eofw6")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_viooj"]
@@ -293,7 +292,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_pjqvt")
-color = Color(0.81, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_khcn2")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rukig"]
@@ -330,7 +328,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_6p4gw")
-color = Color(0.81, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_rtuvt")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_l4a33"]
@@ -367,7 +364,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_e5e05")
-color = Color(0.81, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_dkgf5")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1qsr"]
@@ -550,6 +546,10 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_5cpmo")
 lifetime = 2.0
 
+[node name="hasDoor" type="RayCast2D" parent="spawnRoom/Left_Gen"]
+position = Vector2(-623, -82)
+target_position = Vector2(0, 23)
+
 [node name="right_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
 direction = "right"
@@ -568,6 +568,10 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_6v5av")
 lifetime = 2.0
 
+[node name="hasDoor" type="RayCast2D" parent="spawnRoom/right_gen"]
+position = Vector2(623, 80)
+target_position = Vector2(-1, -23)
+
 [node name="up_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
 direction = "up"
@@ -584,6 +588,10 @@ position = Vector2(0, -335)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_wckfx")
 lifetime = 2.0
+
+[node name="hasDoor" type="RayCast2D" parent="spawnRoom/up_gen"]
+position = Vector2(73, -343)
+target_position = Vector2(-30, 0)
 
 [node name="down_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
@@ -602,6 +610,10 @@ rotation = 3.14159
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_g6ybk")
 lifetime = 2.0
+
+[node name="hasDoor" type="RayCast2D" parent="spawnRoom/down_gen"]
+position = Vector2(-74, 343)
+target_position = Vector2(19, 0)
 
 [node name="spawnCoins" type="Node2D" parent="spawnRoom"]
 position = Vector2(-316, -172)

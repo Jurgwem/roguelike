@@ -39,7 +39,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_fih8v")
-color = Color(0.81, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_7xkns")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bi0tn"]
@@ -92,6 +91,10 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
 
+[node name="hasDoor" type="RayCast2D" parent="Room_Iterate/Left_Gen"]
+position = Vector2(-623, -82)
+target_position = Vector2(0, 23)
+
 [node name="Right_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
 direction = "right"
@@ -110,6 +113,10 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
 
+[node name="hasDoor" type="RayCast2D" parent="Room_Iterate/Right_Gen"]
+position = Vector2(623, 80)
+target_position = Vector2(-1, -23)
+
 [node name="up_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
 direction = "up"
@@ -126,6 +133,10 @@ position = Vector2(0, -335)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
+
+[node name="hasDoor" type="RayCast2D" parent="Room_Iterate/up_Gen"]
+position = Vector2(73, -343)
+target_position = Vector2(-30, 0)
 
 [node name="down_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
@@ -144,6 +155,10 @@ rotation = 3.14159
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
+
+[node name="hasDoor" type="RayCast2D" parent="Room_Iterate/down_Gen"]
+position = Vector2(-74, 343)
+target_position = Vector2(19, 0)
 
 [node name="rock" parent="Room_Iterate" instance=ExtResource("4_t1by3")]
 
