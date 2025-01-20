@@ -5,7 +5,7 @@ used to learn the basics of game dev and godot
 
 --------------------------------------------
 
-## Todo:
+# Todo:
 - Add Health and dying/losing
 - Add Shop
 - Add Boss
@@ -14,14 +14,15 @@ used to learn the basics of game dev and godot
 - Add more variety to Items/Bosses/Enemies
 
 --------------------------------------------
+# Probabilities
 
-## Room Probabilities
+## Room
 - Enemy (Default): 65%
 - Loot / Upgrade: 20%
 - Shop: 10%
 - Gamble: 5%
 
-# Upgrade Probabilites
+## Upgrade
 - Speed: 28%
 - Damage: 28%
 - Time: 28%
