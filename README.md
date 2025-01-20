@@ -21,7 +21,7 @@ used to learn the basics of game dev and godot
 - Shop: 10%
 - Gamble: 5%
 
-#Upgrade Probabilites
+# Upgrade Probabilites
 - Speed: 28%
 - Damage: 28%
 - Time: 28%
