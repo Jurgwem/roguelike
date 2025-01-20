@@ -12,15 +12,15 @@ var scaleStep : float = 0.01;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	scale = Vector2(0, 0);
-	if chance > 0.75:
+	if chance > 0.72:
 		type = 0;
 		$Area2D/AnimatedSprite2D.frame = 0;
 		#Damage
-	elif chance > 0.5:
+	elif chance > 0.44:
 		type = 1;
 		$Area2D/AnimatedSprite2D.frame = 1;
 		#Speed
-	elif chance > 0.25:
+	elif chance > 0.16:
 		type = 2;
 		$Area2D/AnimatedSprite2D.frame = 2;
 		#Time

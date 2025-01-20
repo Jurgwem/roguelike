@@ -178,7 +178,7 @@ size = Vector2(1477, 914)
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_kirmo"]
+[sub_resource type="CurveTexture" id="CurveTexture_07tbi"]
 curve = SubResource("Curve_rw3pu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymc3v"]
@@ -193,7 +193,7 @@ initial_velocity_max = 8.0
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 12.0
-scale_curve = SubResource("CurveTexture_kirmo")
+scale_curve = SubResource("CurveTexture_07tbi")
 color = Color(0, 0, 0, 0.12549)
 
 [sub_resource type="Gradient" id="Gradient_u7y7o"]
@@ -503,7 +503,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_ulqa5")
 
 [node name="Dust" type="GPUParticles2D" parent="camera"]
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_ymc3v")
 lifetime = 10.0
 
@@ -548,7 +548,7 @@ target_position = Vector2(-103, -101)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/Left_Gen"]
 position = Vector2(-620, 0)
 rotation = -1.57079
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_5cpmo")
 lifetime = 2.0
 
@@ -570,7 +570,7 @@ target_position = Vector2(102, 134)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/right_gen"]
 position = Vector2(626, 0)
 rotation = 1.57079
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_6v5av")
 lifetime = 2.0
 
@@ -591,7 +591,7 @@ target_position = Vector2(116, -89)
 
 [node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/up_gen"]
 position = Vector2(0, -335)
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_wckfx")
 lifetime = 2.0
 
@@ -613,7 +613,7 @@ target_position = Vector2(-107, 99)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="spawnRoom/down_gen"]
 position = Vector2(0, 341)
 rotation = 3.14159
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_g6ybk")
 lifetime = 2.0
 
@@ -810,7 +810,6 @@ position = Vector2(-71, 0)
 shape = SubResource("CircleShape2D_op7kk")
 
 [node name="overlay" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bie37p0rv74i7"]
+[gd_scene load_steps=19 format=3 uid="uid://bie37p0rv74i7"]
 
 [ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
 [ext_resource type="Texture2D" uid="uid://bjm2bnl0smdrd" path="res://SPRITES/room_template.png" id="2_7nudl"]
 [ext_resource type="Script" path="res://SCRIPTS/gen_room.gd" id="3_n48xt"]
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="4_t1by3"]
+[ext_resource type="PackedScene" uid="uid://dqmpobmm6i54k" path="res://INST/slot_machine.tscn" id="5_44l0o"]
+[ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://LOOT/coin.tscn" id="6_b5tdy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ismcg"]
 a = Vector2(-615, -68)
@@ -53,6 +55,28 @@ b = Vector2(-60, -335)
 a = Vector2(-60, 335)
 b = Vector2(60, 334)
 
+[sub_resource type="Curve" id="Curve_avl5a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kirmo"]
+curve = SubResource("Curve_avl5a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jldbr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(580, 300, 1)
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_kirmo")
+color = Color(0.966667, 1, 0, 0.258824)
+
 [node name="Room" type="Node2D"]
 
 [node name="Room_Iterate" type="StaticBody2D" parent="."]
@@ -87,7 +111,7 @@ target_position = Vector2(-103, -101)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="Room_Iterate/Left_Gen"]
 position = Vector2(-620, 0)
 rotation = -1.57079
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
 
@@ -109,7 +133,7 @@ target_position = Vector2(102, 134)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="Room_Iterate/Right_Gen"]
 position = Vector2(626, 0)
 rotation = 1.57079
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
 
@@ -130,7 +154,7 @@ target_position = Vector2(116, -89)
 
 [node name="newRoomIndicator" type="GPUParticles2D" parent="Room_Iterate/up_Gen"]
 position = Vector2(0, -335)
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
 
@@ -152,7 +176,7 @@ target_position = Vector2(-107, 99)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="Room_Iterate/down_Gen"]
 position = Vector2(0, 341)
 rotation = 3.14159
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
 
@@ -161,6 +185,21 @@ position = Vector2(-74, 343)
 target_position = Vector2(19, 0)
 
 [node name="rock" parent="Room_Iterate" instance=ExtResource("4_t1by3")]
+
+[node name="GAMBLE" type="Node2D" parent="Room_Iterate"]
+
+[node name="SlotMachine" parent="Room_Iterate/GAMBLE" instance=ExtResource("5_44l0o")]
+
+[node name="Coin" parent="Room_Iterate/GAMBLE" instance=ExtResource("6_b5tdy")]
+position = Vector2(321, 185)
+
+[node name="Coin2" parent="Room_Iterate/GAMBLE" instance=ExtResource("6_b5tdy")]
+position = Vector2(-321, 185)
+
+[node name="Dust" type="GPUParticles2D" parent="Room_Iterate/GAMBLE"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jldbr")
+lifetime = 10.0
 
 [connection signal="body_entered" from="Room_Iterate/Left_Gen" to="Room_Iterate/Left_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/Right_Gen" to="Room_Iterate/Right_Gen" method="_on_body_entered"]

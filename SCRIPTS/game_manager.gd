@@ -56,10 +56,10 @@ func _physics_process(delta: float) -> void:
 	$UI.position = roomPos;
 	
 	$UI/RoomCounter.text = str("Room: ", roomCount);
-	$UI/mod/speedMod.text = str("spd%: ", player.speedMod, "x");
-	$UI/mod/damageMod.text = str("dmg%: ", player.damageMod, "x");
-	$UI/mod/timeMod.text = str("time%: ", player.timeMod, "x");
-	$UI/mod/spreadMod.text = str("srd%: ", player.spreadMod, "x");
+	$UI/mod/speedMod.text = str("spd%: ", snapped(player.speedMod, 0.01), "x");
+	$UI/mod/damageMod.text = str("dmg%: ", snapped(player.damageMod, 0.01), "x");
+	$UI/mod/timeMod.text = str("time%: ", snapped(player.timeMod, 0.01), "x");
+	$UI/mod/spreadMod.text = str("srd%: ", snapped(player.spreadMod, 0.01), "x");
 	$UI/Coins.text = str(coins, "x");
 	$UI/weaponName.text = str(weapon);
 	if player.isReloading:

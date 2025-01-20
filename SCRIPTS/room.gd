@@ -21,14 +21,23 @@ func _ready() -> void:
 	#print("roomType odds: ", chance);
 	if gm.roomCount % 10 == 0:
 		gm.roomType = "boss";
+		$rock.queue_free();
+		$GAMBLE.queue_free();
 	elif chance > 0.95:
 		gm.roomType = "gamble";
 		spawnedLoot = true;
 		$rock.queue_free();
-	elif chance > 0.70:
+	elif chance > 0.85:
+		gm.roomType = "shop";
+		spawnedLoot = true;
+		$rock.queue_free();
+		$GAMBLE.queue_free();
+	elif chance > 0.65:
 		gm.roomType = "loot";
+		$GAMBLE.queue_free();
 	else:
 		gm.roomType = "enemy";
+		$GAMBLE.queue_free();
 		
 	gm.hasDoor = false;
 	gm.randomDoor = 0;
