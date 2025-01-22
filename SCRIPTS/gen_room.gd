@@ -25,7 +25,7 @@ func _ready() -> void:
 	else:
 		gm.doorCounter = 0;
 		
-func _process(delta):
+func _process(delta : float) -> void:
 	timer += delta
 	if timer >= 5.0: 
 		if !raycast.is_colliding() and !hasDoor.is_colliding():

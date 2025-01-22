@@ -43,7 +43,8 @@ func _physics_process(delta: float) -> void:
 		position = player.position;
 		
 		if (!player.isReloading):
-			look_at(get_global_mouse_position())
+			if !gm.isDead:
+				look_at(get_global_mouse_position())
 			if rotation_degrees < -90:
 				rotation += deg_to_rad(360);
 			elif rotation_degrees > 270:

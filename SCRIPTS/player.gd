@@ -11,6 +11,7 @@ var lastDir : String = "left";
 var slowdown  :float = 0.9;
 var maxSpeed : int = 250;
 var accel : int = 50;
+const KNOCKBACK : float = 16;
 var xvel : float = 0;
 var yvel : float = 0;
 var devCam : bool = false;
@@ -29,10 +30,15 @@ func _ready() -> void:
 	pass
 
 func _physics_process(_delta: float) -> void:
+	#if get_tree().get_node_count_in_group("enemy") != 0:
+	#	look_at(get_tree().get_nodes_in_group("enemy")[0].global_position)
 	yvel = yvel * slowdown;
 	xvel = xvel * slowdown;
 	
-	if canMove:
+	var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
+	modulate = Color(1,color,color);
+	
+	if canMove and !gm.isDead:
 		if Input.is_action_just_pressed("dev") and gm.isDev:
 			devCam = !devCam;
 			if devCam:
@@ -50,6 +56,11 @@ func _physics_process(_delta: float) -> void:
 			var upgrade : Node2D = load("res://LOOT/upgrade.tscn").instantiate();
 			upgrade.position = get_global_mouse_position();
 			$"..".add_child(upgrade);
+		
+		if Input.is_action_just_pressed("debugHealth") and gm.isDev:
+			var health : Node2D = load("res://LOOT/health_up.tscn").instantiate();
+			health.position = get_global_mouse_position();
+			$"..".add_child(health);
 		
 		#NORMAL GAME INPUTS
 
@@ -83,13 +94,19 @@ func _physics_process(_delta: float) -> void:
 			animated_sprite_2d.play("idle");
 			$walkPart.emitting = false;
 			
-		if Input.is_action_just_pressed("escape"):
-			get_tree().change_scene_to_file("res://SCENES/start.tscn")
+	if Input.is_action_just_pressed("escape"):
+		get_tree().change_scene_to_file("res://SCENES/start.tscn")
 		
-	velocity.x = xvel;
-	velocity.y = yvel;
-	
-	move_and_slide()
+	if !gm.isDead:
+		velocity.x = xvel;
+		velocity.y = yvel;
+		move_and_slide()
+	else:
+		$AnimatedSprite2D.animation = "wakeUp";
+		$AnimatedSprite2D.frame = 5;
+		$walkPart.emitting = false;
+		if rotation_degrees != 90:
+			rotation = lerp_angle(rotation, deg_to_rad(90), 10 * _delta);
 
 
 func _on_game_manager_finished_transition_fade() -> void:
@@ -102,4 +119,21 @@ func _on_game_manager_finished_transition_fade() -> void:
 		print("anim finished")
 		$AnimatedSprite2D.animation = "idle"
 	canMove = true;
+	pass # Replace with function body.
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		if body.health >= 1:
+			print("damage taken, health: ", gm.health);
+			if !gm.isDead:
+				modulate = Color(1,0.25,0.25);
+			var distance_vector_player : Vector2 = global_position - body.global_position;
+			xvel = distance_vector_player.x * KNOCKBACK;
+			yvel = distance_vector_player.y * KNOCKBACK;
+			body.velocity = distance_vector_player * -1 * (KNOCKBACK/2);
+			gm.health -= 1;
+			gm.updateHealth();
+			#velocity = distance_vector.normalized() * (knockback * 100);
+			#move_and_slide()
 	pass # Replace with function body.

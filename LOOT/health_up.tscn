@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1u4e53tiridp"]
+
+[ext_resource type="Texture2D" uid="uid://c4sox0jw2b6y1" path="res://SPRITES/heart.png" id="1_40yxm"]
+[ext_resource type="Script" path="res://LOOT/health_up.gd" id="1_ca7te"]
+[ext_resource type="Texture2D" uid="uid://b6v8bhnwmhul8" path="res://SPRITES/light.webp" id="3_oc8wn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqtd2"]
+radius = 8.01561
+
+[sub_resource type="Curve" id="Curve_q58l0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_orpko"]
+curve = SubResource("Curve_q58l0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1fahr"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 48.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_orpko")
+color = Color(0.4575, 0.75, 0.618375, 1)
+
+[node name="healthUp" type="Node2D"]
+script = ExtResource("1_ca7te")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_40yxm")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1.5)
+shape = SubResource("CircleShape2D_bqtd2")
+
+[node name="parts" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_1fahr")
+fixed_fps = 60
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1, 0)
+color = Color(0.215686, 0.72549, 0.439216, 1)
+energy = 0.5
+texture = ExtResource("3_oc8wn")
+texture_scale = 0.33
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

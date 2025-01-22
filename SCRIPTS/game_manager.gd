@@ -1,7 +1,11 @@
 extends Node2D
-@onready var static_body_2d: StaticBody2D = $"../spawnRoom/Room_Itself"
+@onready var static_body_2d : StaticBody2D = $"../spawnRoom/Room_Itself"
 @onready var player : Node2D = get_node("/root/game/player");
 
+@onready var status_head : Label = $"../player/status/statusHead"
+@onready var status_body : Label = $"../player/status/statusBody"
+
+var heartUIRess : Resource = preload("res://INST/heart_ui.tscn");
 signal finishedTransitionFade;
 
 var timer : float = 0.0;
@@ -20,6 +24,8 @@ var enemyCount : int = 1;
 var randomDoor : int = 0;
 var currentAmmo : int = 0;
 var maxAmmo : int = 0;
+var health : int = 1;
+var isDead : bool = false;
 
 var roomCount : int = 1;
 var coins : int = 0;
@@ -30,7 +36,12 @@ var fadeSpeed : float = 0.7;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	status_body.text = " ";
+	status_body.scale.x = 0;
+	status_head.text = " ";
+	status_head.scale.x = 0;
 	$UI.visible = false;
+	updateHealth();
 	roomPos = static_body_2d.position;
 	playedFadeIn = true;
 	finishedTransitionFade.emit();
@@ -40,6 +51,25 @@ func _ready() -> void:
 	await get_tree().create_timer(3).timeout;
 	enemyCount -= 1;
 	pass # Replace with function body.
+
+func updateHealth() -> void:
+	for element : Node2D in get_tree().get_nodes_in_group("heartUI"):
+		element.queue_free();
+	for i : int in health:
+		var heartUI : Node2D = heartUIRess.instantiate();
+		heartUI.global_position += Vector2(i * 64, 0);
+		$UI/healthPos.add_child(heartUI);
+	if health <= 0 and !isDead:
+		isDead = true;
+		status_body.rotation_degrees = -90;
+		status_head.position.x += -32;
+		status_head.rotation_degrees = -90;
+		status_head.text = "You died!";
+		status_body.text = str("You got into ", roomCount, " rooms");
+		timer = -5;
+		await get_tree().create_timer(8).timeout;
+		print("quit");
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -53,7 +83,26 @@ func _physics_process(delta: float) -> void:
 		if $"../overlay".modulate.a <= 0:
 			print("finished fade in!");
 			playedFadeIn = false;
-	$UI.position = roomPos;
+	
+	if status_body.text != " " or status_head.text != " ":
+		timer += delta;
+		if timer >= 3:
+			status_head.scale.x = lerp(status_head.scale.x, 0.0, 10 * delta);
+			status_body.scale.x = lerp(status_body.scale.x, 0.0, 10 * delta);
+			if status_body.scale.x <= 0.01 or status_head.scale.x <= 0.01:
+				print("should reset!")
+				status_body.text = " ";
+				status_head.text = " "
+				status_body.scale.x = 0;
+				status_head.scale.x = 0;
+				timer = 0;
+		else:
+			status_head.scale.x = lerp(status_head.scale.x, 1.657, 10 * delta);
+			status_body.scale.x = lerp(status_body.scale.x, 1.0, 10 * delta);
+	
+	
+	if $UI.position != roomPos:
+		$UI.position = roomPos;
 	
 	$UI/RoomCounter.text = str("Room: ", roomCount);
 	$UI/mod/speedMod.text = str("spd%: ", snapped(player.speedMod, 0.01), "x");

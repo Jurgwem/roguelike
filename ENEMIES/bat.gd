@@ -7,10 +7,11 @@ extends CharacterBody2D
 const SPEED : float = 400.0;
 const DAMPING : Vector2 = Vector2(0.95, 0.95);
 const MAX_SPEED : float = 25;
+const KNOCKBACK : float = 12;
 var hasSpawned : bool = false;
 var playedScale : bool = false;
 var playedPart : bool = false;
-var health : int = 30;
+var health : int = 25;
 var color : float = 0;
 
 func _ready() -> void:
@@ -52,3 +53,14 @@ func _physics_process(delta: float) -> void:
 					queue_free();
 
 		move_and_slide()
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		if body.health >= 1:
+			var distance_vector_player : Vector2 = global_position - body.global_position;
+			velocity = distance_vector_player * KNOCKBACK;
+			body.velocity = distance_vector_player * -1 * (KNOCKBACK/2);
+			#velocity = distance_vector.normalized() * (knockback * 100);
+			#move_and_slide()
+	pass # Replace with function body.

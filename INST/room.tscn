@@ -201,6 +201,40 @@ amount = 16
 process_material = SubResource("ParticleProcessMaterial_jldbr")
 lifetime = 10.0
 
+[node name="SHOP" type="Node2D" parent="Room_Iterate"]
+
+[node name="rockLeft" parent="Room_Iterate/SHOP" instance=ExtResource("4_t1by3")]
+position = Vector2(-128, 0)
+
+[node name="rockRight" parent="Room_Iterate/SHOP" instance=ExtResource("4_t1by3")]
+position = Vector2(128, 0)
+
+[node name="pLeft" type="Label" parent="Room_Iterate/SHOP"]
+offset_left = -168.0
+offset_top = 24.0
+offset_right = -128.0
+offset_bottom = 47.0
+scale = Vector2(2, 2)
+text = "#"
+horizontal_alignment = 1
+
+[node name="pMiddle" type="Label" parent="Room_Iterate/SHOP"]
+offset_left = -40.0
+offset_top = 24.0
+offset_bottom = 47.0
+scale = Vector2(2, 2)
+text = "#"
+horizontal_alignment = 1
+
+[node name="pRight" type="Label" parent="Room_Iterate/SHOP"]
+offset_left = 88.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 47.0
+scale = Vector2(2, 2)
+text = "#"
+horizontal_alignment = 1
+
 [connection signal="body_entered" from="Room_Iterate/Left_Gen" to="Room_Iterate/Left_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/Right_Gen" to="Room_Iterate/Right_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/up_Gen" to="Room_Iterate/up_Gen" method="_on_body_entered"]

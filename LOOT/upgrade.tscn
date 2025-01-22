@@ -47,7 +47,7 @@ radius = 22.0227
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_orpko"]
+[sub_resource type="CurveTexture" id="CurveTexture_0q6v7"]
 curve = SubResource("Curve_lhs76")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rwj04"]
@@ -66,7 +66,7 @@ radial_velocity_max = -2.23517e-05
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_orpko")
+scale_curve = SubResource("CurveTexture_0q6v7")
 color = Color(0.441387, 0.843462, 0.265607, 1)
 
 [node name="upgrade" type="Node2D"]

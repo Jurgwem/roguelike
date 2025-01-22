@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://g4eldas2o1e0"]
+[gd_scene load_steps=13 format=3 uid="uid://g4eldas2o1e0"]
 
 [ext_resource type="Texture2D" uid="uid://bf0npblx3mdtw" path="res://ENEMIES/bat.png" id="1_uby7x"]
 [ext_resource type="Script" path="res://ENEMIES/bat.gd" id="1_vghdj"]
@@ -63,6 +63,9 @@ scale_min = 4.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_63cu4")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1rbs"]
+radius = 26.0
+
 [node name="Bat" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_vghdj")
 
@@ -87,3 +90,10 @@ lifetime = 0.5
 one_shot = true
 preprocess = 0.1
 explosiveness = 0.8
+
+[node name="hitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("CircleShape2D_b1rbs")
+
+[connection signal="body_entered" from="hitBox" to="." method="_on_hit_box_body_entered"]
