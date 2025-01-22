@@ -51,6 +51,20 @@ func _ready() -> void:
 	await get_tree().create_timer(3).timeout;
 	enemyCount -= 1;
 	pass # Replace with function body.
+	
+func die() -> void:
+	isDead = true;
+	$"../player/status".scale *= 2;
+	$"../player/status".position.x += -100;
+	status_body.rotation_degrees = -90;
+	status_head.position.x += -32;
+	status_head.rotation_degrees = -90;
+	status_head.text = "You died!";
+	status_body.text = str("You got into ", roomCount, " rooms");
+	timer = -5;
+	await get_tree().create_timer(8).timeout;
+	print("quit?");
+	pass
 
 func updateHealth() -> void:
 	for element : Node2D in get_tree().get_nodes_in_group("heartUI"):
@@ -60,15 +74,7 @@ func updateHealth() -> void:
 		heartUI.global_position += Vector2(i * 64, 0);
 		$UI/healthPos.add_child(heartUI);
 	if health <= 0 and !isDead:
-		isDead = true;
-		status_body.rotation_degrees = -90;
-		status_head.position.x += -32;
-		status_head.rotation_degrees = -90;
-		status_head.text = "You died!";
-		status_body.text = str("You got into ", roomCount, " rooms");
-		timer = -5;
-		await get_tree().create_timer(8).timeout;
-		print("quit");
+		die();
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
