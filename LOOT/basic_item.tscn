@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://bipcvqads82qr"]
+[gd_scene load_steps=13 format=3 uid="uid://bipcvqads82qr"]
 
 [ext_resource type="Texture2D" uid="uid://ga750xk86b5j" path="res://LOOT/items.png" id="1_gy7q0"]
 [ext_resource type="Script" path="res://LOOT/basic_item.gd" id="1_vdd1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ndvb"]
 radius = 2.42621
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mfj3"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28tjp"]
 atlas = ExtResource("1_gy7q0")
@@ -25,6 +29,9 @@ region = Rect2(48, 32, 16, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdso6"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mfj3")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_28tjp")
 }, {
@@ -68,7 +75,6 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_orpko")
 
 [node name="basicItem" type="Node2D"]
-scale = Vector2(3, 3)
 script = ExtResource("1_vdd1d")
 
 [node name="Area2D" type="Area2D" parent="."]

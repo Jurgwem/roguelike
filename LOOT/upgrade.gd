@@ -17,7 +17,8 @@ var price : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scale = Vector2(0, 0);
+	if isBought:
+		scale = Vector2(0, 0);
 	if chance > 0.72:
 		type = 0;
 		$Area2D/AnimatedSprite2D.frame = 0;

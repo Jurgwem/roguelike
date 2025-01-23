@@ -12,9 +12,9 @@ var equipped : bool = false;
 var init : bool = false;
 var startPos : Vector2 = position;
 
-var reloadTime : int = 2;
-var shootBuffer : float = 0.33;
-var ammo : int = 12;
+var reloadTime : int = 4;
+var shootBuffer : float = 1.5;
+var ammo : int = 8;
 var rotSpeed : int = 8
 
 var isBought : bool = true;
@@ -26,7 +26,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var bullet : Node = bulletRess.instantiate();
 	if equipped and Input.is_action_just_pressed("unequip"):
 		rotation = deg_to_rad(0);
 		gm.weapon = " ";
@@ -41,11 +40,11 @@ func _physics_process(delta: float) -> void:
 	if equipped:
 		if !init:
 			init = true;
-			gm.weapon = "Gun";
+			gm.weapon = "Shotgun";
 			gm.maxAmmo = ammo * player.ammoMod;
 			gm.currentAmmo = 0;
 			$GPUParticles2D.emitting = false;
-			scale = Vector2(1.5, 1.5)
+			scale = Vector2(1.75, 1.75)
 		global_position = player.global_position;
 		
 		if (!player.isReloading):
@@ -89,7 +88,11 @@ func _physics_process(delta: float) -> void:
 		if player.shooting and !player.isOnCooldown and !player.isReloading:
 			player.isOnCooldown = true;
 			player.shooting = false;
-			$"..".add_child(bullet);
+			
+			for i : int in 8:
+				var bullet : Node = bulletRess.instantiate();
+				bullet.inaccuracy = 16;
+				$"..".add_child(bullet);
 			$shell.emitting =  true;
 			$shell.restart();
 			$shootPart.emitting = true;

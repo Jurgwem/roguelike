@@ -12,8 +12,8 @@ var equipped : bool = false;
 var init : bool = false;
 var startPos : Vector2 = position;
 
-var reloadTime : int = 2;
-var shootBuffer : float = 0.33;
+var reloadTime : int = 3;
+var shootBuffer : float = 0.1;
 var ammo : int = 12;
 var rotSpeed : int = 8
 
@@ -41,11 +41,11 @@ func _physics_process(delta: float) -> void:
 	if equipped:
 		if !init:
 			init = true;
-			gm.weapon = "Gun";
+			gm.weapon = "Semi-Auto";
 			gm.maxAmmo = ammo * player.ammoMod;
 			gm.currentAmmo = 0;
 			$GPUParticles2D.emitting = false;
-			scale = Vector2(1.5, 1.5)
+			scale = Vector2(1.75, 1.75)
 		global_position = player.global_position;
 		
 		if (!player.isReloading):
@@ -89,6 +89,7 @@ func _physics_process(delta: float) -> void:
 		if player.shooting and !player.isOnCooldown and !player.isReloading:
 			player.isOnCooldown = true;
 			player.shooting = false;
+			bullet.inaccuracy = 16;
 			$"..".add_child(bullet);
 			$shell.emitting =  true;
 			$shell.restart();

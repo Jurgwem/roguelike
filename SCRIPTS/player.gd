@@ -28,6 +28,7 @@ var spreadMod : float = 1;
 var pierce : int = 0;
 var slideMod : float = 1;
 var homingMod : float = 0;
+var ammoMod : float = 1;
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation = "wakeUp"

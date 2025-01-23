@@ -11,9 +11,9 @@ var heartRess : Resource = load("res://LOOT/health_up.tscn");
 var upgradeRess : Resource = load("res://LOOT/upgrade.tscn");
 var itemRess : Resource = load("res://LOOT/basic_item.tscn");
 
-const UPGRADE_PRICE : int = 3;
+const UPGRADE_PRICE : int = 2;
 const HEALTH_PRICE : int = 4;
-const ITEM_PRICE : int = 8;
+const ITEM_PRICE : int = 6;
 
 var chance : float = randf();
 var spawnedLoot : bool = false;
@@ -32,20 +32,56 @@ func spawnShopHeart(pos: Vector2) -> void:
 	add_child(heart);
 	pass
 	
-func spawnShopUpgrade(pos: Vector2) -> void:
+func spawnShopUpgrade(pos: Vector2, label: Label) -> void:
 	var upgrade : Node2D = upgradeRess.instantiate();
 	upgrade.position += pos;
 	upgrade.isBought = false;
 	upgrade.price = UPGRADE_PRICE;
 	add_child(upgrade);
+	label.text = str(UPGRADE_PRICE);
 	pass
 
-func spawnShopItem(pos: Vector2) -> void:
+func spawnShopItem(pos: Vector2, label: Label) -> void:
 	var item : Node2D = itemRess.instantiate();
 	item.position += pos;
 	item.isBought = false;
 	item.price = ITEM_PRICE;
 	add_child(item);
+	label.text = str(ITEM_PRICE);
+	pass
+	
+func spawnWeaponShop(pos: Vector2, label: Label) -> void:
+	shopChance = randf();
+	if shopChance > 0.66:
+		#DEFAULT GUN
+		var gunPrice : int = 5;
+		var gunRess : Resource = load("res://LOOT/gun.tscn");
+		var gun : Node2D = gunRess.instantiate();
+		gun.isBought = false;
+		gun.price = gunPrice;
+		gun.global_position = pos - Vector2(38, 0);
+		add_child(gun);
+		label.text = str(gunPrice);
+	elif shopChance > 0.33:
+		#SEMI-AUTO GUN
+		var fastgunPrice : int = 7;
+		var fastgunRess : Resource = load("res://LOOT/fastgun.tscn");
+		var fastgun : Node2D = fastgunRess.instantiate();
+		fastgun.isBought = false;
+		fastgun.price = fastgunPrice;
+		fastgun.global_position = pos - Vector2(38, -4);
+		add_child(fastgun);
+		label.text = str(fastgunPrice);
+	else:
+		#SHOTGUN GUN
+		var shotgunPrice : int = 10;
+		var shotgunRess : Resource = load("res://LOOT/shotgun.tscn");
+		var shotgun : Node2D = shotgunRess.instantiate();
+		shotgun.isBought = false;
+		shotgun.price = shotgunPrice;
+		shotgun.global_position = pos - Vector2(38, 0);
+		add_child(shotgun);
+		label.text = str(shotgunPrice);
 	pass
 
 func shopInit() -> void:
@@ -57,22 +93,25 @@ func shopInit() -> void:
 		spawnShopHeart(Vector2(-127, -34));
 		$SHOP/pLeft.text = str(HEALTH_PRICE);
 	else:
-		spawnShopUpgrade(Vector2(-127, -34));
-		$SHOP/pLeft.text = str(UPGRADE_PRICE);
+		spawnShopUpgrade(Vector2(-127, -34), $SHOP/pLeft);
+		#$SHOP/pLeft.text = str(UPGRADE_PRICE);
 	
 	#MIDDLE SLOT
 	shopChance = randf();
 	if shopChance > 0.66:
 		spawnShopHeart(Vector2(1, -34));
 		$SHOP/pMiddle.text = str(HEALTH_PRICE);
+	elif shopChance > 0.33:
+		spawnShopUpgrade(Vector2(1, -34), $SHOP/pMiddle);
 	else:
-		spawnShopUpgrade(Vector2(1, -34));
-		$SHOP/pMiddle.text = str(UPGRADE_PRICE);
+		spawnShopItem(Vector2(1, -34), $SHOP/pMiddle);
 	
 	#RIGHT SLOT
 	shopChance = randf();
-	spawnShopItem(Vector2(129, -34));
-	$SHOP/pRight.text = str(ITEM_PRICE);
+	if shopChance > 0.5:
+		spawnShopItem(Vector2(129, -34), $SHOP/pRight);
+	else:
+		spawnWeaponShop(Vector2(129, -34), $SHOP/pRight);
 	pass;
 
 func _ready() -> void:
@@ -136,7 +175,7 @@ func _physics_process(_delta: float) -> void:
 	if init:
 		#NORMAL FIGHT ROOM
 		if !spawnedLoot and gm.enemyCount == 0 and gm.roomType == "enemy":
-			if lootChance > 0.5:
+			if lootChance > 0.33:
 				spawnedLoot = true;
 				var coin : Node2D = coinRess.instantiate();
 				coin.position = gm.roomPos + Vector2(0, -32);

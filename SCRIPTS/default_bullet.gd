@@ -9,19 +9,22 @@ var hit : bool = false;
 var collisions : int = 0;
 
 var lifetime : int = 0;
-var maxLifetime : int = 2500;
+var maxLifetime : int = 256;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Sprite2D.visible = false;
 	if get_parent().name == "Start":
 		speed = 4;
 		inaccuracy = 1;
 		scale = Vector2(0.7, 0.7);
-		position = get_node("/root/Start/startPlayer").position;
+		global_position = get_node("/root/Start/startPlayer").global_position;
 		position += Vector2(0, -2.3);
 	else:
-		position = player.position;
+		global_position = player.global_position;
 	look_at(get_global_mouse_position())
 	rotation -= deg_to_rad(((randf() * inaccuracy) - (inaccuracy / 2)) * player.spreadMod);
+	position += Vector2(50, 0).rotated(rotation)
+	$Sprite2D.visible = true;
 	pass # Replace with function body.
 
 

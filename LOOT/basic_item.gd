@@ -17,34 +17,40 @@ var price : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scale = Vector2(0, 0);
-	if chance > 0.75:
+	if isBought:
+		scale = Vector2(0, 0);
+	if chance > 0.80:
 		type = 0;
 		$parts.modulate = Color(1, 1, 0);
-		$AnimatedSprite2D.frame = 0;
+		$AnimatedSprite2D.frame = 1;
 		#Pierce
-	elif chance > 0.50:
+	elif chance > 0.60:
 		type = 1;
 		$parts.modulate = Color(1, 0.5, 1);
-		$AnimatedSprite2D.frame = 1;
+		$AnimatedSprite2D.frame = 2;
 		#Credit Card
-	elif chance > 0.25:
+	elif chance > 0.40:
 		type = 2;
 		$parts.modulate = Color(0, 1, 1);
-		$AnimatedSprite2D.frame = 2;
+		$AnimatedSprite2D.frame = 3;
 		#Ice Cube
-	else:
+	elif chance > 0.20:
 		type = 3;
 		$parts.modulate = Color(0.5, 0.33, 0);
-		$AnimatedSprite2D.frame = 3;
+		$AnimatedSprite2D.frame = 4;
 		#Homing
+	else:
+		type = 4;
+		$AnimatedSprite2D.frame = 0;
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if !init:
-		scale += Vector2(scaleStep * 3, scaleStep * 3);
 		if scale >= Vector2(1, 1):
 			init = true;
+		else:
+			scale += Vector2(scaleStep * 3, scaleStep * 3);
 		
 	if collected and init:
 		global_position = player.global_position + Vector2(0, -32);
@@ -70,19 +76,25 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		gm.timer = 0;
 		if type == 0:
 			player.pierce += 1;
-			status_head.text = "Pierce!"
-			status_body.text = "bullet piercing increased by 1"
+			status_head.text = "Pierce!";
+			status_body.text = "bullet piercing increased by 1";
 		elif type == 1:
-			gm.coins += int(6 + (randf() * 6));
-			status_head.text = "Mom's credit card"
-			status_body.text = "don't tell mom!"
+			var moneyYouStoleFromMom : int = int(5 + (randf() * 6));
+			gm.coins += moneyYouStoleFromMom;
+			status_head.text = "Mom's credit card";
+			status_body.text = str(moneyYouStoleFromMom, "? don't tell mom!");
 		elif type == 2:
 			player.slideMod = 0;
-			status_head.text = "Ice Cube"
-			status_body.text = "everyone loves ice physics"
+			status_head.text = "Ice Cube";
+			status_body.text = "everyone loves ice physics";
 		elif type == 3:
 			player.homingMod += 4;
-			status_head.text = "Homing bullets"
-			status_body.text = "more homes = more homing, right?"
+			status_head.text = "Homing bullets";
+			status_body.text = "more homes = more homing, right?";
+		elif type == 4:
+			player.ammoMod += 0.5;
+			gm.currentAmmo = 0;
+			status_head.text = "Extended Ammo";
+			status_body.text = "idk man, just more bullets";
 		collected = true;
 	pass # Replace with function body.
