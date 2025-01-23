@@ -235,6 +235,15 @@ scale = Vector2(2, 2)
 text = "#"
 horizontal_alignment = 1
 
+[node name="ShopText" type="Label" parent="Room_Iterate/SHOP"]
+modulate = Color(0.299547, 0.299547, 0.299547, 1)
+offset_left = -107.0
+offset_top = -210.0
+offset_right = -63.0
+offset_bottom = -187.0
+scale = Vector2(5.18302, 5.18302)
+text = "SHOP"
+
 [connection signal="body_entered" from="Room_Iterate/Left_Gen" to="Room_Iterate/Left_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/Right_Gen" to="Room_Iterate/Right_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/up_Gen" to="Room_Iterate/up_Gen" method="_on_body_entered"]
