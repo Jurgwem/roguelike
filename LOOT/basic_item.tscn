@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://bipcvqads82qr"]
+
+[ext_resource type="Texture2D" uid="uid://ga750xk86b5j" path="res://LOOT/items.png" id="1_gy7q0"]
+[ext_resource type="Script" path="res://LOOT/basic_item.gd" id="1_vdd1d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ndvb"]
+radius = 2.42621
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28tjp"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw0kb"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2887"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vihtc"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdso6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28tjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw0kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2887")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vihtc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Curve" id="Curve_cbcr0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_orpko"]
+curve = SubResource("Curve_cbcr0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_31jqy"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 48.0
+initial_velocity_max = 64.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_orpko")
+
+[node name="basicItem" type="Node2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_vdd1d")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_3ndvb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_gdso6")
+frame = 3
+frame_progress = 0.348906
+
+[node name="parts" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_31jqy")
+fixed_fps = 60
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

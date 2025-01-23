@@ -9,9 +9,11 @@ var batRess : Resource = load("res://ENEMIES/bat.tscn");
 var coinRess : Resource = load("res://LOOT/coin.tscn");
 var heartRess : Resource = load("res://LOOT/health_up.tscn");
 var upgradeRess : Resource = load("res://LOOT/upgrade.tscn");
+var itemRess : Resource = load("res://LOOT/basic_item.tscn");
 
 const UPGRADE_PRICE : int = 3;
 const HEALTH_PRICE : int = 4;
+const ITEM_PRICE : int = 8;
 
 var chance : float = randf();
 var spawnedLoot : bool = false;
@@ -38,28 +40,39 @@ func spawnShopUpgrade(pos: Vector2) -> void:
 	add_child(upgrade);
 	pass
 
+func spawnShopItem(pos: Vector2) -> void:
+	var item : Node2D = itemRess.instantiate();
+	item.position += pos;
+	item.isBought = false;
+	item.price = ITEM_PRICE;
+	add_child(item);
+	pass
+
 func shopInit() -> void:
 	print("shop init")
 	
 	#LEFT SLOT
 	shopChance = randf();
 	if shopChance > 0.66:
-		spawnShopHeart(Vector2(-127, -32));
+		spawnShopHeart(Vector2(-127, -34));
 		$SHOP/pLeft.text = str(HEALTH_PRICE);
 	else:
-		spawnShopUpgrade(Vector2(-127, -32));
+		spawnShopUpgrade(Vector2(-127, -34));
 		$SHOP/pLeft.text = str(UPGRADE_PRICE);
 	
 	#MIDDLE SLOT
 	shopChance = randf();
 	if shopChance > 0.66:
-		spawnShopHeart(Vector2(1, -32));
+		spawnShopHeart(Vector2(1, -34));
 		$SHOP/pMiddle.text = str(HEALTH_PRICE);
 	else:
-		spawnShopUpgrade(Vector2(1, -32));
+		spawnShopUpgrade(Vector2(1, -34));
 		$SHOP/pMiddle.text = str(UPGRADE_PRICE);
 	
 	#RIGHT SLOT
+	shopChance = randf();
+	spawnShopItem(Vector2(129, -34));
+	$SHOP/pRight.text = str(ITEM_PRICE);
 	pass;
 
 func _ready() -> void:

@@ -71,7 +71,7 @@ shape = SubResource("CircleShape2D_lm7vv")
 z_index = -1
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_4gdcx")
-preprocess = 2.0
+preprocess = 0.5
 local_coords = true
 trail_enabled = true
 

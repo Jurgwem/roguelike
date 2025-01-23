@@ -6,9 +6,10 @@ var damage : int = 10;
 var speed : int = 16;
 var inaccuracy : float = 4; #overall degrees, aka spread
 var hit : bool = false;
+var collisions : int = 0;
 
 var lifetime : int = 0;
-var maxLifetime : int = 250;
+var maxLifetime : int = 2500;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if get_parent().name == "Start":
@@ -28,6 +29,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if !hit:
 		position += Vector2(speed * player.speedMod, 0).rotated(rotation)
+		
+		if get_tree().get_node_count_in_group("enemy") != 0:
+			rotation = lerp_angle(rotation, (get_tree().get_nodes_in_group("enemy")[0].global_position - global_position).angle(), player.homingMod * _delta);
+		
 		lifetime += 1;
 	if lifetime >= maxLifetime:
 		queue_free();
@@ -36,21 +41,26 @@ func _physics_process(_delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and !hit:
 		body.health -= damage * player.damageMod;
-		hit = true;
 		body.modulate = Color(1,0.25,0.25);
 		$hit.emitting = true;
-		$Area2D.queue_free();
-		$trail.queue_free();
-		$Sprite2D.visible = false;
-		await get_tree().create_timer(1).timeout;
-		#print(body.name, " Hit!", " health: ", body.health);
-		queue_free();
-	if !hit and body.name != "player":
-		hit = true;
+		if collisions >= player.pierce:
+			hit = true;
+			$Area2D.queue_free();
+			$trail.queue_free();
+			$Sprite2D.visible = false;
+			await get_tree().create_timer(1).timeout;
+			#print(body.name, " Hit!", " health: ", body.health);
+			queue_free();
+		collisions += 1;
+			
+	if !hit and body.name != "player" and !body.is_in_group("enemy"):
 		$hit.emitting = true;
-		$Area2D.queue_free();
-		$trail.queue_free();
-		$Sprite2D.visible = false;
-		await get_tree().create_timer(1).timeout;
-		queue_free();
+		if collisions >= player.pierce:
+			hit = true;
+			$Area2D.queue_free();
+			$trail.queue_free();
+			$Sprite2D.visible = false;
+			await get_tree().create_timer(1).timeout;
+			queue_free();
+		collisions += 1;
 	pass # Replace with function body.

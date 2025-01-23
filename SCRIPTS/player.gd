@@ -19,10 +19,15 @@ var isReloading : bool = false;
 var isOnCooldown : bool = false;
 var shooting : bool = false;
 
+#UPGRADABLE
 var speedMod : float = 1;
 var damageMod : float = 1;
 var timeMod : float = 1;
 var spreadMod : float = 1;
+
+var pierce : int = 0;
+var slideMod : float = 1;
+var homingMod : float = 0;
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation = "wakeUp"
@@ -32,8 +37,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	#if get_tree().get_node_count_in_group("enemy") != 0:
 	#	look_at(get_tree().get_nodes_in_group("enemy")[0].global_position)
-	yvel = yvel * slowdown;
-	xvel = xvel * slowdown;
+	yvel *= (slowdown ** slideMod);
+	xvel *= (slowdown ** slideMod);
 	
 	var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
 	modulate = Color(1,color,color);
@@ -61,6 +66,11 @@ func _physics_process(_delta: float) -> void:
 			var health : Node2D = load("res://LOOT/health_up.tscn").instantiate();
 			health.position = get_global_mouse_position();
 			$"..".add_child(health);
+			
+		if Input.is_action_just_pressed("debugItem") and gm.isDev:
+			var item : Node2D = load("res://LOOT/basic_item.tscn").instantiate();
+			item.position = get_global_mouse_position();
+			$"..".add_child(item);
 		
 		#NORMAL GAME INPUTS
 
@@ -96,6 +106,7 @@ func _physics_process(_delta: float) -> void:
 			
 	if Input.is_action_just_pressed("escape"):
 		get_tree().change_scene_to_file("res://SCENES/start.tscn")
+		return;
 		
 	if !gm.isDead:
 		velocity.x = xvel;
