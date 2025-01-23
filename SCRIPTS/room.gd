@@ -102,7 +102,10 @@ func _ready() -> void:
 			y = gm.roomPos.y + gm.vert;
 		else:
 			y = gm.roomPos.y - gm.vert;
-	position = Vector2(x, y);
+	print("gm: ", gm.roomPos);
+	print("own Pos: ", Vector2(x, y));
+	#global_position = Vector2(x, y);
+	global_position = gm.roomPos;
 	init = true;
 	if gm.roomType == "enemy":
 		await get_tree().create_timer(randf() * 0.5).timeout;
@@ -120,7 +123,7 @@ func _physics_process(_delta: float) -> void:
 	if init:
 		#NORMAL FIGHT ROOM
 		if !spawnedLoot and gm.enemyCount == 0 and gm.roomType == "enemy":
-			if lootChance > 0.66:
+			if lootChance > 0.5:
 				spawnedLoot = true;
 				var coin : Node2D = coinRess.instantiate();
 				coin.position = gm.roomPos + Vector2(0, -32);
@@ -134,7 +137,7 @@ func _physics_process(_delta: float) -> void:
 				print("spawned upgrade! (enemy)")
 		#LOOT ROOM
 		if !spawnedLoot and gm.roomType == "loot":
-			if lootChance > 0.66:
+			if lootChance > 0.5:
 				spawnedLoot = true;
 				var coin : Node2D = coinRess.instantiate();
 				coin.position = gm.roomPos + Vector2(0, -32);

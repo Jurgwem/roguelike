@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bavjkvv08edv6" path="res://LOOT/gun.tscn" id="15_qe2xy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
-radius = 8.74518
+radius = 8.39571
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rbh3"]
 atlas = ExtResource("1_vjjnx")
@@ -172,7 +172,7 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_mdomo")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ak5i"]
-radius = 10.0621
+radius = 11.1339
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulqa5"]
 size = Vector2(1477, 914)
@@ -494,7 +494,7 @@ texture_scale = 0.33
 [node name="hitBox" type="Area2D" parent="player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/hitBox"]
-position = Vector2(-0.529585, 5.82544)
+position = Vector2(-0.5, 6)
 shape = SubResource("CircleShape2D_8ak5i")
 
 [node name="status" type="Node2D" parent="player"]
@@ -704,6 +704,8 @@ position = Vector2(-519, -213)
 scale = Vector2(4, 4)
 texture = ExtResource("11_1gwkv")
 
+[node name="rock" parent="spawnRoom" instance=ExtResource("12_l7axa")]
+
 [node name="gameManager" type="Node2D" parent="."]
 script = ExtResource("1_yu3vq")
 
@@ -830,8 +832,6 @@ text = "ammo"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
 
-[node name="rock" parent="." instance=ExtResource("12_l7axa")]
-
 [node name="gun" parent="." instance=ExtResource("15_qe2xy")]
 
 [node name="spawnCenter" type="Node2D" parent="."]
@@ -845,10 +845,13 @@ position = Vector2(-71, 0)
 shape = SubResource("CircleShape2D_op7kk")
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)
 texture = SubResource("GradientTexture2D_pfkdj")
+
+[node name="roomContainer" type="Node2D" parent="."]
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="body_entered" from="player/hitBox" to="player" method="_on_hit_box_body_entered"]

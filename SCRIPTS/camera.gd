@@ -30,11 +30,11 @@ func _physics_process(delta: float) -> void:
 			elif gm.nextRoom == "up":
 				position.y -= gm.vert;
 				gm.roomPos.y -= gm.vert;
-				player.position.y -= gm.vert * 0.14;
+				player.position.y -= gm.vert * 0.2;
 			elif gm.nextRoom == "down":
 				position.y += gm.vert;
 				gm.roomPos.y += gm.vert;
-				player.position.y += gm.vert * 0.14;
+				player.position.y += gm.vert * 0.2;
 			last = gm.nextRoom;
 			gm.lastRoom = gm.nextRoom;
 			gm.nextRoom = "none";
