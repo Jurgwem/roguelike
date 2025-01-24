@@ -10,6 +10,8 @@ used to learn the basics of game dev and godot
 - Add Froggit
 - Add Glue
 - Add Frogger
+- Add Invisible Man
+- L O R E
 - Add more variety to Items/Bosses/Enemies
 - Balancing 
 

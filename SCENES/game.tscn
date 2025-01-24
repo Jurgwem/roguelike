@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=85 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://do627w40nwsdw" path="res://UI/escape.png" id="11_1gwkv"]
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
 [ext_resource type="PackedScene" uid="uid://bavjkvv08edv6" path="res://LOOT/gun.tscn" id="15_qe2xy"]
-[ext_resource type="PackedScene" uid="uid://b5vfen5hcc0ly" path="res://LOOT/fastgun.tscn" id="17_tq087"]
-[ext_resource type="PackedScene" uid="uid://benpd0nanv5bv" path="res://LOOT/shotgun.tscn" id="18_gtu4l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
 radius = 8.39571
@@ -853,12 +851,6 @@ scale = Vector2(41.5625, 22.6094)
 texture = SubResource("GradientTexture2D_pfkdj")
 
 [node name="roomContainer" type="Node2D" parent="."]
-
-[node name="shotgun" parent="." instance=ExtResource("18_gtu4l")]
-position = Vector2(500, 113)
-
-[node name="fastgun" parent="." instance=ExtResource("17_tq087")]
-position = Vector2(500, 200)
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="body_entered" from="player/hitBox" to="player" method="_on_hit_box_body_entered"]
