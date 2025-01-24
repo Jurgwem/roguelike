@@ -41,7 +41,8 @@ func _ready() -> void:
 		#Homing
 	else:
 		type = 4;
-		$AnimatedSprite2D.frame = 0;
+		$parts.modulate = Color(1, 1, 0);
+		$AnimatedSprite2D.frame = 5;
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -92,7 +93,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			status_head.text = "Homing bullets";
 			status_body.text = "more homes = more homing, right?";
 		elif type == 4:
-			player.ammoMod += 0.5;
+			player.ammoMod += 0.25;
 			gm.currentAmmo = 0;
 			status_head.text = "Extended Ammo";
 			status_body.text = "idk man, just more bullets";

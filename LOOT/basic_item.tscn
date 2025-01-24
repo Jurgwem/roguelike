@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bipcvqads82qr"]
+[gd_scene load_steps=14 format=3 uid="uid://bipcvqads82qr"]
 
 [ext_resource type="Texture2D" uid="uid://ga750xk86b5j" path="res://LOOT/items.png" id="1_gy7q0"]
 [ext_resource type="Script" path="res://LOOT/basic_item.gd" id="1_vdd1d"]
@@ -26,6 +26,10 @@ region = Rect2(32, 32, 16, 16)
 atlas = ExtResource("1_gy7q0")
 region = Rect2(48, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ook27"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(64, 32, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdso6"]
 animations = [{
 "frames": [{
@@ -43,6 +47,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vihtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ook27")
 }],
 "loop": true,
 "name": &"default",
