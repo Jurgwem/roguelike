@@ -7,9 +7,11 @@ used to learn the basics of game dev and godot
 
 # Todo:
 - Add Boss
-- Add Items
+- Add Froggit
+- Add Glue
+- Add Frogger
 - Add more variety to Items/Bosses/Enemies
-- Add return-hotkey for boss rooms/spawn room (idk man)
+- Balancing 
 
 --------------------------------------------
 # Probabilities
