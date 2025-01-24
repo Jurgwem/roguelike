@@ -108,7 +108,7 @@ func shopInit() -> void:
 	
 	#RIGHT SLOT
 	shopChance = randf();
-	if shopChance > 0.5:
+	if shopChance > 0.66:
 		spawnShopItem(Vector2(129, -34), $SHOP/pRight);
 	else:
 		spawnWeaponShop(Vector2(129, -34), $SHOP/pRight);

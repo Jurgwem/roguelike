@@ -93,8 +93,9 @@ func _physics_process(delta: float) -> void:
 	if status_body.text != " " or status_head.text != " ":
 		timer += delta;
 		if timer >= 3:
-			status_head.scale.x = lerp(status_head.scale.x, 0.0, 10 * delta);
-			status_body.scale.x = lerp(status_body.scale.x, 0.0, 10 * delta);
+			if !isDead:
+				status_head.scale.x = lerp(status_head.scale.x, 0.0, 10 * delta);
+				status_body.scale.x = lerp(status_body.scale.x, 0.0, 10 * delta);
 			if status_body.scale.x <= 0.01 or status_head.scale.x <= 0.01:
 				print("should reset!")
 				status_body.text = " ";
