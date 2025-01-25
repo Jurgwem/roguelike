@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bie37p0rv74i7"]
+[gd_scene load_steps=23 format=3 uid="uid://bie37p0rv74i7"]
 
 [ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
 [ext_resource type="Texture2D" uid="uid://bjm2bnl0smdrd" path="res://SPRITES/room_template.png" id="2_7nudl"]
@@ -76,6 +76,39 @@ scale_min = 4.0
 scale_max = 12.0
 scale_curve = SubResource("CurveTexture_kirmo")
 color = Color(0.966667, 1, 0, 0.258824)
+
+[sub_resource type="Curve" id="Curve_l8e7c"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5oa5v"]
+curve = SubResource("Curve_l8e7c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c00w0"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 16.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 0, 0)
+scale_min = 32.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_5oa5v")
+color = Color(1, 1, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ywop"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 16.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_5oa5v")
+color = Color(0, 1, 0, 1)
 
 [node name="Room" type="Node2D"]
 
@@ -201,6 +234,12 @@ amount = 16
 process_material = SubResource("ParticleProcessMaterial_jldbr")
 lifetime = 10.0
 
+[node name="mapPart" type="GPUParticles2D" parent="Room_Iterate/GAMBLE"]
+position = Vector2(1, 169)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_c00w0")
+
 [node name="SHOP" type="Node2D" parent="Room_Iterate"]
 
 [node name="rockLeft" parent="Room_Iterate/SHOP" instance=ExtResource("4_t1by3")]
@@ -243,6 +282,11 @@ offset_right = -63.0
 offset_bottom = -187.0
 scale = Vector2(5.18302, 5.18302)
 text = "SHOP"
+
+[node name="mapPart" type="GPUParticles2D" parent="Room_Iterate/SHOP"]
+position = Vector2(1, 185)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_7ywop")
 
 [connection signal="body_entered" from="Room_Iterate/Left_Gen" to="Room_Iterate/Left_Gen" method="_on_body_entered"]
 [connection signal="body_entered" from="Room_Iterate/Right_Gen" to="Room_Iterate/Right_Gen" method="_on_body_entered"]

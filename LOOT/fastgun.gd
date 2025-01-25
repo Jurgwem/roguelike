@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 			player.isOnCooldown = true;
 			player.shooting = false;
 			bullet.inaccuracy = 16;
-			bullet.damage = 6;
+			bullet.damage = 8;
 			$"..".add_child(bullet);
 			$shell.emitting =  true;
 			$shell.restart();

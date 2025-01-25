@@ -41,14 +41,30 @@ func _physics_process(_delta: float) -> void:
 	yvel *= (slowdown ** slideMod);
 	xvel *= (slowdown ** slideMod);
 	
+	if devCam:
+		$mapPart.emitting = true;
+	else:
+		$mapPart.emitting = false;
+	
 	var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
 	modulate = Color(1,color,color);
 	
 	if canMove and !gm.isDead:
-		if Input.is_action_just_pressed("dev") and gm.isDev:
+		if Input.is_action_just_pressed("map") and gm.enemyCount == 0:
 			devCam = !devCam;
 			if devCam:
-				camera.zoom = Vector2(0.5, 0.5);
+				var tmpX : int = abs(gm.roomPos.x / gm.horz) + 1;
+				var tmpY : int = abs(gm.roomPos.y / gm.vert) + 1;
+				var zoom : float = 1;
+				if tmpX >= tmpY:
+					zoom = tmpX;
+				else:
+					zoom = tmpY;
+				print("zoom: ", zoom);
+				#if zoom != 0:
+				camera.zoom = Vector2(0.5 / zoom, 0.5 / zoom)
+				#else:
+					#camera.zoom = Vector2(1, 1);
 			else:
 				camera.zoom = Vector2(1, 1);
 				devCamDisabled.emit();
@@ -152,7 +168,6 @@ func _on_game_manager_finished_transition_fade() -> void:
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if body.health >= 1:
-			print("damage taken, health: ", gm.health);
 			if !gm.isDead:
 				modulate = Color(1,0.25,0.25);
 			var distance_vector_player : Vector2 = global_position - body.global_position;

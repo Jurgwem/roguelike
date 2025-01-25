@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bipcvqads82qr"]
+[gd_scene load_steps=19 format=3 uid="uid://bipcvqads82qr"]
 
 [ext_resource type="Texture2D" uid="uid://ga750xk86b5j" path="res://LOOT/items.png" id="1_gy7q0"]
 [ext_resource type="Script" path="res://LOOT/basic_item.gd" id="1_vdd1d"]
@@ -42,6 +42,14 @@ region = Rect2(96, 32, 16, 16)
 atlas = ExtResource("1_gy7q0")
 region = Rect2(112, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf8wp"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f861e"]
+atlas = ExtResource("1_gy7q0")
+region = Rect2(16, 48, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdso6"]
 animations = [{
 "frames": [{
@@ -71,6 +79,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ugfea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf8wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f861e")
 }],
 "loop": true,
 "name": &"default",
@@ -117,8 +131,8 @@ shape = SubResource("CircleShape2D_3ndvb")
 z_index = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_gdso6")
-frame = 8
-frame_progress = 0.291955
+frame = 10
+frame_progress = 0.30141
 
 [node name="parts" type="GPUParticles2D" parent="."]
 process_material = SubResource("ParticleProcessMaterial_31jqy")

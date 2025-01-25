@@ -1,6 +1,7 @@
 extends Camera2D
 @onready var gm : Node2D = get_node("/root/game/gameManager");
 @onready var player : Node2D = get_node("/root/game/player");
+@onready var spawnpoint : Node2D = get_node("/root/game/spawnCenter/spawnPoint");
 
 var last : String = "none"
 var finishedIntro : bool = false;
@@ -18,6 +19,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if finishedIntro:
+		$"../spawnCenter".global_position = global_position;
 		if last != gm.nextRoom:
 			if gm.nextRoom == "left":
 				position.x -= gm.horz;
@@ -38,10 +40,12 @@ func _physics_process(delta: float) -> void:
 			last = gm.nextRoom;
 			gm.lastRoom = gm.nextRoom;
 			gm.nextRoom = "none";
-			$"../spawnCenter".position = position;
 			last = "none";
 		if player.devCam:
-			position = player.position;
+			position = Vector2(0, 0);
+		else:
+			position = gm.roomPos;
+			zoom = Vector2(1, 1);
 	if playZoom:
 		$bg.emitting = true;
 		zoom = lerp(zoom, zoom - Vector2(1, 1), 1 * delta)
@@ -51,12 +55,12 @@ func _physics_process(delta: float) -> void:
 			print("finished zoom!")
 
 func _on_in_camera_view_body_exited(body: Node2D) -> void:
-	if body.name == "player":
-		player.position = position;
+	#if body.name == "player":
+	#	player.position = position;
 	if body.get_parent().is_in_group("playerBullet"):
 		body.get_parent().queue_free();
 	if body.is_in_group("enemy"):
-		body.health = 0;
+		body.global_position = spawnpoint.global_position;
 	pass
 
 

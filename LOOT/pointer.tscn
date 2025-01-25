@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bati3awh88uh6"]
+
+[ext_resource type="Script" path="res://LOOT/pointer.gd" id="1_arrdn"]
+[ext_resource type="Texture2D" uid="uid://ga750xk86b5j" path="res://LOOT/items.png" id="2_of0wr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt373"]
+atlas = ExtResource("2_of0wr")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvdwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt373")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="pointer" type="Node2D"]
+script = ExtResource("1_arrdn")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 64
+position = Vector2(64, 0)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_kvdwi")

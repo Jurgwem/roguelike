@@ -6,6 +6,8 @@ extends Node2D
 @onready var status_head: Label = get_node("/root/game/player/status/statusHead");
 @onready var status_body: Label = get_node("/root/game/player/status/statusBody");
 
+var pointerRes : Resource = load("res://LOOT/pointer.tscn");
+
 var priceLabel : Label;
 
 var chance : float = randf();
@@ -19,47 +21,56 @@ var price : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if isBought:
+	if isBought and gm.roomType != "loot":
 		scale = Vector2(0, 0);
-	if chance > 0.875:
+	if chance > 0.9:
 		type = 0;
 		$parts.modulate = Color(1, 1, 0);
 		$AnimatedSprite2D.frame = 1;
 		#Pierce
-	elif chance > 0.75:
+	elif chance > 0.8:
 		type = 1;
 		$parts.modulate = Color(1, 0.5, 1);
 		$AnimatedSprite2D.frame = 2;
 		#Credit Card
-	elif chance > 0.625:
+	elif chance > 0.7:
 		type = 2;
 		$parts.modulate = Color(0, 1, 1);
 		$AnimatedSprite2D.frame = 3;
 		#Ice Cube
-	elif chance > 0.5:
+	elif chance > 0.6:
 		type = 3;
 		$parts.modulate = Color(0.5, 0.33, 0);
 		$AnimatedSprite2D.frame = 4;
 		#Homing
-	elif chance > 0.375:
+	elif chance > 0.5:
 		type = 4;
 		$parts.modulate = Color(1, 1, 0);
 		$AnimatedSprite2D.frame = 5;
 		#More Bullets
-	elif chance > 0.25:
+	elif chance > 0.4:
 		type = 5;
 		$AnimatedSprite2D.frame = 6;
 		#-1 Room
-	elif chance > 0.125:
+	elif chance > 0.3:
 		type = 6;
 		$AnimatedSprite2D.frame = 7;
 		#Glue
-	else:
+	elif chance > 0.2:
 		type = 7;
 		$parts.modulate = Color(0, 1, 0);
 		$AnimatedSprite2D.frame = 8;
 		#Frog
-		
+	elif chance > 0.1:
+		type = 8;
+		#$parts.modulate = Color(0, 1, 0);
+		$AnimatedSprite2D.frame = 9;
+		#High Roll
+	else:
+		type = 9;
+		$parts.modulate = Color(1, 0, 0);
+		$AnimatedSprite2D.frame = 10
+		#Pointer;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -81,6 +92,18 @@ func _physics_process(_delta: float) -> void:
 			queue_free()
 	pass
 
+func highroll() -> void:
+	var tmpHigh : float = player.speedMod;
+	if player.damageMod > tmpHigh:
+		tmpHigh = player.damageMod;
+	var tmpLow : float = player.timeMod;
+	if player.spreadMod < tmpLow:
+		tmpLow = player.spreadMod;
+	player.speedMod = tmpHigh;
+	player.damageMod = tmpHigh;
+	player.timeMod = tmpLow;
+	player.spreadMod = tmpLow;
+	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "player" and !collected and !isBought:
@@ -137,5 +160,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			player.accel = 1000;
 			status_head.text = "Frog!";
 			status_body.text = "hop hop hop";
+		elif type == 8:
+			highroll();
+			status_head.text = "High Roll";
+			status_body.text = "how lucky!";
+		elif type == 9:
+			var pointer : Node2D = pointerRes.instantiate();
+			pointer.global_position = player.global_position;
+			get_node("/root/game/").add_child(pointer);
+			status_head.text = "Pointer";
+			status_body.text = "definetly usefull";
 		collected = true;
 	pass # Replace with function body.

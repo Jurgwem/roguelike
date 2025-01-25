@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=89 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ccfah0a6y4tdt" path="res://SPRITES/coin_outline.png" id="10_d6k75"]
 [ext_resource type="Texture2D" uid="uid://do627w40nwsdw" path="res://UI/escape.png" id="11_1gwkv"]
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
+[ext_resource type="Texture2D" uid="uid://ddjqoujmr16hc" path="res://UI/map.png" id="13_xr5jt"]
 [ext_resource type="PackedScene" uid="uid://bavjkvv08edv6" path="res://LOOT/gun.tscn" id="15_qe2xy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
@@ -173,6 +174,26 @@ scale_curve = SubResource("CurveTexture_mdomo")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ak5i"]
 radius = 11.1339
+
+[sub_resource type="Curve" id="Curve_fk5j8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lgl1i"]
+curve = SubResource("Curve_fk5j8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o5yxk"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+scale_min = 32.0
+scale_max = 64.0
+scale_curve = SubResource("CurveTexture_lgl1i")
+color = Color(1, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulqa5"]
 size = Vector2(1477, 914)
@@ -518,6 +539,11 @@ offset_right = 152.823
 offset_bottom = 15.1115
 text = "STATUS_BODY"
 
+[node name="mapPart" type="GPUParticles2D" parent="player"]
+z_index = 64
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_o5yxk")
+
 [node name="camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -704,6 +730,11 @@ position = Vector2(-519, -213)
 scale = Vector2(4, 4)
 texture = ExtResource("11_1gwkv")
 
+[node name="map" type="Sprite2D" parent="spawnRoom/tutorial"]
+position = Vector2(-519, -129)
+scale = Vector2(4, 4)
+texture = ExtResource("13_xr5jt")
+
 [node name="rock" parent="spawnRoom" instance=ExtResource("12_l7axa")]
 
 [node name="gameManager" type="Node2D" parent="."]
@@ -867,7 +898,6 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

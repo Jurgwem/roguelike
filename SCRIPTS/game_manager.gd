@@ -19,12 +19,12 @@ var nextRoom : String = "none";
 var lastRoom : String = "none";
 var horz : int = 1280;
 var vert : int = 720;
-var isDev : bool = true;
+var isDev : bool = false;
 var enemyCount : int = 1;
 var randomDoor : int = 0;
 var currentAmmo : int = 0;
 var maxAmmo : int = 0;
-var health : int = 1;
+var health : int = 3;
 var isDead : bool = false;
 
 var roomCount : int = 1;
@@ -34,7 +34,7 @@ var weapon : String= " ";
 var isBossRoom : bool = false;
 var bossText : bool = false;
 var timerBoss : float = 0.0;
-var difficulty : int = 1;
+var difficulty : float = 1;
 var enemyScale : float= 1;
 
 var playedFadeIn : bool = false;
@@ -53,7 +53,10 @@ func _ready() -> void:
 	playedFadeIn = true;
 	finishedTransitionFade.emit();
 	if !isDev:
-		await get_tree().create_timer(5.1).timeout;
+		await get_tree().create_timer(3.1).timeout;
+		status_head.text = "again?";
+		status_body.text = "already?";
+		await get_tree().create_timer(2.0).timeout;
 	$UI.visible = true;
 	await get_tree().create_timer(3).timeout;
 	enemyCount -= 1;
@@ -126,7 +129,7 @@ func _physics_process(delta: float) -> void:
 	
 	if isBossRoom and enemyCount == 0:
 		bossText = true;
-		difficulty += 1;
+		difficulty += 0.5;
 		enemyScale += 0.1;
 		isBossRoom = false;
 	

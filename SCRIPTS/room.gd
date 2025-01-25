@@ -1,5 +1,6 @@
 extends StaticBody2D
 @onready var gm : Node2D = get_node("/root/game/gameManager");
+@onready var player : Node2D = get_node("/root/game/player");
 @onready var spawnpoint : Node2D = get_node("/root/game/spawnCenter/spawnPoint");
 
 #ENEMIES
@@ -18,10 +19,12 @@ const HEALTH_PRICE : int = 4;
 const ITEM_PRICE : int = 5;
 
 var chance : float = randf();
+var selfType : String = " ";
 var spawnedLoot : bool = false;
 var lootChance : float = randf();
 var init : bool = false;
 var shopChance : float = 0.0;
+var bossChance : float = randf();
 
 var x : int = 0;
 var y : int = 0;
@@ -118,29 +121,35 @@ func shopInit() -> void:
 	pass;
 
 func _ready() -> void:
+	player.devCam = false;
 	#print("roomType odds: ", chance);
 	if gm.roomCount % 10 == 0:
 		gm.roomType = "boss";
+		selfType = "boss";
 		gm.isBossRoom = true;
 		$rock.queue_free();
 		$GAMBLE.queue_free();
 		$SHOP.queue_free();
 	elif chance > 0.95:
 		gm.roomType = "gamble";
+		selfType = "gamble";
 		spawnedLoot = true;
 		$rock.queue_free();
 		$SHOP.queue_free();
 	elif chance > 0.80:
 		gm.roomType = "shop";
+		selfType = "shop";
 		spawnedLoot = true;
 		$GAMBLE.queue_free();
 		shopInit();
 	elif chance > 0.65:
 		gm.roomType = "loot";
+		selfType = "loot";
 		$GAMBLE.queue_free();
 		$SHOP.queue_free();
 	else:
 		gm.roomType = "enemy";
+		selfType = "enemy";
 		$GAMBLE.queue_free();
 		$SHOP.queue_free();
 		
@@ -203,6 +212,13 @@ func _ready() -> void:
 		for i : int in froggitCount:
 			var froggit : Node2D = froggitRess.instantiate();
 			add_child(froggit);
+			
+	if gm.roomType == "boss":
+		if bossChance > 0.5 or true:
+			var bat : Node2D = batRess.instantiate();
+			bat.isBoss = true;
+			add_child(bat);
+		
 	await get_tree().create_timer(3).timeout;
 	gm.enemyCount -= 1;
 	#$CollisionPolygon2D.disabled = false;
@@ -210,6 +226,17 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if init:
 		#NORMAL FIGHT ROOM
+		if player.devCam:
+			if selfType == "shop":
+				$SHOP/mapPart.emitting = true;
+			elif selfType == "gamble":
+				$GAMBLE/mapPart.emitting = true;
+		else:
+			if selfType == "shop":
+				$SHOP/mapPart.emitting = false;
+			elif selfType == "gamble":
+				$GAMBLE/mapPart.emitting = false;
+				
 		if !spawnedLoot and gm.enemyCount == 0 and gm.roomType == "enemy":
 			if lootChance > 0.33:
 				spawnedLoot = true;
@@ -231,12 +258,30 @@ func _physics_process(_delta: float) -> void:
 				coin.position = gm.roomPos + Vector2(0, -32);
 				$"..".add_child(coin);
 				print("spawned coin! (loot)")
-			else:
+			elif lootChance > 0.25:
 				spawnedLoot = true;
 				var upgrade : Node2D = upgradeRess.instantiate();
 				upgrade.position = gm.roomPos + Vector2(0, -32);
 				$"..".add_child(upgrade);
 				print("spawned upgrade! (loot)")
-		if !spawnedLoot and gm.roomType == "boss":
+			else:
+				spawnedLoot = true;
+				var item : Node2D = itemRess.instantiate();
+				item.position = gm.roomPos + Vector2(0, -32);
+				$"..".add_child(item);
+				print("spawned item! (loot)")
+				
+		#BOSS
+		if !spawnedLoot and gm.roomType == "boss" and gm.enemyCount == 0:
 			spawnedLoot = true;
+			print("spawning boss loot");
+			var item : Node2D = itemRess.instantiate();
+			item.position = gm.roomPos;
+			$"..".add_child(item);
+			var coin1 : Node2D = coinRess.instantiate();
+			coin1.position = gm.roomPos + Vector2(-64, 0);
+			$"..".add_child(coin1);
+			var coin2 : Node2D = coinRess.instantiate();
+			coin2.position = gm.roomPos + Vector2(+64, 0);
+			$"..".add_child(coin2);
 	pass
