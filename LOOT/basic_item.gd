@@ -109,9 +109,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			status_head.text = "Ice Cube";
 			status_body.text = "everyone loves ice physics";
 		elif type == 3:
-			player.homingMod += 4;
+			if player.homingMod == 0:
+				player.homingMod += 3;
+			else:
+				player.homingMod *= 1.25;
 			status_head.text = "Homing bullets";
-			status_body.text = "more homes = more homing, right?";
+			status_body.text = "todo: this is too OP";
+			#status_body.text = "more homes = more homing, right?";
 		elif type == 4:
 			player.ammoMod += 0.25;
 			gm.currentAmmo = 0;
