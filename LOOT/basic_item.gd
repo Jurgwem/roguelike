@@ -6,6 +6,8 @@ extends Node2D
 @onready var status_head: Label = get_node("/root/game/player/status/statusHead");
 @onready var status_body: Label = get_node("/root/game/player/status/statusBody");
 
+var priceLabel : Label;
+
 var chance : float = randf();
 var type : int = 0;
 var collected : bool = false;
@@ -19,34 +21,52 @@ var price : int = 0;
 func _ready() -> void:
 	if isBought:
 		scale = Vector2(0, 0);
-	if chance > 0.80:
+	if chance > 0.875:
 		type = 0;
 		$parts.modulate = Color(1, 1, 0);
 		$AnimatedSprite2D.frame = 1;
 		#Pierce
-	elif chance > 0.60:
+	elif chance > 0.75:
 		type = 1;
 		$parts.modulate = Color(1, 0.5, 1);
 		$AnimatedSprite2D.frame = 2;
 		#Credit Card
-	elif chance > 0.40:
+	elif chance > 0.625:
 		type = 2;
 		$parts.modulate = Color(0, 1, 1);
 		$AnimatedSprite2D.frame = 3;
 		#Ice Cube
-	elif chance > 0.20:
+	elif chance > 0.5:
 		type = 3;
 		$parts.modulate = Color(0.5, 0.33, 0);
 		$AnimatedSprite2D.frame = 4;
 		#Homing
-	else:
+	elif chance > 0.375:
 		type = 4;
 		$parts.modulate = Color(1, 1, 0);
 		$AnimatedSprite2D.frame = 5;
+		#More Bullets
+	elif chance > 0.25:
+		type = 5;
+		$AnimatedSprite2D.frame = 6;
+		#-1 Room
+	elif chance > 0.125:
+		type = 6;
+		$AnimatedSprite2D.frame = 7;
+		#Glue
+	else:
+		type = 7;
+		$parts.modulate = Color(0, 1, 0);
+		$AnimatedSprite2D.frame = 8;
+		#Frog
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
+	if type == 5 and price != 0:
+		price = 2;	#adjusted -1 Room price
+		priceLabel.text = str(price);
+		
 	if !init:
 		if scale >= Vector2(1, 1):
 			init = true;
@@ -97,5 +117,21 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			gm.currentAmmo = 0;
 			status_head.text = "Extended Ammo";
 			status_body.text = "idk man, just more bullets";
+		elif type == 5:
+			gm.roomCount -= 1;
+			status_head.text = "-1 Room";
+			status_body.text = "How did you do that?";
+		elif type == 6:
+			if player.slideMod == 0:
+				player.slideMod = 1;
+			else:
+				player.slideMod += 1;
+			status_head.text = "Glue";
+			status_body.text = "ew sticky";
+		elif type == 7:
+			player.maxSpeed = 50;
+			player.accel = 1000;
+			status_head.text = "Frog!";
+			status_body.text = "hop hop hop";
 		collected = true;
 	pass # Replace with function body.

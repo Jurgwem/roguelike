@@ -31,11 +31,18 @@ var roomCount : int = 1;
 var coins : int = 0;
 var weapon : String= " ";
 
+var isBossRoom : bool = false;
+var bossText : bool = false;
+var timerBoss : float = 0.0;
+var difficulty : int = 1;
+var enemyScale : float= 1;
+
 var playedFadeIn : bool = false;
 var fadeSpeed : float = 0.7;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$UI/bossText.scale.y = 0;
 	status_body.text = " ";
 	status_body.scale.x = 0;
 	status_head.text = " ";
@@ -107,9 +114,30 @@ func _physics_process(delta: float) -> void:
 			status_head.scale.x = lerp(status_head.scale.x, 1.657, 10 * delta);
 			status_body.scale.x = lerp(status_body.scale.x, 1.0, 10 * delta);
 	
+	if bossText:
+		timerBoss += delta;
+		if timerBoss >= 3:
+			$UI/bossText.scale.y = lerp($UI/bossText.scale.y, 0.0, 10 * delta);
+			if $UI/bossText.scale.y <= 0.01:
+				bossText = false;
+				$UI/bossText.scale.y = 0;
+		else:
+			$UI/bossText.scale.y = lerp($UI/bossText.scale.y, 1.0, 10 * delta);
+	
+	if isBossRoom and enemyCount == 0:
+		bossText = true;
+		difficulty += 1;
+		enemyScale += 0.1;
+		isBossRoom = false;
 	
 	if $UI.position != roomPos:
 		$UI.position = roomPos;
+	
+	if isDev and Input.is_action_just_pressed("debugRoomUp"):
+		roomCount += 1;
+	
+	if isDev and Input.is_action_just_pressed("debugRoomDown"):
+		roomCount -= 1;
 	
 	$UI/RoomCounter.text = str("Room: ", roomCount);
 	$UI/mod/speedMod.text = str("spd%: ", snapped(player.speedMod, 0.01), "x");

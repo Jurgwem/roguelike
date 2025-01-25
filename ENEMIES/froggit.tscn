@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://ds4g6rifnu01c"]
+
+[ext_resource type="Script" path="res://ENEMIES/froggit.gd" id="1_txm8o"]
+[ext_resource type="Texture2D" uid="uid://dbptot38q3sqq" path="res://ENEMIES/froggit.png" id="2_pns40"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syi88"]
+atlas = ExtResource("2_pns40")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_214wm"]
+atlas = ExtResource("2_pns40")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxykd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syi88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_214wm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_02qbh"]
+
+[sub_resource type="Curve" id="Curve_4opvx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_heyrx"]
+curve = SubResource("Curve_4opvx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6nc4"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 64.0
+initial_velocity_max = 96.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_heyrx")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j3etb"]
+radius = 26.0
+
+[node name="froggit" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_txm8o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sxykd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_02qbh")
+
+[node name="diePart" type="GPUParticles2D" parent="."]
+z_index = -10
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_l6nc4")
+lifetime = 0.5
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.8
+
+[node name="hitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("CircleShape2D_j3etb")
+
+[connection signal="body_entered" from="hitBox" to="." method="_on_hit_box_body_entered"]

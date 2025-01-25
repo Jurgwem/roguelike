@@ -17,7 +17,7 @@ var price : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if isBought:
+	if isBought and gm.roomType != "loot":
 		scale = Vector2(0, 0);
 	if chance > 0.72:
 		type = 0;

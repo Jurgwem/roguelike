@@ -829,6 +829,26 @@ offset_bottom = 296.0
 scale = Vector2(1.84, 1.84)
 text = "ammo"
 
+[node name="bossText" type="Node2D" parent="gameManager/UI"]
+position = Vector2(0, -360)
+
+[node name="inc" type="Label" parent="gameManager/UI/bossText"]
+offset_left = -100.0
+offset_top = 147.0
+offset_right = 52.0
+offset_bottom = 170.0
+scale = Vector2(1.42193, 1.42193)
+text = "difficulty increased!
+"
+
+[node name="def" type="Label" parent="gameManager/UI/bossText"]
+offset_left = -187.0
+offset_top = 77.0
+offset_right = -77.0
+offset_bottom = 100.0
+scale = Vector2(3.50482, 3.50482)
+text = "Boss defeated"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
 
@@ -844,13 +864,14 @@ position = Vector2(-71, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spawnCenter/spawnPoint/Area2D"]
 shape = SubResource("CircleShape2D_op7kk")
 
+[node name="roomContainer" type="Node2D" parent="."]
+
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)
 texture = SubResource("GradientTexture2D_pfkdj")
-
-[node name="roomContainer" type="Node2D" parent="."]
 
 [connection signal="devCamDisabled" from="player" to="camera" method="_on_player_dev_cam_disabled"]
 [connection signal="body_entered" from="player/hitBox" to="player" method="_on_hit_box_body_entered"]

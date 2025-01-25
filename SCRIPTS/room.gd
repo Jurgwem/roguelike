@@ -4,6 +4,8 @@ extends StaticBody2D
 
 #ENEMIES
 var batRess : Resource = load("res://ENEMIES/bat.tscn");
+var invRess : Resource = load("res://ENEMIES/inv_man.tscn");
+var froggitRess : Resource = load("res://ENEMIES/froggit.tscn");
 
 #LOOT
 var coinRess : Resource = load("res://LOOT/coin.tscn");
@@ -13,7 +15,7 @@ var itemRess : Resource = load("res://LOOT/basic_item.tscn");
 
 const UPGRADE_PRICE : int = 2;
 const HEALTH_PRICE : int = 4;
-const ITEM_PRICE : int = 6;
+const ITEM_PRICE : int = 5;
 
 var chance : float = randf();
 var spawnedLoot : bool = false;
@@ -46,15 +48,16 @@ func spawnShopItem(pos: Vector2, label: Label) -> void:
 	item.position += pos;
 	item.isBought = false;
 	item.price = ITEM_PRICE;
-	add_child(item);
+	item.priceLabel = label;
 	label.text = str(ITEM_PRICE);
+	add_child(item);
 	pass
 	
 func spawnWeaponShop(pos: Vector2, label: Label) -> void:
 	shopChance = randf();
 	if shopChance > 0.66:
 		#DEFAULT GUN
-		var gunPrice : int = 5;
+		var gunPrice : int = 4;
 		var gunRess : Resource = load("res://LOOT/gun.tscn");
 		var gun : Node2D = gunRess.instantiate();
 		gun.isBought = false;
@@ -64,7 +67,7 @@ func spawnWeaponShop(pos: Vector2, label: Label) -> void:
 		label.text = str(gunPrice);
 	elif shopChance > 0.33:
 		#SEMI-AUTO GUN
-		var fastgunPrice : int = 7;
+		var fastgunPrice : int = 6;
 		var fastgunRess : Resource = load("res://LOOT/fastgun.tscn");
 		var fastgun : Node2D = fastgunRess.instantiate();
 		fastgun.isBought = false;
@@ -74,7 +77,7 @@ func spawnWeaponShop(pos: Vector2, label: Label) -> void:
 		label.text = str(fastgunPrice);
 	else:
 		#SHOTGUN GUN
-		var shotgunPrice : int = 10;
+		var shotgunPrice : int = 8;
 		var shotgunRess : Resource = load("res://LOOT/shotgun.tscn");
 		var shotgun : Node2D = shotgunRess.instantiate();
 		shotgun.isBought = false;
@@ -118,6 +121,7 @@ func _ready() -> void:
 	#print("roomType odds: ", chance);
 	if gm.roomCount % 10 == 0:
 		gm.roomType = "boss";
+		gm.isBossRoom = true;
 		$rock.queue_free();
 		$GAMBLE.queue_free();
 		$SHOP.queue_free();
@@ -159,14 +163,46 @@ func _ready() -> void:
 	#global_position = Vector2(x, y);
 	global_position = gm.roomPos;
 	init = true;
+	
+	#BAT SPAWN COUNT
+	var batCount : int = 0;
+	if gm.roomCount < 10:
+		batCount = floor(gm.roomCount * 0.6);
+	else:
+		batCount = 6;
+	
+	#INV MAN SPAWN COUNT
+	var invCount : int = 0;
+	if gm.roomCount >= 7:
+		if gm.roomCount >= 25:
+			invCount = 5;
+		else:
+			invCount = floor(gm.roomCount * 0.2);
+		
+	#FROGGIT SPAWN COUNT
+	var froggitCount : int = 0;
+	if gm.roomCount >= 11:
+		if gm.roomCount >= 35:
+			froggitCount = 7;
+		else:
+			froggitCount = floor(gm.roomCount * 0.2) - 1;
+	
 	if gm.roomType == "enemy":
 		await get_tree().create_timer(randf() * 0.5).timeout;
 		print("-=-=- ENEMY COUNTS -=-=-")
-		print("BAT: ", floor(gm.roomCount * 0.8), ", ACTUAL: ", gm.roomCount * 0.8);
+		print("BAT: ", batCount);
+		print("INV_MAN: ", invCount);
+		print("FROGGIT: ", froggitCount);
 		print("-=-=- ENEMY COUNTS -=-=-")
-		for i : int in floor(gm.roomCount * 0.6):
-			var bat : Node2D= batRess.instantiate();
+		for i : int in batCount:
+			var bat : Node2D = batRess.instantiate();
 			add_child(bat);
+		for i : int in invCount:
+			var inv : Node2D = invRess.instantiate();
+			add_child(inv);
+		for i : int in froggitCount:
+			var froggit : Node2D = froggitRess.instantiate();
+			add_child(froggit);
 	await get_tree().create_timer(3).timeout;
 	gm.enemyCount -= 1;
 	#$CollisionPolygon2D.disabled = false;

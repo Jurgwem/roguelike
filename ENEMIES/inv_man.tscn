@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bx37dpmbspvdr"]
+
+[ext_resource type="Script" path="res://ENEMIES/inv_man.gd" id="1_ht63c"]
+
+[sub_resource type="Gradient" id="Gradient_64u0f"]
+offsets = PackedFloat32Array(0, 0.229508, 0.827869, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j36k3"]
+gradient = SubResource("Gradient_64u0f")
+
+[sub_resource type="Curve" id="Curve_n0r4h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_h4sev"]
+curve = SubResource("Curve_n0r4h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myfg3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_h4sev")
+color = Color(0, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_j36k3")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nuf7d"]
+
+[sub_resource type="Curve" id="Curve_k6oml"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_63cu4"]
+curve = SubResource("Curve_k6oml")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j65ki"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 64.0
+initial_velocity_max = 96.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_63cu4")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3dou5"]
+radius = 26.0
+
+[node name="invMan" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
+script = ExtResource("1_ht63c")
+
+[node name="parts" type="GPUParticles2D" parent="."]
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_myfg3")
+lifetime = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_nuf7d")
+
+[node name="diePart" type="GPUParticles2D" parent="."]
+z_index = -10
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_j65ki")
+lifetime = 0.5
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.8
+
+[node name="hitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("CircleShape2D_3dou5")
+
+[connection signal="body_entered" from="hitBox" to="." method="_on_hit_box_body_entered"]

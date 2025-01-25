@@ -45,7 +45,7 @@ animations = [{
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_63cu4"]
+[sub_resource type="CurveTexture" id="CurveTexture_4kcc8"]
 curve = SubResource("Curve_t205o")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yaqw6"]
@@ -61,12 +61,13 @@ angular_velocity_max = 360.0
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_63cu4")
+scale_curve = SubResource("CurveTexture_4kcc8")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1rbs"]
 radius = 26.0
 
 [node name="Bat" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
 script = ExtResource("1_vghdj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

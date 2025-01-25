@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "player" and gm.weapon == " " and !isBought:
+	if body.name == "player" and !isBought:
 		if gm.coins >= price:
 			print("bought!")
 			gm.coins -= price;

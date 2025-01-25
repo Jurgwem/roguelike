@@ -73,6 +73,21 @@ func _physics_process(_delta: float) -> void:
 			item.position = get_global_mouse_position();
 			$"..".add_child(item);
 		
+		if Input.is_action_just_pressed("debugBat") and gm.isDev:
+			var bat : Node2D = load("res://ENEMIES/bat.tscn").instantiate();
+			bat.position = get_global_mouse_position();
+			$"..".add_child(bat);
+		
+		if Input.is_action_just_pressed("debugInvMan") and gm.isDev:
+			var man : Node2D = load("res://ENEMIES/inv_man.tscn").instantiate();
+			man.position = get_global_mouse_position();
+			$"..".add_child(man);
+			
+		if Input.is_action_just_pressed("debugFroggit") and gm.isDev:
+			var froggit : Node2D = load("res://ENEMIES/froggit.tscn").instantiate();
+			froggit.position = get_global_mouse_position();
+			$"..".add_child(froggit);
+		
 		#NORMAL GAME INPUTS
 
 		if Input.is_action_pressed("right") and (xvel <= maxSpeed * speedMod):

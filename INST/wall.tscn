@@ -29,7 +29,7 @@ scale_max = 16.0
 scale_curve = SubResource("CurveTexture_k5ggs")
 color = Color(0, 0, 0, 1)
 
-[node name="Wall" type="Node"]
+[node name="Wall" type="Node" groups=["walls"]]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 script = ExtResource("1_tuk5q")

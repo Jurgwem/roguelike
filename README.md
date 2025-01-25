@@ -7,10 +7,6 @@ used to learn the basics of game dev and godot
 
 # Todo:
 - Add Boss
-- Add Froggit
-- Add Glue
-- Add Frogger
-- Add Invisible Man
 - L O R E
 - Add more variety to Items/Bosses/Enemies
 - Balancing 

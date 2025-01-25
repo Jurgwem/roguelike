@@ -88,10 +88,10 @@ func _physics_process(delta: float) -> void:
 		if player.shooting and !player.isOnCooldown and !player.isReloading:
 			player.isOnCooldown = true;
 			player.shooting = false;
-			
 			for i : int in 8:
 				var bullet : Node = bulletRess.instantiate();
 				bullet.inaccuracy = 16;
+				bullet.damage = 8;
 				$"..".add_child(bullet);
 			$shell.emitting =  true;
 			$shell.restart();
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "player" and gm.weapon == " " and !isBought:
+	if body.name == "player" and !isBought:
 		if gm.coins >= price:
 			print("bought!")
 			gm.coins -= price;

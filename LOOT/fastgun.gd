@@ -26,7 +26,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var bullet : Node = bulletRess.instantiate();
 	if equipped and Input.is_action_just_pressed("unequip"):
 		rotation = deg_to_rad(0);
 		gm.weapon = " ";
@@ -87,9 +86,11 @@ func _physics_process(delta: float) -> void:
 			print("reloaded!");
 			
 		if player.shooting and !player.isOnCooldown and !player.isReloading:
+			var bullet : Node = bulletRess.instantiate();
 			player.isOnCooldown = true;
 			player.shooting = false;
 			bullet.inaccuracy = 16;
+			bullet.damage = 6;
 			$"..".add_child(bullet);
 			$shell.emitting =  true;
 			$shell.restart();
@@ -101,7 +102,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "player" and gm.weapon == " " and !isBought:
+	if body.name == "player" and !isBought:
 		if gm.coins >= price:
 			print("bought!")
 			gm.coins -= price;
