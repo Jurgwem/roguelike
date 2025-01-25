@@ -6,6 +6,8 @@ extends Camera2D
 var last : String = "none"
 var finishedIntro : bool = false;
 var playZoom : bool = false;
+var mapSpeed : float = 8.0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$bg.emitting = false;
@@ -41,11 +43,14 @@ func _physics_process(delta: float) -> void:
 			gm.lastRoom = gm.nextRoom;
 			gm.nextRoom = "none";
 			last = "none";
+			
 		if player.devCam:
 			position = Vector2(0, 0);
+			zoom = lerp(zoom, Vector2(0.5 / player.camZoom, 0.5 / player.camZoom), mapSpeed * delta);
 		else:
+			zoom = lerp(zoom, Vector2(1, 1), mapSpeed * delta);
 			position = gm.roomPos;
-			zoom = Vector2(1, 1);
+			
 	if playZoom:
 		$bg.emitting = true;
 		zoom = lerp(zoom, zoom - Vector2(1, 1), 1 * delta)

@@ -15,6 +15,7 @@ const KNOCKBACK : float = 16;
 var xvel : float = 0;
 var yvel : float = 0;
 var devCam : bool = false;
+var camZoom : float = 1;
 var isReloading : bool = false;
 var isOnCooldown : bool = false;
 var shooting : bool = false;
@@ -55,18 +56,18 @@ func _physics_process(_delta: float) -> void:
 			if devCam:
 				var tmpX : int = abs(gm.roomPos.x / gm.horz) + 1;
 				var tmpY : int = abs(gm.roomPos.y / gm.vert) + 1;
-				var zoom : float = 1;
+				camZoom = 1;
 				if tmpX >= tmpY:
-					zoom = tmpX;
+					camZoom = tmpX;
 				else:
-					zoom = tmpY;
-				print("zoom: ", zoom);
+					camZoom = tmpY;
+				print("zoom: ", camZoom);
 				#if zoom != 0:
-				camera.zoom = Vector2(0.5 / zoom, 0.5 / zoom)
+				#camera.zoom = Vector2(0.5 / zoom, 0.5 / zoom)
 				#else:
 					#camera.zoom = Vector2(1, 1);
-			else:
-				camera.zoom = Vector2(1, 1);
+			#else:
+			#	camera.zoom = Vector2(1, 1);
 				devCamDisabled.emit();
 		
 		if Input.is_action_just_pressed("debugCoin") and gm.isDev:
