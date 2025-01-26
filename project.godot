@@ -30,6 +30,10 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://UI/pointer.png"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 playerBullet=""

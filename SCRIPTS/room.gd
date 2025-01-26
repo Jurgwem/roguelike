@@ -228,13 +228,17 @@ func _physics_process(_delta: float) -> void:
 		#NORMAL FIGHT ROOM
 		if player.devCam:
 			if selfType == "shop":
+				$SHOP/mapPart.visible = true;
 				$SHOP/mapPart.emitting = true;
 			elif selfType == "gamble":
+				$GAMBLE/mapPart.visible = true;
 				$GAMBLE/mapPart.emitting = true;
 		else:
 			if selfType == "shop":
+				$SHOP/mapPart.visible = false;
 				$SHOP/mapPart.emitting = false;
 			elif selfType == "gamble":
+				$GAMBLE/mapPart.visible = false;
 				$GAMBLE/mapPart.emitting = false;
 				
 		if !spawnedLoot and gm.enemyCount == 0 and gm.roomType == "enemy":

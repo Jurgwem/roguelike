@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ddjqoujmr16hc" path="res://UI/map.png" id="13_xr5jt"]
 [ext_resource type="PackedScene" uid="uid://bavjkvv08edv6" path="res://LOOT/gun.tscn" id="15_qe2xy"]
 [ext_resource type="LabelSettings" uid="uid://c8syjpqm7x16j" path="res://UI/inGameUI.tres" id="16_j8uht"]
-[ext_resource type="LabelSettings" uid="uid://bvsa3n0y476yd" path="res://SCENES/BossUI.tres" id="18_nowuo"]
+[ext_resource type="LabelSettings" uid="uid://bvsa3n0y476yd" path="res://UI/BossUI.tres" id="18_nowuo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
 radius = 8.39571
@@ -193,7 +193,7 @@ initial_velocity_min = 8.0
 initial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 scale_min = 32.0
-scale_max = 64.0
+scale_max = 96.0
 scale_curve = SubResource("CurveTexture_lgl1i")
 color = Color(1, 0, 0, 1)
 
@@ -908,6 +908,7 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

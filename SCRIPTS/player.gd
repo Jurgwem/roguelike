@@ -43,8 +43,10 @@ func _physics_process(_delta: float) -> void:
 	xvel *= (slowdown ** slideMod);
 	
 	if devCam:
+		$mapPart.visible = true;
 		$mapPart.emitting = true;
 	else:
+		$mapPart.visible = false;
 		$mapPart.emitting = false;
 	
 	var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
