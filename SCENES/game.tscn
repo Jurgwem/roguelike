@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=91 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
 [ext_resource type="Texture2D" uid="uid://ddjqoujmr16hc" path="res://UI/map.png" id="13_xr5jt"]
 [ext_resource type="PackedScene" uid="uid://bavjkvv08edv6" path="res://LOOT/gun.tscn" id="15_qe2xy"]
+[ext_resource type="LabelSettings" uid="uid://c8syjpqm7x16j" path="res://UI/inGameUI.tres" id="16_j8uht"]
+[ext_resource type="LabelSettings" uid="uid://bvsa3n0y476yd" path="res://SCENES/BossUI.tres" id="18_nowuo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4wmw"]
 radius = 8.39571
@@ -530,6 +532,7 @@ offset_right = 151.823
 offset_bottom = -23.2038
 scale = Vector2(1.65724, 1.65724)
 text = "STATUS_HEAD"
+label_settings = ExtResource("16_j8uht")
 
 [node name="statusBody" type="Label" parent="player/status"]
 z_index = 99
@@ -538,6 +541,7 @@ offset_top = -7.88846
 offset_right = 152.823
 offset_bottom = 15.1115
 text = "STATUS_BODY"
+label_settings = ExtResource("16_j8uht")
 
 [node name="mapPart" type="GPUParticles2D" parent="player"]
 z_index = 64
@@ -828,6 +832,7 @@ offset_right = 455.0
 offset_bottom = -288.0
 scale = Vector2(2.4, 2.4)
 text = "Room: ###"
+label_settings = ExtResource("16_j8uht")
 horizontal_alignment = 2
 
 [node name="Coins" type="Label" parent="gameManager/UI"]
@@ -837,6 +842,7 @@ offset_right = 488.0
 offset_bottom = -248.0
 scale = Vector2(2.4, 2.4)
 text = "###"
+label_settings = ExtResource("16_j8uht")
 horizontal_alignment = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="gameManager/UI/Coins"]
@@ -851,6 +857,7 @@ offset_right = -514.0
 offset_bottom = 262.0
 scale = Vector2(1.84, 1.84)
 text = "wepName"
+label_settings = ExtResource("16_j8uht")
 
 [node name="ammo" type="Label" parent="gameManager/UI"]
 offset_left = -593.0
@@ -859,6 +866,7 @@ offset_right = -515.0
 offset_bottom = 296.0
 scale = Vector2(1.84, 1.84)
 text = "ammo"
+label_settings = ExtResource("16_j8uht")
 
 [node name="bossText" type="Node2D" parent="gameManager/UI"]
 position = Vector2(0, -360)
@@ -871,6 +879,7 @@ offset_bottom = 170.0
 scale = Vector2(1.42193, 1.42193)
 text = "difficulty increased!
 "
+label_settings = ExtResource("18_nowuo")
 
 [node name="def" type="Label" parent="gameManager/UI/bossText"]
 offset_left = -187.0
@@ -879,6 +888,7 @@ offset_right = -77.0
 offset_bottom = 100.0
 scale = Vector2(3.50482, 3.50482)
 text = "Boss defeated"
+label_settings = ExtResource("18_nowuo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")

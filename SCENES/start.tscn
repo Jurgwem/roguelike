@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cp8ibuyov36rn"]
+[gd_scene load_steps=31 format=3 uid="uid://cp8ibuyov36rn"]
 
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_1tpjc"]
 [ext_resource type="Script" path="res://SCRIPTS/title_gun.gd" id="2_p63jh"]
@@ -74,6 +74,9 @@ scale_min = 8.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_q8cgb")
 color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cm0ib"]
+line_spacing = -4.0
 
 [sub_resource type="Gradient" id="Gradient_w2a7c"]
 
@@ -239,11 +242,13 @@ flat = true
 [node name="build_watermark" type="Label" parent="startButton"]
 modulate = Color(1, 1, 1, 0.196078)
 z_index = 90
-offset_top = 40.0
+offset_top = 32.0
 offset_right = 213.0
-offset_bottom = 63.0
+offset_bottom = 74.0
 scale = Vector2(0.420684, 0.420684)
-text = "prototype build"
+text = "proto-2
+26-01-2025"
+label_settings = SubResource("LabelSettings_cm0ib")
 horizontal_alignment = 2
 
 [node name="title" type="Sprite2D" parent="startButton"]

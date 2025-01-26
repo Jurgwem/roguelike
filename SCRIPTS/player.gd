@@ -54,8 +54,8 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_just_pressed("map") and gm.enemyCount == 0:
 			devCam = !devCam;
 			if devCam:
-				var tmpX : int = abs(gm.roomPos.x / gm.horz) + 1;
-				var tmpY : int = abs(gm.roomPos.y / gm.vert) + 1;
+				var tmpX : int = abs(gm.roomPos.x / gm.horz) + 2;
+				var tmpY : int = abs(gm.roomPos.y / gm.vert) + 2;
 				camZoom = 1;
 				if tmpX >= tmpY:
 					camZoom = tmpX;
