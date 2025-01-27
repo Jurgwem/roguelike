@@ -6,7 +6,7 @@ used to learn the basics of game dev and godot
 --------------------------------------------
 
 # Todo:
-- Make pretty owo
+- add torches (?) to adjust for brighter walls
 - Add more variety to Items/Bosses/Enemies (maybe? (dont really want to))
 - Balancing (is kinda balanced, more or less)
 

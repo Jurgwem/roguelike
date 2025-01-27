@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=95 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -394,6 +394,25 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_e5e05")
 color_ramp = SubResource("GradientTexture1D_dkgf5")
 
+[sub_resource type="Curve" id="Curve_p35ng"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5oa5v"]
+curve = SubResource("Curve_p35ng")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ql11"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 16.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 0, 0)
+scale_min = 96.0
+scale_max = 196.0
+scale_curve = SubResource("CurveTexture_5oa5v")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1qsr"]
 atlas = ExtResource("9_cjqhe")
 region = Rect2(0, 0, 32, 32)
@@ -750,6 +769,11 @@ scale = Vector2(4, 4)
 texture = ExtResource("13_xr5jt")
 
 [node name="rock" parent="spawnRoom" instance=ExtResource("12_l7axa")]
+
+[node name="mapPart" type="GPUParticles2D" parent="spawnRoom"]
+position = Vector2(1, 185)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_6ql11")
 
 [node name="gameManager" type="Node2D" parent="."]
 script = ExtResource("1_yu3vq")

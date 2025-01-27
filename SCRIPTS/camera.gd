@@ -47,9 +47,12 @@ func _physics_process(delta: float) -> void:
 			last = "none";
 			
 		if player.devCam:
-			position = Vector2(0, 0);
+			
+			$bg.visible = false;
+			position = gm.roomPos / 2;
 			zoom = lerp(zoom, Vector2(0.5 / player.camZoom, 0.5 / player.camZoom), mapSpeed * delta);
 		else:
+			$bg.visible = true;
 			zoom = lerp(zoom, Vector2(1, 1), mapSpeed * delta);
 			position = gm.roomPos;
 			

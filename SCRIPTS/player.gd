@@ -43,9 +43,13 @@ func _physics_process(_delta: float) -> void:
 	xvel *= (slowdown ** slideMod);
 	
 	if devCam:
+		$"../spawnRoom/mapPart".visible = true;
+		$"../spawnRoom/mapPart".emitting = true;
 		$mapPart.visible = true;
 		$mapPart.emitting = true;
 	else:
+		$"../spawnRoom/mapPart".visible = false;
+		$"../spawnRoom/mapPart".emitting = false;
 		$mapPart.visible = false;
 		$mapPart.emitting = false;
 	
