@@ -10,11 +10,12 @@ var mapSpeed : float = 8.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"../spawnRoom/Room_Itself/Borders".modulate.a = 0.0;
 	$bg.emitting = false;
 	position_smoothing_enabled = false;
 	position = player.position;
-	zoom = Vector2(2, 2);
-	await get_tree().create_timer(0.1).timeout
+	zoom = Vector2(3.2, 3.2);
+	await get_tree().create_timer(0.5).timeout
 	position_smoothing_enabled = true;
 	pass # Replace with function body.
 	
@@ -53,7 +54,8 @@ func _physics_process(delta: float) -> void:
 			
 	if playZoom:
 		$bg.emitting = true;
-		zoom = lerp(zoom, zoom - Vector2(1, 1), 1 * delta)
+		$"../spawnRoom/Room_Itself/Borders".modulate.a = lerp($"../spawnRoom/Room_Itself/Borders".modulate.a, 1.0, 2 * delta);
+		zoom = lerp(zoom, zoom - Vector2(1, 1), 2 * delta)
 		if zoom <= Vector2(1, 1):
 			playZoom = false;
 			finishedIntro = true;

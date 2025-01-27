@@ -58,11 +58,12 @@ func _physics_process(_delta: float) -> void:
 			if devCam:
 				var tmpX : int = abs(gm.roomPos.x / gm.horz) + 2;
 				var tmpY : int = abs(gm.roomPos.y / gm.vert) + 2;
-				camZoom = 1;
-				if tmpX >= tmpY:
-					camZoom = tmpX;
-				else:
-					camZoom = tmpY;
+				
+				if tmpX > camZoom or tmpY > camZoom:
+					if tmpX >= tmpY:
+						camZoom = tmpX;
+					else:
+						camZoom = tmpY;
 				print("zoom: ", camZoom);
 				#if zoom != 0:
 				#camera.zoom = Vector2(0.5 / zoom, 0.5 / zoom)
