@@ -42,6 +42,15 @@ func _physics_process(_delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("actualWall"):
+		$hit.emitting = true;
+		$Area2D.queue_free();
+		$trail.queue_free();
+		$Sprite2D.visible = false;
+		hit = true;
+		collisions = player.pierce;
+		await get_tree().create_timer(1).timeout;
+		queue_free();
 	if body.is_in_group("enemy") and !hit:
 		body.health -= damage * player.damageMod;
 		body.modulate = Color(1,0.25,0.25);

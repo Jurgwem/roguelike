@@ -1,13 +1,14 @@
-[gd_scene load_steps=91 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=92 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
 [ext_resource type="Script" path="res://SCRIPTS/game_manager.gd" id="1_yu3vq"]
-[ext_resource type="Texture2D" uid="uid://bjm2bnl0smdrd" path="res://SPRITES/room_template.png" id="3_cgj2e"]
 [ext_resource type="Texture2D" uid="uid://b6v8bhnwmhul8" path="res://SPRITES/light.webp" id="3_fy35k"]
 [ext_resource type="Script" path="res://SCRIPTS/camera.gd" id="3_pm1a5"]
 [ext_resource type="Script" path="res://SCRIPTS/gen_room.gd" id="4_dlrv3"]
+[ext_resource type="Texture2D" uid="uid://co6y4tpeirmbp" path="res://SPRITES/backdrop_new.png" id="6_2neqv"]
 [ext_resource type="Texture2D" uid="uid://4gb8maj35ibv" path="res://UI/wasd.png" id="6_kchic"]
+[ext_resource type="Texture2D" uid="uid://bgkwh5bwqc8uw" path="res://SPRITES/backdrop_new_walls.png" id="6_oal6q"]
 [ext_resource type="Texture2D" uid="uid://cqdg812541b74" path="res://UI/q.png" id="7_5exos"]
 [ext_resource type="Texture2D" uid="uid://dq44qtdj8qix5" path="res://UI/mouse.png" id="7_065qo"]
 [ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://LOOT/coin.tscn" id="9_86inw"]
@@ -224,8 +225,8 @@ color = Color(0, 0, 0, 0.12549)
 
 [sub_resource type="Gradient" id="Gradient_u7y7o"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.836066)
-colors = PackedColorArray(0.22, 0.22, 0.22, 1, 0.23, 0.23, 0.23, 0)
+offsets = PackedFloat32Array(0, 0.631148)
+colors = PackedColorArray(0.180392, 0, 0.407843, 0.211765, 0.109804, 0.0705882, 0.160784, 0.0117647)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ydvrn"]
 gradient = SubResource("Gradient_u7y7o")
@@ -444,6 +445,7 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_hl304"]
+colors = PackedColorArray(0.0295066, 0.0295066, 0.0295066, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nc0nk"]
 gradient = SubResource("Gradient_hl304")
@@ -462,8 +464,13 @@ glow_strength = 2.0
 glow_mix = 0.503
 glow_blend_mode = 1
 glow_hdr_threshold = 0.83
+fog_mode = 1
+fog_density = 1.0
 volumetric_fog_density = 0.0
 adjustment_enabled = true
+adjustment_brightness = 1.1
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
 adjustment_color_correction = SubResource("GradientTexture2D_nc0nk")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_op7kk"]
@@ -568,19 +575,22 @@ process_material = SubResource("ParticleProcessMaterial_ymc3v")
 lifetime = 10.0
 
 [node name="bg" type="GPUParticles2D" parent="camera"]
-z_index = -100
+z_index = -7
 scale = Vector2(6.5, 3.5)
-amount = 4
 process_material = SubResource("ParticleProcessMaterial_ojr7u")
 lifetime = 10.0
 local_coords = true
 
 [node name="spawnRoom" type="Node" parent="."]
 
-[node name="Room_Itself" type="StaticBody2D" parent="spawnRoom"]
+[node name="Room_Itself" type="StaticBody2D" parent="spawnRoom" groups=["actualWall"]]
+
+[node name="backdrop" type="Sprite2D" parent="spawnRoom/Room_Itself"]
+z_index = -8
+texture = ExtResource("6_2neqv")
 
 [node name="Borders" type="Sprite2D" parent="spawnRoom/Room_Itself"]
-texture = ExtResource("3_cgj2e")
+texture = ExtResource("6_oal6q")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawnRoom/Room_Itself"]
 polygon = PackedVector2Array(-584, -340, -584, -338, -602.9, -338, -615.9, -324, -618, -324, -620, -78, -620, -73, -616, -70, -616, -68, -601, -68, -598, -72, -596, -72, -598, -303, -598, -318, -70, -316, -65, -316, -62, -320, -60, -320, -60, -335, -64, -338, -64, -340)
@@ -908,6 +918,7 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

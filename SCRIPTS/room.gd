@@ -179,6 +179,8 @@ func _ready() -> void:
 		batCount = floor(gm.roomCount * 0.6);
 	else:
 		batCount = 6;
+	if gm.roomCount > 10 and gm.roomCount < 20:
+		batCount = 4;
 	
 	#INV MAN SPAWN COUNT
 	var invCount : int = 0;
