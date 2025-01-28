@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=104 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -202,8 +202,8 @@ color = Color(1, 0, 0, 1)
 size = Vector2(1477, 914)
 
 [sub_resource type="Curve" id="Curve_rw3pu"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.326667, 1), 0.0, 0.0, 0, 0, Vector2(0.66, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_07tbi"]
 curve = SubResource("Curve_rw3pu")
@@ -250,6 +250,21 @@ scale_max = 300.0
 scale_curve = SubResource("CurveTexture_ma3ix")
 color_ramp = SubResource("GradientTexture1D_ydvrn")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ecnki"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(580, 300, 1)
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_min = 16.0
+scale_max = 64.0
+scale_curve = SubResource("CurveTexture_07tbi")
+color = Color(0.427994, 0.213155, 0.720098, 0.12549)
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ra6by"]
 a = Vector2(-614, -68)
 b = Vector2(-614, 68)
@@ -285,6 +300,38 @@ scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_dyggw")
 color_ramp = SubResource("GradientTexture1D_eofw6")
+
+[sub_resource type="Gradient" id="Gradient_ewp0q"]
+offsets = PackedFloat32Array(0, 0.42623, 0.827869)
+colors = PackedColorArray(1, 1, 1, 0, 0.607446, 0.341479, 0.675022, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b8br8"]
+gradient = SubResource("Gradient_ewp0q")
+
+[sub_resource type="Curve" id="Curve_l20u8"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_35v7f"]
+curve = SubResource("Curve_l20u8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2212y"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_35v7f")
+color_ramp = SubResource("GradientTexture1D_b8br8")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_viooj"]
 a = Vector2(614, -67)
@@ -322,6 +369,24 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_pjqvt")
 color_ramp = SubResource("GradientTexture1D_khcn2")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2c6rq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_35v7f")
+color_ramp = SubResource("GradientTexture1D_b8br8")
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rukig"]
 a = Vector2(-60, -334)
 b = Vector2(60, -335)
@@ -358,6 +423,24 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_6p4gw")
 color_ramp = SubResource("GradientTexture1D_rtuvt")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1kbeb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_35v7f")
+color_ramp = SubResource("GradientTexture1D_b8br8")
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_l4a33"]
 a = Vector2(60, 335)
 b = Vector2(-60, 335)
@@ -393,6 +476,24 @@ scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_e5e05")
 color_ramp = SubResource("GradientTexture1D_dkgf5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gi8o8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_35v7f")
+color_ramp = SubResource("GradientTexture1D_b8br8")
 
 [sub_resource type="Curve" id="Curve_p35ng"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -600,6 +701,14 @@ process_material = SubResource("ParticleProcessMaterial_ojr7u")
 lifetime = 10.0
 local_coords = true
 
+[node name="dustMap" type="GPUParticles2D" parent="camera"]
+z_index = 100
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ecnki")
+lifetime = 16.0
+preprocess = 10.0
+local_coords = true
+
 [node name="spawnRoom" type="Node" parent="."]
 
 [node name="Room_Itself" type="StaticBody2D" parent="spawnRoom" groups=["actualWall"]]
@@ -645,6 +754,14 @@ lifetime = 2.0
 position = Vector2(-623, -82)
 target_position = Vector2(0, 23)
 
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="spawnRoom/Left_Gen"]
+position = Vector2(-640, -1)
+rotation = -4.71238
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_2212y")
+lifetime = 2.0
+
 [node name="right_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
 direction = "right"
@@ -667,6 +784,14 @@ lifetime = 2.0
 position = Vector2(623, 80)
 target_position = Vector2(-1, -23)
 
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="spawnRoom/right_gen"]
+position = Vector2(640, 0)
+rotation = -1.57079
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_2c6rq")
+lifetime = 2.0
+
 [node name="up_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
 direction = "up"
@@ -687,6 +812,14 @@ lifetime = 2.0
 [node name="hasDoor" type="RayCast2D" parent="spawnRoom/up_gen"]
 position = Vector2(73, -343)
 target_position = Vector2(-30, 0)
+
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="spawnRoom/up_gen"]
+position = Vector2(1, -360)
+rotation = -3.14159
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_1kbeb")
+lifetime = 2.0
 
 [node name="down_gen" type="Area2D" parent="spawnRoom"]
 script = ExtResource("4_dlrv3")
@@ -709,6 +842,14 @@ lifetime = 2.0
 [node name="hasDoor" type="RayCast2D" parent="spawnRoom/down_gen"]
 position = Vector2(-74, 343)
 target_position = Vector2(19, 0)
+
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="spawnRoom/down_gen"]
+position = Vector2(1, 360)
+rotation = -6.28318
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gi8o8")
+lifetime = 2.0
 
 [node name="spawnCoins" type="Node2D" parent="spawnRoom"]
 position = Vector2(-316, -172)

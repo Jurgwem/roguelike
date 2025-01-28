@@ -6,6 +6,7 @@ used to learn the basics of game dev and godot
 --------------------------------------------
 
 # Todo:
+- fix map (once and for all)
 - add torches (?) to adjust for brighter walls
 - Add more variety to Items/Bosses/Enemies (maybe? (dont really want to))
 - Balancing (is kinda balanced, more or less)
@@ -28,7 +29,7 @@ used to learn the basics of game dev and godot
 --------------------------------------------
 # Dev Keys
 
-- c = spawn coin
+- c = spawn coin @ mouse cursor
 - i = spawn random Item @ mouse cursor
 - u = spawn random upgrade @ mouse cursor
 - h = spawn health @ mouse cursor

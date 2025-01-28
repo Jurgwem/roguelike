@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bie37p0rv74i7"]
+[gd_scene load_steps=29 format=3 uid="uid://bie37p0rv74i7"]
 
 [ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
 [ext_resource type="Texture2D" uid="uid://co6y4tpeirmbp" path="res://SPRITES/backdrop_new.png" id="2_2ivkl"]
@@ -8,23 +8,55 @@
 [ext_resource type="PackedScene" uid="uid://dqmpobmm6i54k" path="res://INST/slot_machine.tscn" id="5_44l0o"]
 [ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://LOOT/coin.tscn" id="6_b5tdy"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ismcg"]
-a = Vector2(-615, -68)
-b = Vector2(-615, 68)
-
 [sub_resource type="Gradient" id="Gradient_ewp0q"]
-offsets = PackedFloat32Array(0, 0.42623)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.42623, 0.827869)
+colors = PackedColorArray(1, 1, 1, 0, 0.607446, 0.341479, 0.675022, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7xkns"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b8br8"]
 gradient = SubResource("Gradient_ewp0q")
 
 [sub_resource type="Curve" id="Curve_l20u8"]
 _data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_fih8v"]
+[sub_resource type="CurveTexture" id="CurveTexture_35v7f"]
 curve = SubResource("Curve_l20u8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ms83h"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_35v7f")
+color_ramp = SubResource("GradientTexture1D_b8br8")
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ismcg"]
+a = Vector2(-615, -68)
+b = Vector2(-615, 68)
+
+[sub_resource type="Gradient" id="Gradient_7jb8d"]
+offsets = PackedFloat32Array(0, 0.42623)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7xkns"]
+gradient = SubResource("Gradient_7jb8d")
+
+[sub_resource type="Curve" id="Curve_0shsq"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fih8v"]
+curve = SubResource("Curve_0shsq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ji0w"]
 particle_flag_disable_z = true
@@ -139,6 +171,13 @@ polygon = PackedVector2Array(600, 68, 600, 70.2, 598.2, 72, 596, 72, 598, 303, 5
 script = ExtResource("3_n48xt")
 direction = "left"
 
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/Left_Gen"]
+position = Vector2(-640, -1)
+rotation = -4.71238
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ms83h")
+lifetime = 2.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/Left_Gen"]
 shape = SubResource("SegmentShape2D_ismcg")
 
@@ -147,7 +186,7 @@ position = Vector2(-620, -56)
 target_position = Vector2(-103, -101)
 
 [node name="newRoomIndicator" type="GPUParticles2D" parent="Room_Iterate/Left_Gen"]
-position = Vector2(-620, 0)
+position = Vector2(-640, 0)
 rotation = -1.57079
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_8ji0w")
@@ -179,6 +218,13 @@ lifetime = 2.0
 position = Vector2(623, 80)
 target_position = Vector2(-1, -23)
 
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/Right_Gen"]
+position = Vector2(640, 0)
+rotation = -1.57079
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ms83h")
+lifetime = 2.0
+
 [node name="up_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
 direction = "up"
@@ -199,6 +245,13 @@ lifetime = 2.0
 [node name="hasDoor" type="RayCast2D" parent="Room_Iterate/up_Gen"]
 position = Vector2(73, -343)
 target_position = Vector2(-30, 0)
+
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/up_Gen"]
+position = Vector2(1, -360)
+rotation = -3.14159
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ms83h")
+lifetime = 2.0
 
 [node name="down_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
@@ -221,6 +274,13 @@ lifetime = 2.0
 [node name="hasDoor" type="RayCast2D" parent="Room_Iterate/down_Gen"]
 position = Vector2(-74, 343)
 target_position = Vector2(19, 0)
+
+[node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/down_Gen"]
+position = Vector2(1, 360)
+rotation = -6.28318
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ms83h")
+lifetime = 2.0
 
 [node name="rock" parent="Room_Iterate" instance=ExtResource("4_t1by3")]
 

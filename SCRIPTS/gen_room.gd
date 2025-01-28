@@ -2,6 +2,8 @@ extends Area2D
 
 #@onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
 @onready var gm : Node2D= get_node("/root/game/gameManager");
+@onready var player : Node2D = get_node("/root/game/player");
+
 @onready var roomPos : Node2D = get_node("/root/game/roomContainer");
 @onready var room : Resource = load("res://INST/room.tscn");
 @onready var door : Resource = load("res://INST/wall.tscn")
@@ -31,7 +33,7 @@ func _ready() -> void:
 	call_deferred("doors");
 	pass
 		
-func _process(delta : float) -> void:
+func _physics_process(delta: float) -> void:
 	timer += delta
 	if timer >= 5.0: 
 		if !raycast.is_colliding() and !hasDoor.is_colliding():
@@ -39,6 +41,22 @@ func _process(delta : float) -> void:
 		else:
 			$newRoomIndicator.emitting = false;
 		timer = 0.0 
+		
+	if (gm.roomCount + 1) % 10 == 0:
+		$newRoomIndicator.modulate = Color(1, 0, 0);
+	else:
+		$newRoomIndicator.modulate = Color(1, 1, 1);
+	
+	if player.devCam:
+		$"newRoomIndicator".visible = false;
+		if !raycast.is_colliding() and !hasDoor.is_colliding():
+			$"hasNewRoomIndicatorMap".emitting = true;
+			$"hasNewRoomIndicatorMap".visible = true;
+	else:
+		$"newRoomIndicator".visible = true;
+		$"hasNewRoomIndicatorMap".emitting = false;
+		$"hasNewRoomIndicatorMap".visible = false;
+	
 
 func spawnRoom() -> void:
 	gm.enemyCount += 1;
