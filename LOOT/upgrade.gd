@@ -66,15 +66,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("collected upgrade")
 		gm.timer = 0;
 		if type == 0:
-			player.damageMod *= 1.1;
+			player.damageMod *= 1.15;
 			status_head.text = "Damage!"
 			status_body.text = "all damage upgraded"
 		elif type == 1:
-			player.speedMod *= 1.1;
+			player.speedMod *= 1.15;
 			status_head.text = "Speed!"
 			status_body.text = "movement + bullet speed upgraded"
 		elif type == 2:
-			player.timeMod *= 0.9;
+			player.timeMod *= 0.85;
 			status_head.text = "Time!"
 			status_body.text = "reload and buffer time reduced"
 		elif type == 3:

@@ -142,8 +142,14 @@ func _physics_process(delta: float) -> void:
 		enemyScale += 0.1;
 		isBossRoom = false;
 	
-	if $UI.position != roomPos:
+	if $UI.position != roomPos and !player.devCam:
 		$UI.position = roomPos;
+		
+	if player.devCam:
+		$UI.position = $"../camera".position;
+		$UI.scale = Vector2(player.camZoom * 2, player.camZoom * 2);
+	else:
+		$UI.scale = Vector2(1, 1);
 	
 	if isDev and Input.is_action_just_pressed("debugRoomUp"):
 		roomCount += 1;

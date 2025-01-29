@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=103 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -301,22 +301,23 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_dyggw")
 color_ramp = SubResource("GradientTexture1D_eofw6")
 
-[sub_resource type="Gradient" id="Gradient_ewp0q"]
+[sub_resource type="Gradient" id="Gradient_kfhs5"]
 offsets = PackedFloat32Array(0, 0.42623, 0.827869)
 colors = PackedColorArray(1, 1, 1, 0, 0.607446, 0.341479, 0.675022, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_b8br8"]
-gradient = SubResource("Gradient_ewp0q")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jxo4x"]
+gradient = SubResource("Gradient_kfhs5")
 
-[sub_resource type="Curve" id="Curve_l20u8"]
+[sub_resource type="Curve" id="Curve_n8vyo"]
 _data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_35v7f"]
-curve = SubResource("Curve_l20u8")
+[sub_resource type="CurveTexture" id="CurveTexture_e07m7"]
+curve = SubResource("Curve_n8vyo")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2212y"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jn30p"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(60, 1, 1)
 angle_min = -180.0
@@ -330,8 +331,8 @@ angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 scale_min = 64.0
 scale_max = 128.0
-scale_curve = SubResource("CurveTexture_35v7f")
-color_ramp = SubResource("GradientTexture1D_b8br8")
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_viooj"]
 a = Vector2(614, -67)
@@ -369,8 +370,9 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_pjqvt")
 color_ramp = SubResource("GradientTexture1D_khcn2")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2c6rq"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ph03q"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(60, 1, 1)
 angle_min = -180.0
@@ -384,8 +386,8 @@ angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 scale_min = 64.0
 scale_max = 128.0
-scale_curve = SubResource("CurveTexture_35v7f")
-color_ramp = SubResource("GradientTexture1D_b8br8")
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rukig"]
 a = Vector2(-60, -334)
@@ -423,8 +425,9 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_6p4gw")
 color_ramp = SubResource("GradientTexture1D_rtuvt")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1kbeb"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2212y"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(60, 1, 1)
 angle_min = -180.0
@@ -438,8 +441,8 @@ angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 scale_min = 64.0
 scale_max = 128.0
-scale_curve = SubResource("CurveTexture_35v7f")
-color_ramp = SubResource("GradientTexture1D_b8br8")
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_l4a33"]
 a = Vector2(60, 335)
@@ -476,24 +479,6 @@ scale_min = 2.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_e5e05")
 color_ramp = SubResource("GradientTexture1D_dkgf5")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gi8o8"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(60, 1, 1)
-angle_min = -180.0
-angle_max = 180.0
-direction = Vector3(0, 1, 0)
-spread = 10.0
-initial_velocity_min = 128.0
-initial_velocity_max = 128.0
-angular_velocity_min = -180.0
-angular_velocity_max = 180.0
-gravity = Vector3(0, 0, 0)
-scale_min = 64.0
-scale_max = 128.0
-scale_curve = SubResource("CurveTexture_35v7f")
-color_ramp = SubResource("GradientTexture1D_b8br8")
 
 [sub_resource type="Curve" id="Curve_p35ng"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -758,8 +743,8 @@ target_position = Vector2(0, 23)
 position = Vector2(-640, -1)
 rotation = -4.71238
 emitting = false
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_2212y")
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jn30p")
 lifetime = 2.0
 
 [node name="right_gen" type="Area2D" parent="spawnRoom"]
@@ -788,8 +773,8 @@ target_position = Vector2(-1, -23)
 position = Vector2(640, 0)
 rotation = -1.57079
 emitting = false
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_2c6rq")
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ph03q")
 lifetime = 2.0
 
 [node name="up_gen" type="Area2D" parent="spawnRoom"]
@@ -817,8 +802,8 @@ target_position = Vector2(-30, 0)
 position = Vector2(1, -360)
 rotation = -3.14159
 emitting = false
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_1kbeb")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_2212y")
 lifetime = 2.0
 
 [node name="down_gen" type="Area2D" parent="spawnRoom"]
@@ -847,8 +832,8 @@ target_position = Vector2(19, 0)
 position = Vector2(1, 360)
 rotation = -6.28318
 emitting = false
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_gi8o8")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_2212y")
 lifetime = 2.0
 
 [node name="spawnCoins" type="Node2D" parent="spawnRoom"]
@@ -1083,6 +1068,7 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

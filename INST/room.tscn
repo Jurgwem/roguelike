@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bie37p0rv74i7"]
+[gd_scene load_steps=32 format=3 uid="uid://bie37p0rv74i7"]
 
 [ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
 [ext_resource type="Texture2D" uid="uid://co6y4tpeirmbp" path="res://SPRITES/backdrop_new.png" id="2_2ivkl"]
@@ -8,22 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://dqmpobmm6i54k" path="res://INST/slot_machine.tscn" id="5_44l0o"]
 [ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://LOOT/coin.tscn" id="6_b5tdy"]
 
-[sub_resource type="Gradient" id="Gradient_ewp0q"]
+[sub_resource type="Gradient" id="Gradient_kfhs5"]
 offsets = PackedFloat32Array(0, 0.42623, 0.827869)
 colors = PackedColorArray(1, 1, 1, 0, 0.607446, 0.341479, 0.675022, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_b8br8"]
-gradient = SubResource("Gradient_ewp0q")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jxo4x"]
+gradient = SubResource("Gradient_kfhs5")
 
-[sub_resource type="Curve" id="Curve_l20u8"]
+[sub_resource type="Curve" id="Curve_n8vyo"]
 _data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.246667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_35v7f"]
-curve = SubResource("Curve_l20u8")
+[sub_resource type="CurveTexture" id="CurveTexture_e07m7"]
+curve = SubResource("Curve_n8vyo")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ms83h"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rwavp"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(60, 1, 1)
 angle_min = -180.0
@@ -37,8 +38,8 @@ angular_velocity_max = 180.0
 gravity = Vector3(0, 0, 0)
 scale_min = 64.0
 scale_max = 128.0
-scale_curve = SubResource("CurveTexture_35v7f")
-color_ramp = SubResource("GradientTexture1D_b8br8")
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ismcg"]
 a = Vector2(-615, -68)
@@ -80,13 +81,70 @@ color_ramp = SubResource("GradientTexture1D_7xkns")
 a = Vector2(614, -68)
 b = Vector2(615, 68)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hmnhw"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_aiqc4"]
 a = Vector2(60, -335)
 b = Vector2(-60, -335)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_40mls"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_gkall"]
 a = Vector2(-60, 335)
 b = Vector2(60, 334)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e5hon"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 128.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 64.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_e07m7")
+color_ramp = SubResource("GradientTexture1D_jxo4x")
 
 [sub_resource type="Curve" id="Curve_avl5a"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -174,8 +232,9 @@ direction = "left"
 [node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/Left_Gen"]
 position = Vector2(-640, -1)
 rotation = -4.71238
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_ms83h")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_rwavp")
 lifetime = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/Left_Gen"]
@@ -221,8 +280,9 @@ target_position = Vector2(-1, -23)
 [node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/Right_Gen"]
 position = Vector2(640, 0)
 rotation = -1.57079
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_ms83h")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_hmnhw")
 lifetime = 2.0
 
 [node name="up_Gen" type="Area2D" parent="Room_Iterate"]
@@ -249,8 +309,9 @@ target_position = Vector2(-30, 0)
 [node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/up_Gen"]
 position = Vector2(1, -360)
 rotation = -3.14159
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_ms83h")
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_40mls")
 lifetime = 2.0
 
 [node name="down_Gen" type="Area2D" parent="Room_Iterate"]
@@ -278,8 +339,9 @@ target_position = Vector2(19, 0)
 [node name="hasNewRoomIndicatorMap" type="GPUParticles2D" parent="Room_Iterate/down_Gen"]
 position = Vector2(1, 360)
 rotation = -6.28318
-amount = 4
-process_material = SubResource("ParticleProcessMaterial_ms83h")
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_e5hon")
 lifetime = 2.0
 
 [node name="rock" parent="Room_Iterate" instance=ExtResource("4_t1by3")]
