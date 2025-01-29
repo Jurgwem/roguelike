@@ -46,7 +46,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			
 	if body.name == "player" and !collected and isBought:
 		gm.health += 1;
-		gm.updateHealth();
+		gm.updateHealth(self.name);
 		collected = true;
 		print("collected health! ", gm.health)
 	pass # Replace with function body.

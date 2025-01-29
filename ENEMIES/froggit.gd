@@ -4,10 +4,11 @@ extends CharacterBody2D
 @onready var player : Node2D = get_node("/root/game/player");
 @onready var spawnpoint : Node2D = get_node("/root/game/spawnCenter/spawnPoint");
 
+var endName : String = "froggit";
 const SPEED : float = 800.0;
 const DAMPING : Vector2 = Vector2(0.95, 0.95);
 const MAX_SPEED : float = 25;
-const KNOCKBACK : float = 12;
+const KNOCKBACK : float = 32;
 const GRAVITY : int = 1600;
 var hasSpawned : bool = false;
 var playedScale : bool = false;
@@ -32,6 +33,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	color = lerp(modulate.g, 1.0, 3.2 * delta);
 	modulate = Color(1,color,color);
+	#modulate = Color(1,0,0);
 	if hasSpawned and !playedScale:
 		scale = lerp(scale, scale + Vector2(0.5, 0.5), 8 * delta);
 		if scale >= Vector2(1 * gm.enemyScale, 1 * gm.enemyScale):
@@ -45,7 +47,8 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.rotation = 0;
 			$AnimatedSprite2D.frame = 0;
 		if (health >= 1):
-			if is_on_floor() and (velocity.x < MAX_SPEED and velocity.y < MAX_SPEED) and (velocity.x > (MAX_SPEED * -1) and velocity.y > (MAX_SPEED * -1)):
+			#if is_on_floor() and (velocity.x < MAX_SPEED and velocity.y < MAX_SPEED) and (velocity.x > (MAX_SPEED * -1) and velocity.y > (MAX_SPEED * -1)):
+			if is_on_floor() and velocity.y <= 4:
 				if jumpTimer > 1:
 					jumpTimer = randf();
 					var distance_vector : Vector2 = player.global_position - global_position;

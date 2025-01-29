@@ -6,7 +6,6 @@ used to learn the basics of game dev and godot
 --------------------------------------------
 
 # Todo:
-- fix map (once and for all)
 - add torches (?) to adjust for brighter walls
 - Add more variety to Items/Bosses/Enemies (maybe? (dont really want to))
 - Balancing (is kinda balanced, more or less)
@@ -36,4 +35,5 @@ used to learn the basics of game dev and godot
 - b = spawn bat
 - f = spawn froggit
 - p = spawn invis
+- g = -1 health
 - arrow up/down = change room count

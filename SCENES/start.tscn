@@ -77,6 +77,7 @@ color = Color(1, 1, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cm0ib"]
 line_spacing = -4.0
+font_size = 12
 
 [sub_resource type="Gradient" id="Gradient_w2a7c"]
 
@@ -87,10 +88,11 @@ gradient = SubResource("Gradient_w2a7c")
 background_mode = 3
 tonemap_white = 10.94
 glow_enabled = true
-glow_levels/1 = 0.1
-glow_levels/2 = 0.54
-glow_levels/3 = 0.0
-glow_levels/5 = 0.03
+glow_levels/1 = 12.0
+glow_levels/2 = 8.0
+glow_levels/3 = 4.0
+glow_levels/4 = 1.0
+glow_levels/5 = 0.0
 glow_normalized = true
 glow_intensity = 0.25
 glow_strength = 2.0
@@ -133,8 +135,8 @@ hue_variation_max = 1.0
 anim_speed_max = 6.31
 
 [sub_resource type="Gradient" id="Gradient_2q011"]
-offsets = PackedFloat32Array(0, 0.409836, 1)
-colors = PackedColorArray(0.783213, 0.659884, 1, 1, 0.548226, 0.351036, 0.999997, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.540984, 1)
+colors = PackedColorArray(0.783213, 0.659884, 1, 1, 0.554379, 0.366085, 0.999998, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_k0fnn"]
 gradient = SubResource("Gradient_2q011")
@@ -242,12 +244,14 @@ flat = true
 [node name="build_watermark" type="Label" parent="startButton"]
 modulate = Color(1, 1, 1, 0.196078)
 z_index = 90
-offset_top = 32.0
+offset_top = 27.0
 offset_right = 213.0
-offset_bottom = 74.0
+offset_bottom = 107.0
 scale = Vector2(0.420684, 0.420684)
-text = "proto-3
-27-01-2025"
+text = "art-test
+alpha-2
+29-01-2025
+@Jurgwem"
 label_settings = SubResource("LabelSettings_cm0ib")
 horizontal_alignment = 2
 

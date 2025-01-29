@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 var batRess : Resource = load("res://ENEMIES/bat.tscn");
 
+var endName : String = "bat";
 var damping : Vector2 = Vector2(0.95, 0.95);
 const MAX_SPEED : float = 25;
 const KNOCKBACK : float = 12;
@@ -24,6 +25,7 @@ func _ready() -> void:
 	if !isBoss:
 		health *= gm.difficulty;
 	else:
+		endName = "Big Bat Boss";
 		health *= gm.difficulty * 12;
 		speed = 700;
 		damping = Vector2(0.97, 0.97);

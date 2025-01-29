@@ -44,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 			#await get_tree().create_timer(randf()).timeout
 			var willDespawn :float = randf();	#chance calculation
 			chance = willDespawn;
-			print(dRot, " - ", chance)
+			#print(dRot, " - ", chance)
 			hasRun = true;
 		
 		#keepRunnig = make sure it finished despawning, fallback = continue if chance or raycasts start but not continue

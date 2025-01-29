@@ -10,6 +10,7 @@ signal finishedTransitionFade;
 
 var timer : float = 0.0;
 
+#I DONT REMBER
 var roomType : String = "spawn";
 var roomPos : Vector2 = Vector2(0, 0);
 var doorDirection : String = "none";
@@ -22,21 +23,28 @@ var vert : int = 720;
 var isDev : bool = true;
 var enemyCount : int = 1;
 var randomDoor : int = 0;
+
+#CAMERA
+var lowestCam : Vector2 = Vector2(0, 0);
+var highestCam : Vector2 = Vector2(0, 0);
+
+#GAMEPLAY
 var currentAmmo : int = 0;
 var maxAmmo : int = 0;
 var health : int = 3;
 var isDead : bool = false;
-
 var roomCount : int = 1;
 var coins : int = 0;
 var weapon : String= " ";
 
+#LEVELING
 var isBossRoom : bool = false;
 var bossText : bool = false;
 var timerBoss : float = 0.0;
 var difficulty : float = 1;
 var enemyScale : float= 1;
 
+#INTRO
 var playedFadeIn : bool = false;
 var fadeSpeed : float = 0.7;
 
@@ -48,35 +56,36 @@ func _ready() -> void:
 	status_head.text = " ";
 	status_head.scale.x = 0;
 	$UI.visible = false;
-	updateHealth();
+	updateHealth("init");
 	roomPos = static_body_2d.position;
 	playedFadeIn = true;
 	finishedTransitionFade.emit();
 	if !isDev:
 		await get_tree().create_timer(3.1).timeout;
 		status_head.text = "again?";
-		status_body.text = "already?";
+		status_body.text = "not the furry dungeon";
 		await get_tree().create_timer(2.0).timeout;
 	$UI.visible = true;
 	await get_tree().create_timer(3).timeout;
 	enemyCount -= 1;
 	pass # Replace with function body.
 	
-func die() -> void:
+func die(name : String) -> void:
 	isDead = true;
 	$"../player/status".scale *= 2;
 	$"../player/status".position.x += -100;
 	status_body.rotation_degrees = -90;
 	status_head.position.x += -32;
 	status_head.rotation_degrees = -90;
+	
 	status_head.text = "You died!";
-	status_body.text = str("You got into ", roomCount, " rooms");
+	status_body.text = str("You got into ", roomCount, " rooms\n", "died from ", name);
 	timer = -5;
 	await get_tree().create_timer(8).timeout;
 	print("quit?");
 	pass
 
-func updateHealth() -> void:
+func updateHealth(name : String) -> void:
 	for element : Node2D in get_tree().get_nodes_in_group("heartUI"):
 		element.queue_free();
 	for i : int in health:
@@ -84,7 +93,7 @@ func updateHealth() -> void:
 		heartUI.global_position += Vector2(i * 64, 0);
 		$UI/healthPos.add_child(heartUI);
 	if health <= 0 and !isDead:
-		die();
+		die(name);
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -141,6 +150,9 @@ func _physics_process(delta: float) -> void:
 	
 	if isDev and Input.is_action_just_pressed("debugRoomDown"):
 		roomCount -= 1;
+		
+	if isDead:
+		$"../player/status".global_position = roomPos;
 	
 	$UI/RoomCounter.text = str("Room: ", roomCount);
 	$UI/mod/speedMod.text = str("spd%: ", snapped(player.speedMod, 0.01), "x");

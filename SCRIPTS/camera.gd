@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 			$dustMap.visible = true;
 			$Dust.visible = false;
 			$bg.visible = false;
-			position = gm.roomPos / 2;
+			position = (gm.lowestCam + gm.highestCam) / 2;
 			zoom = lerp(zoom, Vector2(0.5 / player.camZoom, 0.5 / player.camZoom), mapSpeed * delta);
 		else:
 			$dustMap.visible = false;

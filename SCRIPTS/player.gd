@@ -19,6 +19,7 @@ var camZoom : float = 1;
 var isReloading : bool = false;
 var isOnCooldown : bool = false;
 var shooting : bool = false;
+var hittable : bool = true;
 
 #UPGRADABLE
 var speedMod : float = 1;
@@ -53,8 +54,14 @@ func _physics_process(_delta: float) -> void:
 		$mapPart.visible = false;
 		$mapPart.emitting = false;
 	
-	var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
-	modulate = Color(1,color,color);
+	
+	if modulate != Color(1, 1, 1):
+		var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
+		modulate = Color(1,color,color);
+		if modulate.b > 0.9:
+			hittable = true;
+			modulate = Color(1, 1, 1)
+			print("finished color");
 	
 	if canMove and !gm.isDead:
 		if Input.is_action_just_pressed("map") and gm.enemyCount == 0:
@@ -69,6 +76,7 @@ func _physics_process(_delta: float) -> void:
 					else:
 						camZoom = tmpY;
 				print("zoom: ", camZoom);
+				print("map Pos: ", (gm.lowestCam + gm.highestCam) / 2);
 				#if zoom != 0:
 				#camera.zoom = Vector2(0.5 / zoom, 0.5 / zoom)
 				#else:
@@ -77,40 +85,46 @@ func _physics_process(_delta: float) -> void:
 			#	camera.zoom = Vector2(1, 1);
 				devCamDisabled.emit();
 		
-		if Input.is_action_just_pressed("debugCoin") and gm.isDev:
-			var coin : Node2D = load("res://LOOT/coin.tscn").instantiate();
-			coin.position = get_global_mouse_position();
-			$"..".add_child(coin);
+		#DEBUG
+		if gm.isDev:
+			if Input.is_action_just_pressed("debugCoin"):
+				var coin : Node2D = load("res://LOOT/coin.tscn").instantiate();
+				coin.position = get_global_mouse_position();
+				$"..".add_child(coin);
+				
+			if Input.is_action_just_pressed("debugUpgrade"):
+				var upgrade : Node2D = load("res://LOOT/upgrade.tscn").instantiate();
+				upgrade.position = get_global_mouse_position();
+				$"..".add_child(upgrade);
 			
-		if Input.is_action_just_pressed("debugUpgrade") and gm.isDev:
-			var upgrade : Node2D = load("res://LOOT/upgrade.tscn").instantiate();
-			upgrade.position = get_global_mouse_position();
-			$"..".add_child(upgrade);
-		
-		if Input.is_action_just_pressed("debugHealth") and gm.isDev:
-			var health : Node2D = load("res://LOOT/health_up.tscn").instantiate();
-			health.position = get_global_mouse_position();
-			$"..".add_child(health);
+			if Input.is_action_just_pressed("debugHealth"):
+				var health : Node2D = load("res://LOOT/health_up.tscn").instantiate();
+				health.position = get_global_mouse_position();
+				$"..".add_child(health);
+				
+			if Input.is_action_just_pressed("debugItem"):
+				var item : Node2D = load("res://LOOT/basic_item.tscn").instantiate();
+				item.position = get_global_mouse_position();
+				$"..".add_child(item);
 			
-		if Input.is_action_just_pressed("debugItem") and gm.isDev:
-			var item : Node2D = load("res://LOOT/basic_item.tscn").instantiate();
-			item.position = get_global_mouse_position();
-			$"..".add_child(item);
-		
-		if Input.is_action_just_pressed("debugBat") and gm.isDev:
-			var bat : Node2D = load("res://ENEMIES/bat.tscn").instantiate();
-			bat.position = get_global_mouse_position();
-			$"..".add_child(bat);
-		
-		if Input.is_action_just_pressed("debugInvMan") and gm.isDev:
-			var man : Node2D = load("res://ENEMIES/inv_man.tscn").instantiate();
-			man.position = get_global_mouse_position();
-			$"..".add_child(man);
+			if Input.is_action_just_pressed("debugBat"):
+				var bat : Node2D = load("res://ENEMIES/bat.tscn").instantiate();
+				bat.position = get_global_mouse_position();
+				$"..".add_child(bat);
 			
-		if Input.is_action_just_pressed("debugFroggit") and gm.isDev:
-			var froggit : Node2D = load("res://ENEMIES/froggit.tscn").instantiate();
-			froggit.position = get_global_mouse_position();
-			$"..".add_child(froggit);
+			if Input.is_action_just_pressed("debugInvMan"):
+				var man : Node2D = load("res://ENEMIES/inv_man.tscn").instantiate();
+				man.position = get_global_mouse_position();
+				$"..".add_child(man);
+				
+			if Input.is_action_just_pressed("debugFroggit"):
+				var froggit : Node2D = load("res://ENEMIES/froggit.tscn").instantiate();
+				froggit.position = get_global_mouse_position();
+				$"..".add_child(froggit);
+			
+			if Input.is_action_just_pressed("debugHurt"):
+				gm.health -= 1;
+				gm.updateHealth(gm.name);
 		
 		#NORMAL GAME INPUTS
 
@@ -176,14 +190,16 @@ func _on_game_manager_finished_transition_fade() -> void:
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if body.health >= 1:
-			if !gm.isDead:
+			if !gm.isDead and hittable:
 				modulate = Color(1,0.25,0.25);
 			var distance_vector_player : Vector2 = global_position - body.global_position;
 			xvel = distance_vector_player.x * KNOCKBACK;
 			yvel = distance_vector_player.y * KNOCKBACK;
 			body.velocity = distance_vector_player * -1 * (KNOCKBACK/2);
-			gm.health -= 1;
-			gm.updateHealth();
+			if hittable:
+				hittable = false;
+				gm.health -= 1;
+				gm.updateHealth(body.endName);
 			#velocity = distance_vector.normalized() * (knockback * 100);
 			#move_and_slide()
 	pass # Replace with function body.

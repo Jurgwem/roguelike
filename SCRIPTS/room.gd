@@ -168,9 +168,15 @@ func _ready() -> void:
 		else:
 			y = gm.roomPos.y - gm.vert;
 	print("gm: ", gm.roomPos);
-	print("own Pos: ", Vector2(x, y));
+	#print("own Pos: ", Vector2(x, y));
 	#global_position = Vector2(x, y);
 	global_position = gm.roomPos;
+	if global_position > gm.highestCam:
+		gm.highestCam = global_position;
+	if global_position < gm.lowestCam:
+		gm.lowestCam = global_position;
+	print("Highest: ", gm.highestCam);
+	print("Lowest: ", gm.lowestCam);
 	init = true;
 	
 	#BAT SPAWN COUNT
@@ -179,7 +185,7 @@ func _ready() -> void:
 		batCount = floor(gm.roomCount * 0.6);
 	else:
 		batCount = 6;
-	if gm.roomCount > 10 and gm.roomCount < 20:
+	if gm.roomCount > 10 and gm.roomCount < 18:
 		batCount = 4;
 	
 	#INV MAN SPAWN COUNT
@@ -189,6 +195,8 @@ func _ready() -> void:
 			invCount = 5;
 		else:
 			invCount = floor(gm.roomCount * 0.2);
+		#if gm.roomCount <= 22:
+			#invCount = 5;
 		
 	#FROGGIT SPAWN COUNT
 	var froggitCount : int = 0;

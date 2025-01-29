@@ -176,7 +176,7 @@ scale_max = 8.0
 scale_curve = SubResource("CurveTexture_mdomo")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ak5i"]
-radius = 11.1339
+radius = 13.2112
 
 [sub_resource type="Curve" id="Curve_fk5j8"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -644,7 +644,7 @@ texture_scale = 0.33
 [node name="hitBox" type="Area2D" parent="player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/hitBox"]
-position = Vector2(-0.5, 6)
+position = Vector2(-0.529592, 5.82544)
 shape = SubResource("CircleShape2D_8ak5i")
 
 [node name="status" type="Node2D" parent="player"]
@@ -1083,7 +1083,6 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

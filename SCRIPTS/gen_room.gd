@@ -22,7 +22,7 @@ func doors() -> void:
 	var translation : Array = ["up", "right", "down", "left"];
 	var doorInstance : Node = door.instantiate();
 	get_parent().add_child(doorInstance);
-	print("n = ", gm.doorCounter, "; trans: ", translation[gm.doorCounter])
+	#print("n = ", gm.doorCounter, "; trans: ", translation[gm.doorCounter])
 	if gm.doorCounter <= 2:
 		gm.doorCounter+=1;
 	else:

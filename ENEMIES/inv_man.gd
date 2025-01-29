@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var player : Node2D = get_node("/root/game/player");
 @onready var spawnpoint : Node2D = get_node("/root/game/spawnCenter/spawnPoint");
 
+var endName : String = "jeffrey";
 const SPEED : float = 100.0;
 const DAMPING : Vector2 = Vector2(0.95, 0.95);
 const MAX_SPEED : float = 300;

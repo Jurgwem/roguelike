@@ -66,7 +66,7 @@ scale_curve = SubResource("CurveTexture_4kcc8")
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1rbs"]
 radius = 26.0
 
-[node name="Bat" type="CharacterBody2D" groups=["enemy"]]
+[node name="bat" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_vghdj")
 
@@ -83,7 +83,7 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_i4gtp")
 
 [node name="diePart" type="GPUParticles2D" parent="."]
-z_index = -10
+z_index = 10
 emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_yaqw6")
