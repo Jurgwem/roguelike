@@ -171,4 +171,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			status_head.text = "Pointer";
 			status_body.text = "definetly usefull";
 		collected = true;
-	pass # Replace with function body.
+	pass
