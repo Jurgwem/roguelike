@@ -27,12 +27,21 @@ var damageMod : float = 1;
 var timeMod : float = 1;
 var spreadMod : float = 1;
 
+#ITEM RELATED
 var pierce : int = 0;
 var slideMod : float = 1;
 var homingMod : float = 0;
 var ammoMod : float = 1;
 
 func _ready() -> void:
+	var chance : float = randf();
+	if chance > 0.75:
+		speedMod = 1 + ((randf() - 0.5) / 3);
+		damageMod = 1 + ((randf() - 0.5) / 3);
+		timeMod = 1 + ((randf() - 0.5) / 3);
+		spreadMod = 1 + ((randf() - 0.5) / 3);
+		modulate = Color(0.33, 0.33, 1);
+		scale = Vector2(1.888, 1.5);
 	$AnimatedSprite2D.animation = "wakeUp"
 	$AnimatedSprite2D.frame = 1;
 	pass
@@ -55,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 		$mapPart.emitting = false;
 	
 	
-	if modulate != Color(1, 1, 1):
+	if modulate != Color(1, 1, 1) and canMove:
 		var color : float = lerp(modulate.g, 1.0, 3.2 * _delta);
 		modulate = Color(1,color,color);
 		if modulate.b > 0.9:
@@ -184,6 +193,7 @@ func _on_game_manager_finished_transition_fade() -> void:
 		print("anim finished")
 		$AnimatedSprite2D.animation = "idle"
 	canMove = true;
+	scale = Vector2(1.888, 1.888);
 	pass # Replace with function body.
 
 

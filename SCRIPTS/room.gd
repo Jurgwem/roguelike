@@ -224,10 +224,12 @@ func _ready() -> void:
 			add_child(froggit);
 			
 	if gm.roomType == "boss":
+		var bossCount : int = 1 + (gm.roomCount / 40);
 		if bossChance > 0.5 or true:
-			var bat : Node2D = batRess.instantiate();
-			bat.isBoss = true;
-			add_child(bat);
+			for i : int in bossCount:
+				var bat : Node2D = batRess.instantiate();
+				bat.isBoss = true;
+				add_child(bat);
 		
 	await get_tree().create_timer(3).timeout;
 	gm.enemyCount -= 1;

@@ -12,8 +12,8 @@ var equipped : bool = false;
 var init : bool = false;
 var startPos : Vector2 = position;
 
-var reloadTime : int = 4;
-var shootBuffer : float = 1.5;
+var reloadTime : int = 3;
+var shootBuffer : float = 1;
 var ammo : int = 8;
 var rotSpeed : int = 8
 

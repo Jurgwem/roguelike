@@ -31,7 +31,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if !hit:
-		position += Vector2(speed * player.speedMod, 0).rotated(rotation)
+		position += Vector2(speed * ((player.speedMod / 10) + 1), 0).rotated(rotation)
 		
 		if get_tree().get_node_count_in_group("enemy") != 0:
 			rotation = lerp_angle(rotation, (get_tree().get_nodes_in_group("enemy")[0].global_position - global_position).angle(), player.homingMod * _delta);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=102 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://do627w40nwsdw" path="res://UI/escape.png" id="11_1gwkv"]
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="12_l7axa"]
 [ext_resource type="Texture2D" uid="uid://ddjqoujmr16hc" path="res://UI/map.png" id="13_xr5jt"]
-[ext_resource type="PackedScene" uid="uid://bavjkvv08edv6" path="res://LOOT/gun.tscn" id="15_qe2xy"]
 [ext_resource type="LabelSettings" uid="uid://c8syjpqm7x16j" path="res://UI/inGameUI.tres" id="16_j8uht"]
 [ext_resource type="LabelSettings" uid="uid://bvsa3n0y476yd" path="res://UI/BossUI.tres" id="18_nowuo"]
 
@@ -1053,8 +1052,6 @@ label_settings = ExtResource("18_nowuo")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
 
-[node name="gun" parent="." instance=ExtResource("15_qe2xy")]
-
 [node name="spawnCenter" type="Node2D" parent="."]
 
 [node name="spawnPoint" type="Node2D" parent="spawnCenter"]
@@ -1068,7 +1065,6 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
-visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

@@ -248,9 +248,9 @@ offset_top = 27.0
 offset_right = 213.0
 offset_bottom = 107.0
 scale = Vector2(0.420684, 0.420684)
-text = "art-test
-alpha-2
-29-01-2025
+text = "art-testing
+alpha-3
+04-02-2025
 @Jurgwem"
 label_settings = SubResource("LabelSettings_cm0ib")
 horizontal_alignment = 2

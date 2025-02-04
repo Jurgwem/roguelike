@@ -19,7 +19,7 @@ var used : bool= false;
 func doors() -> void:
 	$newRoomIndicator.emitting = false;
 	#await get_tree().create_timer(0.1).timeout;
-	var translation : Array = ["up", "right", "down", "left"];
+	var _translation : Array = ["up", "right", "down", "left"];
 	var doorInstance : Node = door.instantiate();
 	get_parent().add_child(doorInstance);
 	#print("n = ", gm.doorCounter, "; trans: ", translation[gm.doorCounter])

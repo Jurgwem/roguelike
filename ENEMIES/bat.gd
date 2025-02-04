@@ -66,10 +66,9 @@ func _physics_process(delta: float) -> void:
 				if isBoss and moves >= 3:
 					moves = 0;
 					timer = -4;
-					if gm.enemyCount == 1:
-						for i : int in 3:
-							var bat : Node2D = batRess.instantiate();
-							get_parent().add_child(bat);
+					for i : int in 3:
+						var bat : Node2D = batRess.instantiate();
+						get_parent().add_child(bat);
 			$AnimatedSprite2D.global_rotation = 0;
 		else:
 			$CollisionShape2D.scale = Vector2(0, 0);
