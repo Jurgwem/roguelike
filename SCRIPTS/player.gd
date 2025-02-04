@@ -40,7 +40,7 @@ func _ready() -> void:
 		damageMod = 1 + ((randf() - 0.5) / 3);
 		timeMod = 1 + ((randf() - 0.5) / 3);
 		spreadMod = 1 + ((randf() - 0.5) / 3);
-		modulate = Color(0.33, 0.33, 1);
+		modulate = Color(randf(), randf(), randf());
 		scale = Vector2(1.888, 1.5);
 	$AnimatedSprite2D.animation = "wakeUp"
 	$AnimatedSprite2D.frame = 1;
