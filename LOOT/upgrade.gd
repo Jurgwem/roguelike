@@ -74,7 +74,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			status_head.text = "Speed!"
 			status_body.text = "movement + bullet speed upgraded"
 		elif type == 2:
-			player.timeMod *= 0.85;
+			player.timeMod *= 0.8;
 			status_head.text = "Time!"
 			status_body.text = "reload and buffer time reduced"
 		elif type == 3:
