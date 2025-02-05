@@ -36,8 +36,8 @@ var ammoMod : float = 1;
 func _ready() -> void:
 	var chance : float = randf();
 	if chance > 0.75:
-		speedMod = 1 + ((randf() - 0.5) / 3);
-		damageMod = 1 + ((randf() - 0.5) / 3);
+		speedMod = 1 + ((randf() - 0.5) / 2);
+		damageMod = 1 + ((randf() - 0.5) / 2);
 		timeMod = 1 + ((randf() - 0.5) / 3);
 		spreadMod = 1 + ((randf() - 0.5) / 3);
 		modulate = Color(randf(), randf(), randf());
@@ -57,11 +57,13 @@ func _physics_process(_delta: float) -> void:
 		$"../spawnRoom/mapPart".emitting = true;
 		$mapPart.visible = true;
 		$mapPart.emitting = true;
+		$AnimatedSprite2D.visible = false;
 	else:
 		$"../spawnRoom/mapPart".visible = false;
 		$"../spawnRoom/mapPart".emitting = false;
 		$mapPart.visible = false;
 		$mapPart.emitting = false;
+		$AnimatedSprite2D.visible = true;
 	
 	
 	if modulate != Color(1, 1, 1) and canMove:

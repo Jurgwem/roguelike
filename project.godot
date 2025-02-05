@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="roguelike"
+config/name="aw fuck, it has a gun"
 config/version="0.0.2 (Proto)"
 run/main_scene="res://SCENES/start.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
