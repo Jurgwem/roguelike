@@ -36,10 +36,10 @@ var ammoMod : float = 1;
 func _ready() -> void:
 	var chance : float = randf();
 	if chance > 0.75:
-		speedMod = 1 + ((randf() - 0.5) / 2);
-		damageMod = 1 + ((randf() - 0.5) / 2);
-		timeMod = 1 + ((randf() - 0.5) / 3);
-		spreadMod = 1 + ((randf() - 0.5) / 3);
+		speedMod = 1 + ((randf() - 0.5));
+		damageMod = 1 + ((randf() - 0.5));
+		timeMod = 1 + ((randf() - 0.5) / 2);
+		spreadMod = 1 + ((randf() - 0.5) / 2);
 		modulate = Color(randf(), randf(), randf());
 		scale = Vector2(1.888, 1.5);
 	$AnimatedSprite2D.animation = "wakeUp"
