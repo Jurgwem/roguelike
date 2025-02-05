@@ -42,6 +42,9 @@ func _physics_process(delta: float) -> void:
 				position.y += gm.vert;
 				gm.roomPos.y += gm.vert;
 				player.position.y += gm.vert * 0.2;
+			player.xvel = 0;
+			player.yvel = 0;
+			player.velocity *= 0;
 			last = gm.nextRoom;
 			gm.lastRoom = gm.nextRoom;
 			gm.nextRoom = "none";
