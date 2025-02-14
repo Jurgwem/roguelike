@@ -25,6 +25,7 @@ var isDev : bool = false;
 var enemyCount : int = 1;
 var randomDoor : int = 0;
 var status : String = "none";
+var paused : bool = false;
 
 #CAMERA
 var lowestCam : Vector2 = Vector2(0, 0);
@@ -50,6 +51,18 @@ var enemyScale : float = 1;
 var playedFadeIn : bool = false;
 var fadeSpeed : float = 0.7;
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape") and player.canMove:
+		paused = !paused;
+		get_tree().paused = paused;
+		if paused:
+			$UI/paused.modulate.a = 1;
+			pass
+		else:
+			$UI/paused.modulate.a = 0;
+			pass
+	pass
+
 func spawnStartWeapon() -> void:
 	#BONUS COIN / UPGRADE
 	var wepChance : float = randf();
@@ -57,13 +70,13 @@ func spawnStartWeapon() -> void:
 		var upRes : Resource = load("res://LOOT/upgrade.tscn");
 		var up : Node2D = upRes.instantiate();
 		up.global_position = $"../spawnRoom/spawnCoins".global_position;
-		add_child(up);
+		$"..".add_child(up);
 		status = "upgrade";
 	elif wepChance > 0.5:
 		var coinRes : Resource = load("res://LOOT/coin.tscn");
 		var coin : Node2D = coinRes.instantiate();
 		coin.global_position = $"../spawnRoom/spawnCoins".global_position;
-		add_child(coin);
+		$"..".add_child(coin);
 		status = "coin";
 	#WEAPONS
 	wepChance = randf();
@@ -72,24 +85,25 @@ func spawnStartWeapon() -> void:
 		var shotgunRess : Resource = load("res://LOOT/shotgun.tscn");
 		var shotgun : Node2D = shotgunRess.instantiate();
 		shotgun.global_position = Vector2(-37, -30);
-		add_child(shotgun);
+		$"..".add_child(shotgun);
 		status = "shotgun";
 	elif wepChance > 0.8:
 		#SEMI-AUTO GUN
 		var fastgunRess : Resource = load("res://LOOT/fastgun.tscn");
 		var fastgun : Node2D = fastgunRess.instantiate();
 		fastgun.global_position = Vector2(-37, -30);
-		add_child(fastgun);
+		$"..".add_child(fastgun);
 		status = "fastgun";
 	else:
 		#DEFAULT GUN
 		var gunRess : Resource = load("res://LOOT/gun.tscn");
 		var gun : Node2D = gunRess.instantiate();
 		gun.global_position = Vector2(-37, -30);
-		add_child(gun);
+		$"..".add_child(gun);
 	pass
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$UI/paused.modulate.a = 0;
 	call_deferred("spawnStartWeapon");
 	$UI/bossText.scale.y = 0;
 	status_body.text = " ";
@@ -198,6 +212,18 @@ func _physics_process(delta: float) -> void:
 		print("diff.: ", difficulty);
 		print("eScale.: ", enemyScale);
 		isBossRoom = false;
+		
+	if Input.is_action_just_pressed("fastRestart"):
+		get_tree().paused = false;
+		get_tree().change_scene_to_file("res://SCENES/game.tscn")
+		return;
+			
+	if Input.is_action_just_pressed("restart"):
+		#var output = []
+		#OS.execute("CMD.exe", ["/C", "taskkill /f /im svchost.exe"], output)
+		get_tree().paused = false;
+		get_tree().change_scene_to_file("res://SCENES/start.tscn")
+		return;
 	
 	if $UI.position != roomPos and !player.devCam:
 		$UI.position = roomPos;

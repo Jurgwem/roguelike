@@ -901,6 +901,7 @@ emitting = false
 process_material = SubResource("ParticleProcessMaterial_6ql11")
 
 [node name="gameManager" type="Node2D" parent="."]
+process_mode = 3
 script = ExtResource("1_yu3vq")
 
 [node name="UI" type="Node2D" parent="gameManager"]
@@ -1048,6 +1049,38 @@ offset_bottom = 100.0
 scale = Vector2(3.50482, 3.50482)
 text = "Boss defeated"
 label_settings = ExtResource("18_nowuo")
+
+[node name="paused" type="Control" parent="gameManager/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pausedInfo" type="Label" parent="gameManager/UI/paused"]
+z_index = 8
+offset_left = -140.0
+offset_top = -171.0
+offset_right = 30.0
+offset_bottom = -122.0
+scale = Vector2(1.67624, 1.67624)
+text = "'e' to go to menu
+'shift + e' for fast restart"
+label_settings = ExtResource("18_nowuo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pausedText" type="Label" parent="gameManager/UI/paused"]
+z_index = 8
+layout_mode = 0
+offset_left = -185.0
+offset_top = -306.0
+offset_right = -128.0
+offset_bottom = -283.0
+scale = Vector2(6.32477, 6.32477)
+text = "Paused"
+label_settings = ExtResource("18_nowuo")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")

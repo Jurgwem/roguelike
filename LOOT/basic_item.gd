@@ -169,6 +169,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			pointer.global_position = player.global_position;
 			get_node("/root/game/").add_child(pointer);
 			status_head.text = "Pointer";
-			status_body.text = "definetly usefull";
+			status_body.text = "definetly useful";
 		collected = true;
 	pass

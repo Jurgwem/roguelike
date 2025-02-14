@@ -34,6 +34,7 @@ var homingMod : float = 0;
 var ammoMod : float = 1;
 
 func _ready() -> void:
+	
 	var chance : float = randf();
 	if chance > 0.75:
 		speedMod = 1 + ((randf() - 0.5));
@@ -169,10 +170,6 @@ func _physics_process(_delta: float) -> void:
 			animated_sprite_2d.play("idle");
 			$walkPart.emitting = false;
 			
-	if Input.is_action_just_pressed("escape"):
-		get_tree().change_scene_to_file("res://SCENES/start.tscn")
-		return;
-		
 	if !gm.isDead:
 		velocity.x = xvel;
 		velocity.y = yvel;
