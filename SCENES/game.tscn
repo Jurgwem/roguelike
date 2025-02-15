@@ -1058,6 +1058,7 @@ offset_bottom = 40.0
 
 [node name="pausedInfo" type="Label" parent="gameManager/UI/paused"]
 z_index = 8
+layout_mode = 0
 offset_left = -140.0
 offset_top = -171.0
 offset_right = 30.0

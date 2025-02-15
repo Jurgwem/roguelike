@@ -70,7 +70,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			status_head.text = "Damage!"
 			status_body.text = "all damage upgraded"
 		elif type == 1:
-			player.speedMod *= 1.2;
+			player.speedMod += 0.2;
 			status_head.text = "Speed!"
 			status_body.text = "movement + bullet speed upgraded"
 		elif type == 2:
