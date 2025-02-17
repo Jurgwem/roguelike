@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 			if scale >= Vector2(1 * gm.enemyScale, 1 * gm.enemyScale):
 				playedScale = true;
 		else:
-			if scale >= Vector2(3, 3):
+			if scale >= Vector2(3, 3) * Vector2(gm.enemyScale, gm.enemyScale):
 				playedScale = true;
 	if hasSpawned and playedScale:
 		velocity *= damping;
