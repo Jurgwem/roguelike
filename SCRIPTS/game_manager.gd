@@ -21,7 +21,7 @@ var nextRoom : String = "none";
 var lastRoom : String = "none";
 var horz : int = 1280;
 var vert : int = 720;
-var isDev : bool = false;
+var isDev : bool = true;
 var enemyCount : int = 1;
 var randomDoor : int = 0;
 var status : String = "none";
@@ -117,22 +117,23 @@ func _ready() -> void:
 	finishedTransitionFade.emit();
 	if !isDev:
 		await get_tree().create_timer(3.1).timeout;
-		match status:
-			"none":
-				status_head.text = "again?";
-				status_body.text = "not the furry dungeon";
-			"shotgun":
-				status_head.text = "huh?";
-				status_body.text = "im feeling optimistic";
-			"fastgun":
-				status_head.text = "yay";
-				status_body.text = "pew pew";
-			"coin":
-				status_head.text = "money.";
-				status_body.text = "I like money.";
-			"upgrade":
-				status_head.text = "oooh";
-				status_body.text = "... shiny ...";
+	match status:
+		"none":
+			status_head.text = "again?";
+			status_body.text = "not the furry dungeon";
+		"shotgun":
+			status_head.text = "huh?";
+			status_body.text = "im feeling optimistic";
+		"fastgun":
+			status_head.text = "yay";
+			status_body.text = "pew pew";
+		"coin":
+			status_head.text = "money.";
+			status_body.text = "I like money.";
+		"upgrade":
+			status_head.text = "oooh";
+			status_body.text = "... shiny ...";
+	if !isDev:
 		await get_tree().create_timer(2.0).timeout;
 	$UI.visible = true;
 	await get_tree().create_timer(3).timeout;
@@ -171,7 +172,7 @@ func _physics_process(delta: float) -> void:
 		$"../spawnCenter".rotation = 0;
 	else:
 		$"../spawnCenter".rotation = lerp_angle($"../spawnCenter".rotation, $"../spawnCenter".rotation + 360, 10 * delta);
-		
+	
 	if playedFadeIn:
 		$"../overlay".modulate.a = lerp($"../overlay".modulate.a, $"../overlay".modulate.a - 1, fadeSpeed * delta)
 		if $"../overlay".modulate.a <= 0:
@@ -207,8 +208,8 @@ func _physics_process(delta: float) -> void:
 	
 	if isBossRoom and enemyCount == 0:
 		bossText = true;
-		difficulty += 0.33;
-		enemyScale += 0.05;
+		difficulty += 1;
+		enemyScale += 0.2;
 		print("diff.: ", difficulty);
 		print("eScale.: ", enemyScale);
 		isBossRoom = false;

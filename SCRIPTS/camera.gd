@@ -1,4 +1,5 @@
 extends Camera2D
+
 @onready var gm : Node2D = get_node("/root/game/gameManager");
 @onready var player : Node2D = get_node("/root/game/player");
 @onready var spawnpoint : Node2D = get_node("/root/game/spawnCenter/spawnPoint");

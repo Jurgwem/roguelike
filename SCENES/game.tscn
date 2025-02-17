@@ -644,6 +644,7 @@ offset_bottom = -23.2038
 scale = Vector2(1.65724, 1.65724)
 text = "STATUS_HEAD"
 label_settings = ExtResource("16_j8uht")
+metadata/_edit_use_anchors_ = true
 
 [node name="statusBody" type="Label" parent="player/status"]
 z_index = 99
@@ -653,6 +654,7 @@ offset_right = 152.823
 offset_bottom = 15.1115
 text = "STATUS_BODY"
 label_settings = ExtResource("16_j8uht")
+metadata/_edit_use_anchors_ = true
 
 [node name="mapPart" type="GPUParticles2D" parent="player"]
 z_index = 64
@@ -918,6 +920,7 @@ offset_right = -720.06
 offset_bottom = 203.883
 scale = Vector2(1.76421, 1.79732)
 text = "spd%: "
+metadata/_edit_use_anchors_ = true
 
 [node name="damageMod" type="Label" parent="gameManager/UI/mod"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -927,6 +930,7 @@ offset_right = -732.06
 offset_bottom = 240.882
 scale = Vector2(1.76421, 1.79732)
 text = "dmg%: "
+metadata/_edit_use_anchors_ = true
 
 [node name="timeMod" type="Label" parent="gameManager/UI/mod"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -936,6 +940,7 @@ offset_right = -734.06
 offset_bottom = 284.883
 scale = Vector2(1.76421, 1.79732)
 text = "time%: "
+metadata/_edit_use_anchors_ = true
 
 [node name="spreadMod" type="Label" parent="gameManager/UI/mod"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -945,6 +950,7 @@ offset_right = -715.06
 offset_bottom = 325.883
 scale = Vector2(1.76421, 1.79732)
 text = "srd%: "
+metadata/_edit_use_anchors_ = true
 
 [node name="dev" type="Node2D" parent="gameManager/UI"]
 position = Vector2(754, 402)
@@ -957,6 +963,7 @@ offset_right = -455.0
 offset_bottom = -166.0
 scale = Vector2(1.76421, 1.79732)
 text = "roomType: spawn"
+metadata/_edit_use_anchors_ = true
 
 [node name="enemyCount" type="Label" parent="gameManager/UI/dev"]
 offset_left = -593.0
@@ -965,6 +972,7 @@ offset_right = -519.0
 offset_bottom = -206.0
 scale = Vector2(1.76421, 1.79732)
 text = "enemies: "
+metadata/_edit_use_anchors_ = true
 
 [node name="roomPos" type="Label" parent="gameManager/UI/dev"]
 offset_left = -593.0
@@ -973,6 +981,7 @@ offset_right = -515.0
 offset_bottom = -248.0
 scale = Vector2(1.84, 1.84)
 text = "roomPos: "
+metadata/_edit_use_anchors_ = true
 
 [node name="FPS" type="Label" parent="gameManager/UI/dev"]
 offset_left = -593.0
@@ -981,6 +990,7 @@ offset_right = -553.0
 offset_bottom = -290.0
 scale = Vector2(1.84, 1.81854)
 text = "FPS: "
+metadata/_edit_use_anchors_ = true
 
 [node name="healthPos" type="Node2D" parent="gameManager/UI"]
 position = Vector2(-559, -283)
@@ -994,6 +1004,7 @@ scale = Vector2(2.4, 2.4)
 text = "Room: ###"
 label_settings = ExtResource("16_j8uht")
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Coins" type="Label" parent="gameManager/UI"]
 offset_left = 448.0
@@ -1004,6 +1015,7 @@ scale = Vector2(2.4, 2.4)
 text = "###"
 label_settings = ExtResource("16_j8uht")
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="gameManager/UI/Coins"]
 position = Vector2(50, 11.6667)
@@ -1018,6 +1030,7 @@ offset_bottom = 262.0
 scale = Vector2(1.84, 1.84)
 text = "wepName"
 label_settings = ExtResource("16_j8uht")
+metadata/_edit_use_anchors_ = true
 
 [node name="ammo" type="Label" parent="gameManager/UI"]
 offset_left = -593.0
@@ -1027,6 +1040,7 @@ offset_bottom = 296.0
 scale = Vector2(1.84, 1.84)
 text = "ammo"
 label_settings = ExtResource("16_j8uht")
+metadata/_edit_use_anchors_ = true
 
 [node name="bossText" type="Node2D" parent="gameManager/UI"]
 position = Vector2(0, -360)
@@ -1040,6 +1054,7 @@ scale = Vector2(1.42193, 1.42193)
 text = "difficulty increased!
 "
 label_settings = ExtResource("18_nowuo")
+metadata/_edit_use_anchors_ = true
 
 [node name="def" type="Label" parent="gameManager/UI/bossText"]
 offset_left = -187.0
@@ -1049,12 +1064,14 @@ offset_bottom = 100.0
 scale = Vector2(3.50482, 3.50482)
 text = "Boss defeated"
 label_settings = ExtResource("18_nowuo")
+metadata/_edit_use_anchors_ = true
 
 [node name="paused" type="Control" parent="gameManager/UI"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="pausedInfo" type="Label" parent="gameManager/UI/paused"]
 z_index = 8
@@ -1069,19 +1086,21 @@ text = "'e' to go to menu
 label_settings = ExtResource("18_nowuo")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="pausedText" type="Label" parent="gameManager/UI/paused"]
 z_index = 8
 layout_mode = 0
-offset_left = -185.0
-offset_top = -306.0
-offset_right = -128.0
-offset_bottom = -283.0
+offset_left = -176.0
+offset_top = -310.0
+offset_right = -119.0
+offset_bottom = -287.0
 scale = Vector2(6.32477, 6.32477)
 text = "Paused"
 label_settings = ExtResource("18_nowuo")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
@@ -1099,6 +1118,7 @@ shape = SubResource("CircleShape2D_op7kk")
 [node name="roomContainer" type="Node2D" parent="."]
 
 [node name="overlay" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 position = Vector2(2.00001, -2.49999)
 scale = Vector2(41.5625, 22.6094)

@@ -42,9 +42,10 @@ func _ready() -> void:
 		timeMod = 1 + ((randf() - 0.5) / 2);
 		spreadMod = 1 + ((randf() - 0.5) / 2);
 		modulate = Color(randf(), randf(), randf());
-		scale = Vector2(1.888, 1.5);
-	$AnimatedSprite2D.animation = "wakeUp"
-	$AnimatedSprite2D.frame = 1;
+		scale = Vector2(1.888, 1.5)
+	if !gm.isDev:
+		$AnimatedSprite2D.animation = "wakeUp"
+		$AnimatedSprite2D.frame = 1;
 	pass
 
 func _physics_process(_delta: float) -> void:
