@@ -209,7 +209,7 @@ func _physics_process(delta: float) -> void:
 	if isBossRoom and enemyCount == 0:
 		bossText = true;
 		difficulty += 1;
-		enemyScale += 0.2;
+		enemyScale += 0.1;
 		print("diff.: ", difficulty);
 		print("eScale.: ", enemyScale);
 		isBossRoom = false;

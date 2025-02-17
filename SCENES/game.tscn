@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://dwe12lik1bc4r"]
+[gd_scene load_steps=104 format=3 uid="uid://dwe12lik1bc4r"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_72mxw"]
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_vjjnx"]
@@ -548,6 +548,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_2u5d4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.501961)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ny0vb"]
+gradient = SubResource("Gradient_2u5d4")
+
 [sub_resource type="Gradient" id="Gradient_hl304"]
 colors = PackedColorArray(0.0295066, 0.0295066, 0.0295066, 1, 1, 1, 1, 1)
 
@@ -1074,7 +1081,7 @@ offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
 [node name="pausedInfo" type="Label" parent="gameManager/UI/paused"]
-z_index = 8
+z_index = 99
 layout_mode = 0
 offset_left = -140.0
 offset_top = -171.0
@@ -1089,7 +1096,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="pausedText" type="Label" parent="gameManager/UI/paused"]
-z_index = 8
+z_index = 99
 layout_mode = 0
 offset_left = -176.0
 offset_top = -310.0
@@ -1101,6 +1108,12 @@ label_settings = ExtResource("18_nowuo")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="gameManager/UI/paused"]
+z_index = 80
+position = Vector2(-2, 4)
+scale = Vector2(5.49219, 784)
+texture = SubResource("GradientTexture1D_ny0vb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noa8x")
