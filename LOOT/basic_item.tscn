@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bipcvqads82qr"]
 
 [ext_resource type="Texture2D" uid="uid://ga750xk86b5j" path="res://LOOT/items.png" id="1_gy7q0"]
-[ext_resource type="Script" path="res://LOOT/basic_item.gd" id="1_vdd1d"]
+[ext_resource type="Script" uid="uid://baqq4hpxxdnvy" path="res://LOOT/basic_item.gd" id="1_vdd1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ndvb"]
 radius = 2.42621

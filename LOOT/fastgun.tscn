@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b5vfen5hcc0ly"]
 
 [ext_resource type="Texture2D" uid="uid://dsr5oywm1uo3m" path="res://LOOT/fastGun.png" id="1_m4t0u"]
-[ext_resource type="Script" path="res://LOOT/fastgun.gd" id="1_p0yo5"]
+[ext_resource type="Script" uid="uid://bvjoyvgyydg8u" path="res://LOOT/fastgun.gd" id="1_p0yo5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xk5jr"]
 radius = 15.5

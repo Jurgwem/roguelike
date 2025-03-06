@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ds4g6rifnu01c"]
 
-[ext_resource type="Script" path="res://ENEMIES/froggit.gd" id="1_txm8o"]
+[ext_resource type="Script" uid="uid://xc3bqys8p8bf" path="res://ENEMIES/froggit.gd" id="1_txm8o"]
 [ext_resource type="Texture2D" uid="uid://dbptot38q3sqq" path="res://ENEMIES/froggit.png" id="2_pns40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_syi88"]

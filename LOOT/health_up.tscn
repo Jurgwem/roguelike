@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1u4e53tiridp"]
 
 [ext_resource type="Texture2D" uid="uid://c4sox0jw2b6y1" path="res://SPRITES/heart.png" id="1_40yxm"]
-[ext_resource type="Script" path="res://LOOT/health_up.gd" id="1_ca7te"]
+[ext_resource type="Script" uid="uid://cn53dt7kews7" path="res://LOOT/health_up.gd" id="1_ca7te"]
 [ext_resource type="Texture2D" uid="uid://b6v8bhnwmhul8" path="res://SPRITES/light.webp" id="3_oc8wn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqtd2"]

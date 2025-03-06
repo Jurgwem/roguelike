@@ -1,10 +1,10 @@
 [gd_scene load_steps=31 format=3 uid="uid://cp8ibuyov36rn"]
 
 [ext_resource type="Texture2D" uid="uid://dyitmsmbbda0l" path="res://SPRITES/player_spritesheet.png" id="1_1tpjc"]
-[ext_resource type="Script" path="res://SCRIPTS/title_gun.gd" id="2_p63jh"]
+[ext_resource type="Script" uid="uid://dn0mhais0h36a" path="res://SCRIPTS/title_gun.gd" id="2_p63jh"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="3_761q4"]
 [ext_resource type="Texture2D" uid="uid://dyx4xdbvswi8g" path="res://UI/startButton.png" id="4_hyn8p"]
-[ext_resource type="Script" path="res://SCRIPTS/start_button.gd" id="4_vq774"]
+[ext_resource type="Script" uid="uid://db1fg4tvc4n5s" path="res://SCRIPTS/start_button.gd" id="4_vq774"]
 [ext_resource type="Texture2D" uid="uid://bwucn5dn23o5c" path="res://UI/title.png" id="6_w2fg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tv7cq"]
@@ -212,18 +212,18 @@ texture = ExtResource("3_761q4")
 position = Vector2(28, 0)
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_wbjsf")
 lifetime = 0.15
 one_shot = true
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_wbjsf")
 
 [node name="shell" type="GPUParticles2D" parent="titleGun"]
 z_index = 10
 position = Vector2(16, -2)
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_iw2in")
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_iw2in")
 
 [node name="startButton" type="Node2D" parent="."]
 script = ExtResource("4_vq774")
@@ -269,22 +269,22 @@ environment = SubResource("Environment_bsy3r")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="bg"]
 position = Vector2(52, 0)
 amount = 128
-process_material = SubResource("ParticleProcessMaterial_f6juw")
 lifetime = 30.0
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_f6juw")
 
 [node name="bgm" type="GPUParticles2D" parent="bg"]
 z_index = -4
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_6omph")
 lifetime = 5.5
 preprocess = 10.0
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_6omph")
 
 [node name="fall" type="GPUParticles2D" parent="bg"]
-process_material = SubResource("ParticleProcessMaterial_05t3x")
 lifetime = 5.0
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_05t3x")
 
 [node name="overlay" type="Sprite2D" parent="."]
 z_index = 100

@@ -1,9 +1,9 @@
 [gd_scene load_steps=32 format=3 uid="uid://bie37p0rv74i7"]
 
-[ext_resource type="Script" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
+[ext_resource type="Script" uid="uid://bf0bh34ffdd6e" path="res://SCRIPTS/room.gd" id="1_pgnb6"]
 [ext_resource type="Texture2D" uid="uid://co6y4tpeirmbp" path="res://SPRITES/backdrop_new.png" id="2_2ivkl"]
 [ext_resource type="Texture2D" uid="uid://bgkwh5bwqc8uw" path="res://SPRITES/backdrop_new_walls.png" id="3_ia85n"]
-[ext_resource type="Script" path="res://SCRIPTS/gen_room.gd" id="3_n48xt"]
+[ext_resource type="Script" uid="uid://b78g47d2yns4n" path="res://SCRIPTS/gen_room.gd" id="3_n48xt"]
 [ext_resource type="PackedScene" uid="uid://0yt3db2j1c4s" path="res://INST/rock.tscn" id="4_t1by3"]
 [ext_resource type="PackedScene" uid="uid://dqmpobmm6i54k" path="res://INST/slot_machine.tscn" id="5_44l0o"]
 [ext_resource type="PackedScene" uid="uid://c53nw2bjh4vot" path="res://LOOT/coin.tscn" id="6_b5tdy"]

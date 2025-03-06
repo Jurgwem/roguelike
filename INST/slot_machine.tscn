@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dqmpobmm6i54k"]
 
-[ext_resource type="Script" path="res://SCRIPTS/slot_machine.gd" id="1_5tkjj"]
+[ext_resource type="Script" uid="uid://cu1ir5bx03x66" path="res://SCRIPTS/slot_machine.gd" id="1_5tkjj"]
 [ext_resource type="Texture2D" uid="uid://cqwskxd4m2v8t" path="res://SPRITES/gambling.png" id="1_jlrnt"]
 [ext_resource type="Texture2D" uid="uid://b6v8bhnwmhul8" path="res://SPRITES/light.webp" id="3_flboi"]
 

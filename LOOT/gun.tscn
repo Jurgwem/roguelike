@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bavjkvv08edv6"]
 
-[ext_resource type="Script" path="res://SCRIPTS/gun.gd" id="1_ky12y"]
+[ext_resource type="Script" uid="uid://dq70bovyf2p5h" path="res://SCRIPTS/gun.gd" id="1_ky12y"]
 [ext_resource type="Texture2D" uid="uid://cilj47nirfano" path="res://SPRITES/gun.png" id="2_l4gyr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhdjo"]
