@@ -234,8 +234,8 @@ position = Vector2(-640, -1)
 rotation = -4.71238
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_rwavp")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_rwavp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room_Iterate/Left_Gen"]
 shape = SubResource("SegmentShape2D_ismcg")
@@ -248,8 +248,8 @@ target_position = Vector2(-103, -101)
 position = Vector2(-640, 0)
 rotation = -1.57079
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_8ji0w")
 
 [node name="hasDoor" type="RayCast2D" parent="Room_Iterate/Left_Gen"]
 position = Vector2(-623, -82)
@@ -270,8 +270,8 @@ target_position = Vector2(102, 134)
 position = Vector2(626, 0)
 rotation = 1.57079
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_8ji0w")
 
 [node name="hasDoor" type="RayCast2D" parent="Room_Iterate/Right_Gen"]
 position = Vector2(623, 80)
@@ -282,8 +282,8 @@ position = Vector2(640, 0)
 rotation = -1.57079
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_hmnhw")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_hmnhw")
 
 [node name="up_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
@@ -299,8 +299,8 @@ target_position = Vector2(116, -89)
 [node name="newRoomIndicator" type="GPUParticles2D" parent="Room_Iterate/up_Gen"]
 position = Vector2(0, -335)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_8ji0w")
 
 [node name="hasDoor" type="RayCast2D" parent="Room_Iterate/up_Gen"]
 position = Vector2(73, -343)
@@ -311,8 +311,8 @@ position = Vector2(1, -360)
 rotation = -3.14159
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_40mls")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_40mls")
 
 [node name="down_Gen" type="Area2D" parent="Room_Iterate"]
 script = ExtResource("3_n48xt")
@@ -329,8 +329,8 @@ target_position = Vector2(-107, 99)
 position = Vector2(0, 341)
 rotation = 3.14159
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_8ji0w")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_8ji0w")
 
 [node name="hasDoor" type="RayCast2D" parent="Room_Iterate/down_Gen"]
 position = Vector2(-74, 343)
@@ -341,8 +341,8 @@ position = Vector2(1, 360)
 rotation = -6.28318
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_e5hon")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_e5hon")
 
 [node name="rock" parent="Room_Iterate" instance=ExtResource("4_t1by3")]
 
@@ -358,8 +358,8 @@ position = Vector2(-321, 185)
 
 [node name="Dust" type="GPUParticles2D" parent="Room_Iterate/GAMBLE"]
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_jldbr")
 lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_jldbr")
 
 [node name="mapPart" type="GPUParticles2D" parent="Room_Iterate/GAMBLE"]
 position = Vector2(1, 169)
