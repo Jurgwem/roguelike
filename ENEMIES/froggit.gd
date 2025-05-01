@@ -16,12 +16,14 @@ var playedPart : bool = false;
 var health : int = 6;
 var color : float = 0;
 var jumpTimer : float = 0.0;
+var pausedTimer : float = 0.0;
+var paused : bool = false;
 
 func _ready() -> void:
 	health *= gm.difficulty;
 	visible = false;
 	gm.enemyCount += 1;
-	await get_tree().create_timer(randf()).timeout;
+	await get_tree().create_timer(randf() / 2).timeout;
 	visible = true;
 	global_position = spawnpoint.global_position;
 	global_position += Vector2(randf(), randf());
@@ -38,7 +40,12 @@ func _physics_process(delta: float) -> void:
 		scale = lerp(scale, scale + Vector2(0.5, 0.5), 8 * delta);
 		if scale >= Vector2(1 * gm.enemyScale, 1 * gm.enemyScale):
 			playedScale = true;
-	if hasSpawned and playedScale:
+			
+	pausedTimer += delta;
+	if pausedTimer > 1:
+		paused = true;
+		
+	if hasSpawned and playedScale and paused:
 		velocity.x *= DAMPING.x;
 		if not is_on_floor():
 			$AnimatedSprite2D.frame = 1;

@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	if equipped:
 		if !init:
 			init = true;
-			gm.weapon = "Semi-Auto";
+			gm.weapon = "'Semi'-Auto";
 			gm.maxAmmo = ammo * player.ammoMod;
 			gm.currentAmmo = 0;
 			$GPUParticles2D.emitting = false;

@@ -13,12 +13,14 @@ var hasSpawned : bool = false;
 var playedScale : bool = false;
 var playedPart : bool = false;
 var health : int = 25;
+var pausedTimer : float = 0.0;
+var paused : bool = false;
 
 func _ready() -> void:
 	health *= gm.difficulty;
 	visible = false;
 	gm.enemyCount += 1;
-	await get_tree().create_timer(randf()).timeout;
+	await get_tree().create_timer(randf() / 2).timeout;
 	visible = true;
 	global_position = spawnpoint.global_position;
 	global_position += Vector2(randf(), randf());
@@ -32,7 +34,12 @@ func _physics_process(delta: float) -> void:
 		scale = lerp(scale, scale + Vector2(0.5, 0.5), 8 * delta);
 		if scale >= Vector2(1, 1):
 			playedScale = true;
-	if hasSpawned and playedScale:
+			
+	pausedTimer += delta;
+	if pausedTimer > 1:
+		paused = true;
+	
+	if hasSpawned and playedScale and paused:
 		velocity *= DAMPING;
 		if (health >= 1):
 			if (velocity.x < MAX_SPEED and velocity.y < MAX_SPEED) and (velocity.x > (MAX_SPEED * -1) and velocity.y > (MAX_SPEED * -1)):

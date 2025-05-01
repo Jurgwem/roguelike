@@ -16,6 +16,8 @@ var playedScale : bool = false;
 var playedPart : bool = false;
 var health : int = 25;
 var color : float = 0;
+var pausedTimer : float = 0.0;
+var paused : bool = false;
 
 var isBoss : bool = false;
 var timer : float = 0.0;
@@ -29,12 +31,16 @@ func _ready() -> void:
 		health *= gm.difficulty * 12;
 		speed = 700;
 		damping = Vector2(0.97, 0.97);
+		paused = true;
 	visible = false;
 	gm.enemyCount += 1;
-	await get_tree().create_timer(randf()).timeout;
+	await get_tree().create_timer(randf() / 2).timeout;
 	visible = true;
-	global_position = spawnpoint.global_position;
-	global_position += Vector2(randf(), randf());
+	if isBoss and gm.roomCount <= 25:
+		global_position = gm.roomPos;
+	else:
+		global_position = spawnpoint.global_position;
+		global_position += Vector2(randf(), randf());
 	scale = Vector2(0.1, 0.1);
 	hasSpawned = true;
 	velocity = Vector2(0, 0);
@@ -51,7 +57,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			if scale >= Vector2(3, 3) * Vector2(gm.enemyScale, gm.enemyScale):
 				playedScale = true;
-	if hasSpawned and playedScale:
+	pausedTimer += delta;
+	if pausedTimer > 1:
+		paused = true;
+		
+	if hasSpawned and playedScale and paused:
 		velocity *= damping;
 		if (health >= 1):
 			if (velocity.x < MAX_SPEED and velocity.y < MAX_SPEED) and (velocity.x > (MAX_SPEED * -1) and velocity.y > (MAX_SPEED * -1)):

@@ -23,7 +23,6 @@ used to learn the basics of game dev and godot
 - Damage: 28%
 - Time: 28%
 - Spread: 16%
-aaaadsdwr
 --------------------------------------------
 # Dev Keys
 

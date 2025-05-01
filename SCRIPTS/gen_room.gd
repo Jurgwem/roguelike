@@ -83,3 +83,7 @@ func _on_body_entered(body: Node2D) -> void:
 		print("next room: ", gm.nextRoom);
 		if !used:
 			call_deferred("spawnRoom");
+		if !used:
+			body.canMove = false;
+			await get_tree().create_timer(0.5).timeout;
+			body.canMove = true;

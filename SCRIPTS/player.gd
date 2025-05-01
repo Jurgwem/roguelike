@@ -162,14 +162,17 @@ func _physics_process(_delta: float) -> void:
 			animated_sprite_2d.play("walk");
 			$walkPart.emitting = true;
 			yvel -= accel * speedMod;
-			
+		
+		if Input.is_action_just_released("down") or Input.is_action_just_released("up") or Input.is_action_just_released("left") or Input.is_action_just_released("right"):
+			animated_sprite_2d.play("idle");
+			$walkPart.emitting = false;
+	
+	if !gm.isDead:
 		if Input.is_action_pressed("shoot") and gm.currentAmmo >= 1 and !isOnCooldown and !isReloading and !shooting and gm.weapon != "none":
 			shoot.emit();
 			shooting = true;
 			
-		if Input.is_action_just_released("down") or Input.is_action_just_released("up") or Input.is_action_just_released("left") or Input.is_action_just_released("right"):
-			animated_sprite_2d.play("idle");
-			$walkPart.emitting = false;
+		
 			
 	if !gm.isDead:
 		velocity.x = xvel;
