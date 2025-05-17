@@ -4,9 +4,6 @@ simple Godot game inspired by the Binding of Isaac and similar titles.<br />
 used to learn the basics of game dev and godot<br />
 Currently abandoned due to not wanting to refactor bad code
 
---------------------------------------------
-# Probabilities
-
 ## Room
 - Enemy (Default): 65%
 - Loot / Upgrade: 15%
