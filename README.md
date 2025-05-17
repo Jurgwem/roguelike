@@ -1,13 +1,8 @@
 # roguelike
  
 simple Godot game inspired by the Binding of Isaac and similar titles.<br />
-used to learn the basics of game dev and godot
-
---------------------------------------------
-
-# Todo:
-- Add more variety to Items/Bosses/Enemies (maybe? (dont really want to))
-- Balancing (is kinda balanced, more or less)
+used to learn the basics of game dev and godot<br />
+Currently abandoned due to not wanting to refactor bad code
 
 --------------------------------------------
 # Probabilities
