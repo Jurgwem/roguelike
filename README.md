@@ -1,4 +1,4 @@
-# roguelike
+# roguelike (f#ck it has a gun)
  
 simple Godot game inspired by the Binding of Isaac and similar titles.<br />
 used to learn the basics of game dev and godot<br />
