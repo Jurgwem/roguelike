@@ -15,7 +15,7 @@ Currently abandoned due to not wanting to refactor bad code
 - Damage: 28%
 - Time: 28%
 - Spread: 16%
---------------------------------------------
+
 # Dev Keys
 
 - c = spawn coin @ mouse cursor
